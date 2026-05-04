@@ -4,182 +4,169 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-A Python web scraper that extracts competition data (Underhand Chop and Standing Block Chop times) from the STIHL Timbersports official database (https://data.stihl-timbersports.com) and exports to Excel with a specific 9-column format.
+**MNEMEX** is the third leg of the STRATHEX ecosystem alongside:
+- **STRATHEX** — live tournament management platform (captures current-era results during events)
+- **STRATHMARK** — handicap and prediction engine (computes marks from historical results)
+- **MNEMEX** (this repo) — historical archive (scrapes the past + accepts federation backfill)
 
-## Core Architecture
+MNEMEX's job is to be the **historical memory** of Timbersports: a continuously growing
+archive of competition results from federations, events, and scorebooks across decades.
+It feeds STRATHMARK's training data and gives the platform deep historical context that
+no live scoring system can produce on its own.
 
-### Main Components
+The full design rationale is in [docs/MNEMEX-design-2026-05-04.md](docs/MNEMEX-design-2026-05-04.md).
+That doc has been through 5 plan-phase reviews (CEO, Eng, Design, DX, Outside Voice via Codex)
+and is the canonical source of truth for v1 scope.
 
-**[TimbersportsScraper.py](TimbersportsScraper.py)** - Core scraper module
-- `StihlTimberScraper` class handles all web scraping logic
-- Uses `requests.Session` for HTTP with 1-second respectful delay between requests
-- BeautifulSoup for HTML parsing
-- pandas for data aggregation and Excel export via openpyxl
+## Scope Discipline (load-bearing)
 
-**[InteractiveMenu.PY](InteractiveMenu.PY)** - User-friendly CLI interface
-- Imports and uses `StihlTimberScraper` from TimbersportsScraper module
-- Menu-driven interaction (no command-line args needed)
-- Wrapper around the core scraper functionality
+MNEMEX is **historical-only**. Discipline: **scrape first, accept federation historical backfill second, and stop.**
 
-### Key Design Patterns
+### What MNEMEX is
 
-**Two Scraping Modes:**
-1. **Event-based scraping** (Reliable, Recommended)
-   - Scrapes by season/year via `get_events()` and `parse_event_results()`
-   - Processes event list from Results page
-   - Iterates through each event extracting SB/UH data
+- **Primary function: scraping.** Collects old results from public sources — federation
+  websites, archived event pages, PDF scorebooks (ALA, CANLOG newsletters), photographed
+  scoresheets, news coverage. Most of the value is data that exists somewhere online but
+  is unstructured, scattered, or buried in formats nobody has parsed.
+- **Secondary function: federation backfill.** Some federations have decades of internal
+  records that were never published. MNEMEX accepts batched uploads from federation admins
+  (CSV, Excel, structured upload form). One-way intake for historical data only.
 
-2. **Athlete-based scraping** (Unreliable, Known Issue)
-   - Scrapes athlete profile pages via `scrape_athlete_profile()`
-   - Has navigation/completeness issues (documented in README)
-   - Users should use season scraping + Excel filtering instead
+### What MNEMEX is NOT
 
-**Data Flow:**
-```
-Web Page → BeautifulSoup → dict/list → pandas DataFrame → Excel (multiple sheets)
-```
+- **NOT a portal for federations to enter live or current match results.** That is STRATHEX's job.
+- **NOT a scoring system.** MNEMEX never decides who won an event.
+- **NOT a competitor to STRATHEX's tournament management.**
+- **NOT a real-time data source.**
 
-### Critical Data Transformations
+A parallel live-entry portal in MNEMEX would duplicate STRATHEX's core function, fragment
+the data pipeline, and create two sources of truth for current-era results. It is forbidden
+by design. The `mnemex publish` historical-backfill flow refuses to ingest events with dates
+within the federation's STRATHEX-active window.
 
-The scraper performs specific transformations required by downstream tools:
+## v1 Scope (per design doc)
 
-1. **Discipline abbreviation**: "Standing Block Chop" → "SB", "Underhand Chop" → "UH"
-2. **Size conversion**: CM to MM (multiply by 10)
-3. **Column ordering**: Exact 9-column format (see Output Format below)
+Five ingest paths: STIHL HTML scraper, college Excel via Vision LLM, ALA / CANLOG newsletter
+PDF via Vision LLM, photographed scoresheet via Vision LLM, manual CSV / federation backfill.
 
-### Output Format
+Plus: identity dedup service with cross-source matching, pending review queue with audit-comment
+threads, JSONL+git canonical store, SQLite pending queue, export hub (CSV / JSON / 9-col XLSX),
+STRATHMARK Tier 1 adapter (JSONL → import_legacy.py), static web archive (Astro/Next.js,
+deployed to GitHub Pages), `mnemex demo` magical-moment command.
 
-Excel files must have exactly these 9 columns in this order:
-1. Competitor profile URL
-2. Competitor Name
-3. Discipline (SB or UH only)
-4. Time
-5. Size (in MM)
-6. Species
-7. Event Date
-8. Event Name
-9. Special Markers (WR, NR, PB, SB)
+v1 estimate: ~47-70 focused work-days, 5-7 calendar months solo.
 
-Multiple sheets created:
-- `Results` - All data
-- `SB_Results` - Standing Block only
-- `UH_Results` - Underhand only
-- `Athlete Summary` - Aggregated best times
+## Tier classification (which disciplines export to STRATHMARK)
+
+- **Tier 1** — time-scored speed events. Ship cleanly against STRATHMARK 0.4.1.
+  UH, STB, SB, DB, JJ, OP, Power Saw, Hot Saw, Stock Saw, Springboard 1bd/2bd, HS, VS.
+- **Tier 2** — hits-based axe events (HHH, VHH). Need STRATHMARK ≥ 0.5 with `score_type` field.
+  v1 implements but feature-flag-disables.
+- **Tier 3** — distance / knowledge / place-only events. Captured in MNEMEX archive **forever**;
+  **never** exported to STRATHMARK. STRATHMARK is a handicap engine, period.
+
+## Code Patterns
+
+### When adding a new ingest source
+
+1. Subclass `mnemex.ingest.IngestSource`.
+2. Output `CanonicalRow` records with full provenance (`source` field uses
+   `<source_type>:<instance_id>` format).
+3. Use the shared `mnemex.ingest.llm_client` for any Vision-LLM call. Don't roll your own.
+4. Vision-LLM rows enter the pending queue with `extraction_status` populated; the review
+   queue handles state transitions.
+5. Never write directly to `data/canonical.jsonl` — go through `mnemex.store.commit_pending`.
+
+### When changing the schema
+
+- **Enums are append-only.** Adding a value is fine; renaming or removing requires a major version bump + migration script.
+- **New fields must have defaults.** Existing JSONL rows must remain valid.
+- **Tier classification matters.** A new Discipline must be added to TIER1, TIER2, or TIER3
+  in `mnemex/schema.py`. The `test_every_discipline_classified` test catches misses.
+
+### CLI output style (CI-enforced)
+
+- Plain text. No emojis. No ANSI color. No banner art.
+- Utility language ("scrape the STIHL official site"), not marketing voice.
+- Errors name the file/path/value involved AND propose the next action.
+- The single `✓` glyph is allowed for success indicators; no other unicode glyphs.
+
+A regex-based test (`tests/test_cli_output_style.py`, lands at M7) asserts every CLI
+command's output matches these rules.
+
+## Score accuracy is non-negotiable
+
+This rule is inherited verbatim from STRATHMARK. Wrong ingest data corrupts handicap math,
+which makes races unfair. **No row reaches the STRATHMARK adapter unverified.** The review
+queue is the recheck protocol for image-extracted and parser-extracted rows. The contract
+test gates every release.
 
 ## Development Commands
 
-### Run the scraper
-
-**Interactive mode (easiest):**
 ```bash
-python InteractiveMenu.PY
+# Install with dev dependencies (note: the repo will be renamed to mnemex)
+pip install -e ".[dev]"
+
+# Run the schema tests (the only thing that passes at end-of-Milestone-0)
+pytest tests/test_schema.py -v
+
+# Run the full test suite (most tests are placeholders until M1+)
+pytest -v
+
+# Type-check the public API
+mypy mnemex/
+
+# Lint
+ruff check mnemex/ tests/
+ruff format mnemex/ tests/
 ```
 
-**Command line - scrape by season (recommended):**
-```bash
-python TimbersportsScraper.py --season 2024
-python TimbersportsScraper.py --seasons "2024,2023,2022"
-python TimbersportsScraper.py --all-seasons
-```
+## Workflow
 
-**Command line - quick test:**
-```bash
-python TimbersportsScraper.py --limit 5
-```
+This project uses gstack + Superpowers. The design doc and all 5 plan-phase reviews
+are tracked in `~/.gstack/projects/$SLUG/`.
 
-**Command line - custom output:**
-```bash
-python TimbersportsScraper.py --season 2024 --output my_data.xlsx
-```
+### Decision & Review Layer (gstack)
+- /plan-ceo-review — product-level thinking, strategic direction
+- /plan-eng-review — architecture review, tech debt assessment
+- /plan-design-review — UI/UX critique
+- /plan-devex-review — developer experience review
+- /autoplan — bundles CEO + dual-voice (Claude subagent + Codex) into one pass
+- /review — structural code review, pattern compliance
+- /qa — browser-based QA testing
+- /ship — branch finishing, PR creation
+- /retro — engineering retrospective
 
-### Dependencies
+### Build Layer (Superpowers — for multi-file features)
+- /brainstorming → /writing-plans → /executing-plans (TDD enforcement)
+- For quick fixes / single-file changes: skip Superpowers, use gstack directly
 
-The README references `requirements.txt` but it's not present in the repository. Based on the code, required packages are:
-- requests
-- beautifulsoup4
-- pandas
-- openpyxl (for Excel writing)
+### Override Rules
+- CLAUDE.md instructions > Superpowers skills > default behavior
+- Codex QA reviewer is the independent QA layer — runs AFTER /review
+- For multi-file features, refactors, and new modules: full Superpowers TDD workflow
 
-## Important Implementation Details
+## Inherited project rules
 
-### Web Scraping Strategy
+From the user's global CLAUDE.md:
 
-**Base URL and Patterns:**
-- Base: `https://data.stihl-timbersports.com`
-- Results page: `/Results?season={year}`
-- Event pages: `/Event/{id}`
-- Athlete profiles: `/Athlete/{id}`
+- **Test isolation** — Tests MUST NEVER write to or pollute production data. Use separate
+  test databases, fixtures, or transactions that roll back. Vision-LLM tests use cached
+  fixture responses, not live API calls.
+- **Stale cache** — When debugging Python import errors or unexpected behaviour where
+  source code looks correct, check for stale `__pycache__/.pyc` files first.
+- **Git workflow** — Always check the current branch before running release/deploy
+  workflows. Feature branches are required for PRs. Never assume we're on a feature branch.
+- **Context retention** — When the user references a business name or prior decision,
+  search the codebase and docs for context before claiming ignorance. Read DESIGN.md,
+  README, and recent git history.
 
-**HTML Parsing Approach:**
-- Discipline sections identified by anchor IDs: `Round1UnderhandChop`, `Round1StandingBlockChop`, etc.
-- Competition wood info extracted via regex from paragraphs: `Competition Wood: **{species} ({size} cm diameter)**`
-- Results tables parsed row-by-row (skip header row)
-- Special markers in 6th table column
+## Important Context
 
-**Rate Limiting:**
-- 1 second delay between requests (`time.sleep(self.delay)`)
-- Do NOT reduce below 1.0 seconds (documented in README as ethical requirement)
-
-### Known Issues and Workarounds
-
-**Athlete Direct Search Unreliable:**
-- `scrape_athlete_profile()` has completeness issues
-- Profile pages have complex navigation that makes comprehensive scraping difficult
-- **Workaround**: Use `scrape_all_events(season="2024")` then filter in Excel
-
-**Duplicate Code:**
-- Lines 540-638 in TimbersportsScraper.py appear to be duplicate/dead code from `_find_athlete_url()` method
-- Should be cleaned up in future refactoring
-
-### Excel Export Implementation
-
-Located in `export_to_excel()` method:
-- Uses `pd.ExcelWriter` with openpyxl engine
-- Enforces strict column order via `column_order` list
-- Creates filtered sheets by discipline using DataFrame filtering
-- Athlete Summary sheet uses `groupby` aggregation (min time, event count)
-
-## Code Patterns to Maintain
-
-### When adding new scraping functionality:
-
-1. **Always use the session object** (`self.session.get()`) not raw `requests.get()`
-2. **Always call `self.get_page(url)`** which includes delay and error handling
-3. **Return empty list/DataFrame on errors** rather than raising exceptions
-4. **Parse wood info consistently** using the regex patterns established
-5. **Convert CM to MM** for size measurements (multiply by 10)
-6. **Use discipline abbreviations** SB/UH in output data
-
-### When modifying data extraction:
-
-The 9-column output format is non-negotiable - it's required by downstream tools. Any changes to column order, names, or count will break integrations.
-
-## Testing Strategy
-
-The README documents specific testing approaches:
-
-**Quick validation:**
-```bash
-python TimbersportsScraper.py --limit 5 --output test.xlsx
-```
-
-**Season validation:**
-```bash
-python TimbersportsScraper.py --season 2024 --limit 10 --output test_2024.xlsx
-```
-
-**Expected timing:**
-- 5 events: ~30 seconds
-- Single season: 10-15 minutes
-- Multiple seasons: 30-60 minutes
-
-## Critical Context from README
-
-The README emphasizes these points repeatedly:
-- Season scraping is the reliable method
-- Athlete search has known issues
-- Use Excel for filtering athletes after scraping
-- Respect rate limits (1.0 second delay minimum)
-- Output format is designed for integration with other programs (exact 9 columns)
-
-When making changes, remember the scraper is part of a larger workflow - users scrape data then use it in other analysis tools that expect the specific column format.
+- **The repo's GitHub name is currently `stihl-timbersports-aggregator`** but the package
+  is `mnemex`. The repo will be renamed in a future Milestone 0 task (requires the user's
+  explicit authorization since renaming a published repo is a coordination-required action).
+- **No live API calls in tests by default.** Vision-LLM tests are gated behind the
+  `requires_vision_llm` pytest marker and skipped when `MNEMEX_VISION_PROVIDER_KEY` is unset.
+- **The 22+ Reviewer Concerns** from the design-phase reviews are tracked in `TODOS.md`
+  for early-implementation triage. Read it before starting any milestone.
