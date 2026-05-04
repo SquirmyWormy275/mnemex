@@ -38,18 +38,59 @@ from typing import Optional, Union
 @dataclass
 class CanonicalAthlete:
     """A canonical athlete identity. Aliases accumulate as new spelling
-    variants are confirmed by reviewers."""
+    variants are confirmed by reviewers.
+
+    Federation IDs (`federation_ids`):
+        Map of federation slug -> the federation's own athlete identifier
+        for this person. The same person commonly has IDs in multiple
+        federations as their career progresses (collegiate to professional,
+        regional to national, country to country). Examples:
+
+            {"stihl": "12345",
+             "awfc": "OSU-2022-018",
+             "ala": "ala_member_5587",
+             "aaa": "aaa_2024_chopper_44"}
+
+        Federation slugs are short lowercase strings keyed by federation
+        identifier. The slug taxonomy will be formalized when the federations
+        module lands; for now any consistent short slug is acceptable.
+        Common slugs in current use: "stihl" (STIHL Pro Series), "awfc"
+        (AWFC collegiate conclaves), "ala" (American Lumberjack Association),
+        "aaa" (Australian Axemen's Association), "canlog" (Canadian Logging
+        Association), "lwc" (Lumberjack World Championship roster).
+
+    Disambiguation tiebreakers (`birth_year`, `hometown`):
+        Optional, populated only when needed to disambiguate between two
+        real people sharing a name.
+
+        - `birth_year` is the year only (e.g., 1995). Storing full
+          date-of-birth (1995-03-12) is NOT permitted. Year alone is enough
+          to disambiguate without storing full PII.
+        - `hometown` is city/state ("Missoula, MT" or "Sydney, NSW").
+          Street addresses are NOT permitted.
+
+        Both fields are removable on athlete request via the future
+        `mnemex identity redact` CLI. The redaction primitive in this
+        module supports clearing these fields without tombstoning the
+        whole canonical record.
+    """
 
     canonical_id: str  # MNEMEX-issued, stable across renames
     primary_name: str  # canonical display name (Title Case)
     aliases: list[str] = field(default_factory=list)
-    stihl_athlete_id: Optional[str] = None  # /Athlete/{id} when known
+    # Federation-specific identifiers, keyed by federation slug. See class
+    # docstring for slug examples. Replaces the previous single
+    # `stihl_athlete_id` field; STIHL is now just one entry in the map.
+    federation_ids: dict[str, str] = field(default_factory=dict)
     school_team_history: list[tuple[int, str]] = field(
         default_factory=list
     )  # [(year, team)]
     eligibility: list[tuple[int, str]] = field(
         default_factory=list
     )  # [(year, "college"|"pro"|"both")]
+    # Disambiguation tiebreakers. See class docstring for privacy constraints.
+    birth_year: Optional[int] = None  # year only, never full DOB
+    hometown: Optional[str] = None  # city/state, no street address
     notes: Optional[str] = None
     redacted: bool = False
     redacted_at: Optional[str] = None

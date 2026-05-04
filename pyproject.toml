@@ -43,6 +43,7 @@ dependencies = [
     "openpyxl>=3.1",
     "rapidfuzz>=3.0",       # athlete-name fuzzy matching (identity service)
     "python-dotenv>=1.0",   # .env loading for secrets (see Operational Concerns)
+    "ulid-py>=1.1",         # ULIDs for IngestionRun.run_id (sortable, debuggable)
 ]
 
 [project.optional-dependencies]

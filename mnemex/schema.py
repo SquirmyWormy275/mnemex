@@ -156,6 +156,12 @@ class Discipline(str, Enum):
     STEEPLE_CHASE = "STEEPLE_CHASE"
     WRAPPER_THROW = "WRAPPER_THROW"
     TEAM_RELAY = "TEAM_RELAY"
+    # Forestry knowledge events (AWFC conclave staples).
+    # All ScoreType.RAW_SCORE; never export to STRATHMARK.
+    WILDLIFE_ID = "WILDLIFE_ID"          # animal / sign / track identification
+    COMPASS_PACING = "COMPASS_PACING"    # navigation accuracy
+    FORESTRY_BOWL = "FORESTRY_BOWL"      # forestry knowledge quiz bowl
+    WOOD_ID = "WOOD_ID"                  # wood / tree species identification
 
 
 class FinalScorePolicy(str, Enum):
@@ -180,6 +186,24 @@ class EventCircuit(str, Enum):
     LWC = "lwc"  # Lumberjack World Championship (Hayward, WI)
     REGIONAL = "regional"
     UNKNOWN = "unknown"
+
+
+class SourceType(str, Enum):
+    """Where a row originated. Drives the provisional flag default and the
+    reconciliation matching strategy.
+
+    SCRAPER: row was scraped from a public source. Provisional by default;
+        gets reconciled against any subsequent canonical source for the
+        same event.
+    FEDERATION_UPLOAD: a federation administrator uploaded a historical
+        batch (CSV / Excel / structured form). Canonical on arrival.
+    STRATHEX_FINALIZATION: STRATHEX wrote the row to MNEMEX after an event
+        finalized in the live tournament platform. Canonical on arrival.
+    """
+
+    SCRAPER = "scraper"
+    FEDERATION_UPLOAD = "federation_upload"
+    STRATHEX_FINALIZATION = "strathex_finalization"
 
 
 # ---------------------------------------------------------------------------
@@ -234,6 +258,11 @@ TIER3_DISCIPLINES: frozenset[Discipline] = frozenset(
         Discipline.TEAM_RELAY,
         Discipline.POLE_CLIMB,  # uses pole equipment STRATHMARK has no model for
         Discipline.CHOKER_RACE,  # multi-run + obstacle structure outside handicap math
+        # Forestry knowledge events: ScoreType.RAW_SCORE; quiz / identification format.
+        Discipline.WILDLIFE_ID,
+        Discipline.COMPASS_PACING,
+        Discipline.FORESTRY_BOWL,
+        Discipline.WOOD_ID,
     }
 )
 
@@ -297,6 +326,11 @@ DEFAULT_SCORE_POLICY: dict[Discipline, FinalScorePolicy] = {
     Discipline.STOCK_SAW: FinalScorePolicy.SINGLE_RUN,
     Discipline.SPRINGBOARD_1BD: FinalScorePolicy.SINGLE_RUN,
     Discipline.SPRINGBOARD_2BD: FinalScorePolicy.SINGLE_RUN,
+    # Forestry knowledge events
+    Discipline.WILDLIFE_ID: FinalScorePolicy.SINGLE_RUN,
+    Discipline.COMPASS_PACING: FinalScorePolicy.SINGLE_RUN,
+    Discipline.FORESTRY_BOWL: FinalScorePolicy.SINGLE_RUN,
+    Discipline.WOOD_ID: FinalScorePolicy.SINGLE_RUN,
 }
 
 
@@ -338,21 +372,54 @@ class CanonicalRow:
     Pair events (DOUBLE_BUCK, JACK_AND_JILL) emit ONE row with TWO
     competitors in the `competitors` list. Team relays similarly.
 
-    `source` format is ALWAYS `<source_type>:<instance_id>`:
-      "stihl:event/12345"            (STIHL event URL fragment)
-      "awfc_excel:um-pro-am-2026"    (AWFC Excel host slug)
-      "ala_pdf:2025-09"              (ALA newsletter month)
-      "image:<sha256-of-image-bytes>:v<prompt_version>"
-      "manual:<user_id>"
-      "federation_publish:<slug>:<batch_id>"
+    Provenance:
+      `source_type` is the SourceType enum (SCRAPER / FEDERATION_UPLOAD /
+        STRATHEX_FINALIZATION) classifying how the row reached MNEMEX.
+      `source_id` carries the instance identifier within source_type, e.g.:
+        SCRAPER              -> "stihl:event/12345" or
+                                "https://data.stihl-timbersports.com/Event/12345"
+                                or "ala_pdf:2025-09:page-4"
+        FEDERATION_UPLOAD    -> "awfc:um-pro-am-2026:batch-1"
+        STRATHEX_FINALIZATION -> "strathex_event_uuid_abc123"
+      `source_native_id` is the source system's own row-level identifier
+        when distinct from source_id (e.g., a STIHL internal result_id).
+      `ingestion_run_id` is a ULID FK to the IngestionRun row that produced
+        this CanonicalRow. Lets us replay or roll back any single ingest.
+      `verified_at` / `verified_by` are populated when a reviewer commits a
+        pending row to canonical (extraction-correctness review, distinct
+        from source-supersedence reconciliation below).
+
+    Reconciliation:
+      `provisional` is True for SCRAPER rows by default and False for
+        FEDERATION_UPLOAD / STRATHEX_FINALIZATION rows (which arrive
+        canonical). A scraped row stays provisional until reconciliation
+        matches it against a canonical source.
+      `canonical_id` is non-null only when this row has been superseded
+        by another row. The value is the superseder's ID. Downstream
+        queries that filter on canonical_id IS NULL exclude superseded
+        rows but they remain in the table for audit.
+      `reconciled_at` is set when reconciliation last updated this row's
+        canonical status. Null until the first reconciliation pass touches
+        the row.
+      `last_modified_at` is updated on every write (initial ingest,
+        reconciliation, redaction). STRATHMARK's incremental sync uses
+        this as the watermark.
     """
 
     # provenance
-    source: str
+    source_type: SourceType = SourceType.SCRAPER
+    source_id: str = ""
     source_native_id: Optional[str] = None
+    ingestion_run_id: Optional[str] = None  # ULID FK to IngestionRun
     ingested_at: str = ""  # ISO 8601 UTC
     verified_at: Optional[str] = None
     verified_by: Optional[str] = None
+
+    # reconciliation
+    provisional: bool = True
+    canonical_id: Optional[str] = None  # self-FK; non-null means "superseded by"
+    reconciled_at: Optional[str] = None  # ISO 8601 UTC
+    last_modified_at: str = ""  # ISO 8601 UTC; updated on every write
 
     # event
     event_name: str = ""

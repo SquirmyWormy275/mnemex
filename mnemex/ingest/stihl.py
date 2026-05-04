@@ -18,3 +18,18 @@ MIN_REQUEST_DELAY_SEC: float = 1.0
 # The base URL is currently configurable per the legacy scraper. Hardcoded
 # for the typical case; can be overridden for testing against fixtures.
 DEFAULT_BASE_URL = "https://data.stihl-timbersports.com"
+
+# Identifying User-Agent. Replaces the legacy TimbersportsScraper.py
+# behaviour of sending a Mozilla/5.0 string that impersonates a browser.
+# This UA identifies MNEMEX so server operators can:
+#   - distinguish our traffic from real users in their logs
+#   - reach us if our scraping is causing load problems
+#   - opt us out via robots.txt with confidence
+#
+# All new scraper code paths in mnemex/ingest/* MUST use this UA on every
+# outbound HTTP request. The legacy TimbersportsScraper.py is slated for
+# deletion at M2 and is intentionally not modified.
+USER_AGENT: str = (
+    "MNEMEX/0.1.0 (+https://github.com/SquirmyWormy275/mnemex; "
+    "admin@mnemex.example)"
+)
