@@ -25,8 +25,13 @@ Identity:
     CanonicalAthlete, Match, NeedsReview
     match, commit_link, merge, split, redact
 
-Store:
-    read_canonical, read_pending, commit_pending
+Store (Supabase-backed; see docs/supabase-setup.md):
+    write_competitor, write_ingestion_run, write_results
+    read_canonical, read_results_full, read_competitor,
+    read_competitor_by_federation_id, read_ingestion_run
+    queue_for_reconciliation
+    export_canonical_jsonl
+    health_check
 
 STRATHMARK adapter:
     to_strathmark_results, write_strathmark_jsonl
@@ -80,6 +85,23 @@ from mnemex.identity import (  # noqa: F401
     NeedsReview,
 )
 
+# Store (Supabase-backed). Functions raise RuntimeError at call time
+# if MNEMEX_SUPABASE_URL / MNEMEX_SUPABASE_SERVICE_ROLE_KEY are unset,
+# so import-time has no credential dependency.
+from mnemex.store import (  # noqa: F401
+    write_competitor,
+    write_ingestion_run,
+    write_results,
+    read_canonical,
+    read_results_full,
+    read_competitor,
+    read_competitor_by_federation_id,
+    read_ingestion_run,
+    queue_for_reconciliation,
+    export_canonical_jsonl,
+    health_check,
+)
+
 __all__ = [
     "__version__",
     # schema
@@ -110,6 +132,18 @@ __all__ = [
     "CanonicalAthlete",
     "Match",
     "NeedsReview",
-    # store, strathmark_adapter, ingest names land in M1-M6 and
-    # become first-class re-exports here at that point.
+    # store (Supabase-backed; see docs/supabase-setup.md)
+    "write_competitor",
+    "write_ingestion_run",
+    "write_results",
+    "read_canonical",
+    "read_results_full",
+    "read_competitor",
+    "read_competitor_by_federation_id",
+    "read_ingestion_run",
+    "queue_for_reconciliation",
+    "export_canonical_jsonl",
+    "health_check",
+    # strathmark_adapter, ingest names land in M1-M6 and become
+    # first-class re-exports here at that point.
 ]
