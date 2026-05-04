@@ -1,0 +1,160 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mnemex"
+version = "0.1.0a0"
+description = "Timbersports historical archive — third leg of the STRATHEX ecosystem alongside STRATHEX (live tournaments) and STRATHMARK (handicap engine)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "Proprietary" }
+authors = [
+    { name = "Alex Kaper" }
+]
+keywords = ["timbersports", "lumberjack", "woodchopping", "archive", "data", "scraping", "vision-llm"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Database",
+    "Topic :: Scientific/Engineering",
+    "Intended Audience :: Developers",
+    "Development Status :: 3 - Alpha",
+]
+
+# Base dependencies — what mnemex imports at module load and is required for
+# the core CLI + library + JSONL store. Vision-LLM SDKs, DB adapters, and the
+# STRATHMARK consumer-side library are gated behind optional extras and
+# lazy-imported by the modules that need them.
+#
+# STRATHMARK note: the strathmark package is the CONSUMER of MNEMEX exports.
+# MNEMEX writes JSONL; STRATHMARK reads it via import_legacy.py. Only the
+# strathmark_adapter modules import strathmark, and they do so lazily inside
+# function bodies. This means MNEMEX installs and runs standalone (without
+# STRATHMARK), and the strathmark_adapter raises a helpful error if exercised
+# without the [strathmark] extra installed.
+dependencies = [
+    "requests>=2.28",
+    "beautifulsoup4>=4.12",
+    "pandas>=2.0",
+    "openpyxl>=3.1",
+    "rapidfuzz>=3.0",       # athlete-name fuzzy matching (identity service)
+    "python-dotenv>=1.0",   # .env loading for secrets (see Operational Concerns)
+    "ulid-py>=1.1",         # ULIDs for IngestionRun.run_id (sortable, debuggable)
+]
+
+[project.optional-dependencies]
+# STRATHMARK consumer-side library. Install via local path until STRATHMARK is on PyPI:
+#   pip install -e "../STRATHMARK"   # then:
+#   pip install -e ".[dev,strathmark]"  # exercises the contract test
+# Once STRATHMARK is published, this extra resolves from PyPI directly.
+strathmark = ["strathmark>=0.4.1,<0.6"]
+
+# Vision LLM provider SDKs — pick one at Milestone 0 benchmark time.
+# Lazy-imported in mnemex/ingest/llm_client.py.
+vision-anthropic = ["anthropic>=0.39"]
+vision-openai = ["openai>=1.50"]
+vision-gemini = ["google-generativeai>=0.8"]
+
+# PDF rendering for newsletter ingest (Milestone 3.5)
+pdf = ["pypdfium2>=4.30"]
+
+# Image preprocessing
+image = ["Pillow>=10.0"]
+
+# Parquet export (deferred to v1.1; stub installed for forward compat)
+parquet = ["pyarrow>=15.0"]
+
+# STRATHMARK Supabase adapter (deferred to v1.1+)
+supabase = ["supabase>=2.0"]
+
+# Dev tooling
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.4",
+    "mypy>=1.10",
+    "openpyxl>=3.1",
+    "Pillow>=10.0",
+    "pypdfium2>=4.30",
+]
+
+# Convenience: install everything for full local dev
+all = [
+    "anthropic>=0.39",
+    "openai>=1.50",
+    "google-generativeai>=0.8",
+    "pypdfium2>=4.30",
+    "Pillow>=10.0",
+    "pyarrow>=15.0",
+    "supabase>=2.0",
+]
+
+[project.scripts]
+# Single CLI entrypoint per the design doc's CLI surface specs.
+mnemex = "mnemex.cli:main"
+
+[project.urls]
+"Source" = "https://github.com/SquirmyWormy275/mnemex"
+"Issues" = "https://github.com/SquirmyWormy275/mnemex/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["mnemex"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    # Tests that depend on libreoffice (skipped on Windows CI runner per design doc)
+    "requires_libreoffice: skip when libreoffice is not on PATH",
+    # Tests that hit live Vision LLM APIs (skipped without API key)
+    "requires_vision_llm: skip when MNEMEX_VISION_PROVIDER_KEY is not set",
+    # Tests that exercise the Vision-LLM extraction pipeline against fixtures
+    "vision_calibration: extraction-accuracy calibration tests (slow)",
+    # Tests that import strathmark and round-trip through its import_legacy.py
+    "strathmark_contract: tests against pinned STRATHMARK version",
+]
+
+[tool.coverage.run]
+source = ["mnemex"]
+omit = ["tests/*", "mnemex/_fixtures/*"]
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
+ignore = [
+    "E501",  # long lines (URLs, log messages, docstring tables)
+    "E402",  # module-level imports placed after other statements
+    "F841",  # assigned-but-unused locals (clarity in tests)
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Re-export shim — public API surface
+"mnemex/__init__.py" = ["F401"]
+
+[tool.mypy]
+python_version = "3.10"
+strict_equality = true
+warn_unused_configs = true
+warn_unused_ignores = true
+disallow_untyped_defs = true
+no_implicit_optional = true
+
+# Public API surface must be fully typed; private modules best-effort.
+[[tool.mypy.overrides]]
+module = "mnemex._fixtures.*"
+ignore_errors = true
+
+[[tool.mypy.overrides]]
+# These optional deps are lazily imported and may not be installed in the
+# default dev env. Don't fail typecheck when they're missing.
+module = ["anthropic", "openai", "google.generativeai", "pypdfium2", "PIL", "pyarrow"]
+ignore_missing_imports = true
