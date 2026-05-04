@@ -44,6 +44,7 @@ dependencies = [
     "rapidfuzz>=3.0",       # athlete-name fuzzy matching (identity service)
     "python-dotenv>=1.0",   # .env loading for secrets (see Operational Concerns)
     "ulid-py>=1.1",         # ULIDs for IngestionRun.run_id (sortable, debuggable)
+    "supabase>=2.0",        # canonical store (PR 2: Supabase migration)
 ]
 
 [project.optional-dependencies]
@@ -68,8 +69,8 @@ image = ["Pillow>=10.0"]
 # Parquet export (deferred to v1.1; stub installed for forward compat)
 parquet = ["pyarrow>=15.0"]
 
-# STRATHMARK Supabase adapter (deferred to v1.1+)
-supabase = ["supabase>=2.0"]
+# Note: supabase-py is now a base dependency (PR 2 made Supabase the
+# canonical store). The previous `supabase` optional extra was removed.
 
 # Dev tooling
 dev = [
@@ -82,7 +83,8 @@ dev = [
     "pypdfium2>=4.30",
 ]
 
-# Convenience: install everything for full local dev
+# Convenience: install everything for full local dev. supabase-py is in
+# base dependencies, not listed here.
 all = [
     "anthropic>=0.39",
     "openai>=1.50",
@@ -90,7 +92,6 @@ all = [
     "pypdfium2>=4.30",
     "Pillow>=10.0",
     "pyarrow>=15.0",
-    "supabase>=2.0",
 ]
 
 [project.scripts]
