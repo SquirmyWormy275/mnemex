@@ -1,0 +1,15 @@
+{% extends "account/base_entrance.html" %}
+{% block head_title %}Sign in{% endblock %}
+{% block content %}
+  <h1>Sign in to MNEMEX</h1>
+  <p class="lede">Invite-only access for competitors and authorized show staff.</p>
+  <form method="post" action="{% url 'account_login' %}">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="field">{{ form.login.label_tag }}{{ form.login }}{{ form.login.errors }}</div>
+    <div class="field">{{ form.password.label_tag }}{{ form.password }}{{ form.password.errors }}</div>
+    {{ redirect_field }}
+    <button class="primary" type="submit">Continue securely</button>
+  </form>
+  <p class="subaction"><a href="{% url 'account_reset_password' %}">Forgot your password?</a></p>
+{% endblock %}

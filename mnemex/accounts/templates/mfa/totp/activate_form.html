@@ -1,0 +1,15 @@
+{% extends "mfa/totp/base.html" %}
+{% block head_title %}Set up an authenticator app{% endblock %}
+{% block content %}
+  <h1>Protect your account</h1>
+  <p class="lede">Scan the QR code with an authenticator app, then enter the six-digit code it shows.</p>
+  <form method="post" action="{% url 'mfa_activate_totp' %}">
+    {% csrf_token %}
+    <div class="qr-wrap"><img src="{{ totp_svg_data_uri }}" alt="Authenticator setup QR code"></div>
+    <div class="setup-key"><strong>Save this setup key until activation succeeds:</strong><code>{{ form.secret }}</code></div>
+    {{ form.non_field_errors }}
+    <div class="field">{{ form.code.label_tag }}{{ form.code }}{{ form.code.errors }}</div>
+    <button class="primary" type="submit">Activate authenticator</button>
+  </form>
+  <p class="boundary">Recovery codes are generated after activation. Save them somewhere separate from this device.</p>
+{% endblock %}

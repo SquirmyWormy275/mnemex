@@ -1,4 +1,16 @@
-# Supabase Setup for MNEMEX
+# DEPRECATED - DO NOT EXECUTE: Legacy Supabase Setup
+
+> **Production use is not authorized.** This document describes the retired
+> direct-Supabase prototype and is retained only as migration history. Do not
+> create projects, run `supabase db push`, configure service-role credentials,
+> or enable the legacy export workflow from these instructions. The binding
+> architecture is
+> [`plans/2026-08-14-mnemex-universal-profile-architecture.md`](plans/2026-08-14-mnemex-universal-profile-architecture.md),
+> and current implementation gates are tracked in the approved plan/status
+> documents. MNEMEX now requires server-side transactional authority and an
+> explicit reviewed snapshot boundary for STRATHMARK.
+
+# Supabase Setup for MNEMEX (retired proposal)
 
 This document captures the operator steps for provisioning the MNEMEX
 Supabase projects. The MNEMEX code requires the projects to exist; it

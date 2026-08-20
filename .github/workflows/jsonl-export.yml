@@ -1,12 +1,12 @@
-name: JSONL Export
+name: Legacy JSONL Export (Production Disabled)
 
-# Nightly export of canonical chopping results from Supabase to a JSONL
+# LEGACY / PRODUCTION DISABLED: this workflow must be started manually while
+# the reviewed MNEMEX snapshot export replaces the direct Supabase pipeline.
+# It has no schedule and must not be treated as a production data path.
+#
+# Manual export of canonical chopping results from Supabase to a JSONL
 # snapshot. Snapshots land on the `data` orphan branch; main is never
 # touched. See data/README.md for the consumer-side contract.
-#
-# Schedule:
-#   Daily at 07:00 UTC: rolling 7-day window
-#   Sundays at 07:00 UTC: full snapshot
 #
 # Required secrets (set in repo Settings > Secrets and variables > Actions):
 #   MNEMEX_SUPABASE_URL
@@ -16,9 +16,7 @@ name: JSONL Export
 # Claude.ai chat. See docs/supabase-setup.md.
 
 on:
-  schedule:
-    - cron: '0 7 * * *'   # 07:00 UTC daily
-  workflow_dispatch:       # also runnable on demand
+  workflow_dispatch:       # LEGACY / PRODUCTION DISABLED; explicit operator action only
 
 permissions:
   contents: write          # required to push to the data/ branch
@@ -36,16 +34,9 @@ jobs:
       - name: Determine snapshot mode
         id: mode
         run: |
-          # Sunday (day 0) = full snapshot; otherwise rolling 7-day window.
-          # Manual workflow_dispatch is treated as a full snapshot to give
-          # the operator a complete refresh on demand.
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ] || [ "$(date -u +%u)" = "7" ]; then
-            echo "mode=full" >> "$GITHUB_OUTPUT"
-            echo "since=" >> "$GITHUB_OUTPUT"
-          else
-            echo "mode=rolling" >> "$GITHUB_OUTPUT"
-            echo "since=$(date -u -d '7 days ago' '+%Y-%m-%dT%H:%M:%SZ')" >> "$GITHUB_OUTPUT"
-          fi
+          # The only allowed trigger is an explicit manual full snapshot.
+          echo "mode=full" >> "$GITHUB_OUTPUT"
+          echo "since=" >> "$GITHUB_OUTPUT"
           echo "snapshot_date=$(date -u '+%Y-%m-%d')" >> "$GITHUB_OUTPUT"
 
       - name: Checkout main

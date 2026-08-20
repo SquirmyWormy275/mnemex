@@ -1,0 +1,17 @@
+<dialog id="privileged-action-step-up" class="action-step-up" aria-labelledby="privileged-action-step-up-title" aria-describedby="privileged-action-step-up-help" data-endpoint="{% url 'accounts:action-step-up' %}">
+  <form method="dialog" class="action-step-up__panel">
+    <p class="eyebrow">Security check</p>
+    <h2 id="privileged-action-step-up-title">Confirm this sensitive action</h2>
+    <p id="privileged-action-step-up-help">Your entries and selected file will stay on this page while you verify.</p>
+    <div class="field" data-step-up-code-field hidden>
+      <label for="privileged-action-step-up-code">Authenticator or recovery code</label>
+      <input id="privileged-action-step-up-code" name="code" inputmode="numeric" autocomplete="one-time-code">
+    </div>
+    <p class="action-step-up__status" data-step-up-status aria-live="polite"></p>
+    <div class="action-step-up__actions">
+      <button type="button" class="primary" data-step-up-verify hidden>Verify</button>
+      <button type="button" class="primary" data-step-up-confirm hidden>Submit now</button>
+      <button type="button" data-step-up-cancel>Keep editing</button>
+    </div>
+  </form>
+</dialog>

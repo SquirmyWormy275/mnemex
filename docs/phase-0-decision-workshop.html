@@ -1,0 +1,934 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>MNEMEX Decision Workshop</title>
+  <style>
+    :root {
+      --ink: #1b2521;
+      --muted: #627069;
+      --paper: #f6f5ef;
+      --panel: #fffefa;
+      --line: #d8d8cf;
+      --forest: #20553d;
+      --forest-dark: #173d2d;
+      --gold: #bf8424;
+      --gold-pale: #fff3d8;
+      --red: #a33c32;
+      --red-pale: #fff0ed;
+      --blue: #275b78;
+      --blue-pale: #eaf3f7;
+      --shadow: 0 10px 25px rgb(22 45 34 / 8%);
+      --radius: 12px;
+      --sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #ecf0ea;
+        --muted: #afbab2;
+        --paper: #15201b;
+        --panel: #1d2a23;
+        --line: #3e4b43;
+        --forest: #7fc99d;
+        --forest-dark: #abdcb9;
+        --gold: #e8b95f;
+        --gold-pale: #3b3020;
+        --red: #f19a8d;
+        --red-pale: #412724;
+        --blue: #8fc6e2;
+        --blue-pale: #203543;
+        --shadow: none;
+      }
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: var(--sans);
+      line-height: 1.45;
+    }
+
+    button, select, textarea, input { font: inherit; }
+    button { cursor: pointer; }
+
+    .skip-link {
+      position: fixed;
+      left: 1rem;
+      top: -5rem;
+      z-index: 100;
+      padding: .7rem .9rem;
+      border-radius: 6px;
+      background: var(--forest-dark);
+      color: white;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    .app-shell { min-height: 100vh; }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      gap: 1.5rem;
+      align-items: center;
+      padding: 1.1rem max(1.25rem, calc((100vw - 1440px) / 2));
+      color: white;
+      background: var(--forest-dark);
+    }
+    .brand { display: flex; align-items: baseline; gap: .7rem; }
+    .brand h1 { margin: 0; font-size: 1.05rem; letter-spacing: .04em; }
+    .brand span { color: #c7dfcf; font-size: .85rem; }
+    .topbar-actions { display: flex; flex-wrap: wrap; gap: .55rem; }
+    .button {
+      min-height: 42px;
+      padding: .6rem .9rem;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      font-weight: 700;
+      background: var(--forest);
+      color: white;
+    }
+    .button:hover { filter: brightness(1.08); }
+    .button:focus-visible, select:focus-visible, textarea:focus-visible, input:focus-visible {
+      outline: 3px solid var(--gold);
+      outline-offset: 2px;
+    }
+    .button.secondary { border-color: #bcd1c2; background: transparent; color: white; }
+    .button.ghost { border-color: var(--line); background: transparent; color: var(--ink); }
+    .button.danger { background: var(--red); }
+
+    main { width: min(1440px, 100%); margin: 0 auto; padding: 1.5rem; }
+    .brief {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 1.5rem;
+      align-items: end;
+      padding: 1.1rem 0 1.4rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .eyebrow { margin: 0 0 .35rem; color: var(--forest); font-size: .78rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+    h2 { margin: 0; font-size: clamp(1.45rem, 2.8vw, 2.15rem); letter-spacing: -.035em; }
+    .brief p { max-width: 67ch; margin: .5rem 0 0; color: var(--muted); }
+    .boundary-note {
+      max-width: 340px;
+      padding: .75rem .9rem;
+      border-left: 4px solid var(--gold);
+      background: var(--gold-pale);
+      font-size: .9rem;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: .8rem;
+      margin: 1.25rem 0;
+    }
+    .metric {
+      min-width: 0;
+      padding: 1rem;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+    .metric strong { display: block; font-family: var(--mono); font-size: 1.85rem; line-height: 1; }
+    .metric span { color: var(--muted); font-size: .88rem; }
+
+    .workspace {
+      display: grid;
+      grid-template-columns: minmax(260px, .75fr) minmax(0, 1.75fr);
+      gap: 1rem;
+      align-items: start;
+    }
+    .queue, .detail {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+    }
+    .queue-head, .detail-head {
+      display: flex;
+      justify-content: space-between;
+      gap: .75rem;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .queue-head h3, .detail-head h3 { margin: 0; font-size: 1rem; }
+    .filter { display: flex; gap: .45rem; flex-wrap: wrap; }
+    .filter button {
+      min-height: 36px;
+      padding: .35rem .6rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--muted);
+      background: transparent;
+      font-size: .82rem;
+    }
+    .filter button[aria-pressed="true"] { border-color: var(--forest); color: white; background: var(--forest); }
+
+    .decision-list { margin: 0; padding: .45rem; list-style: none; }
+    .decision-row {
+      width: 100%;
+      margin: 0 0 .3rem;
+      padding: .85rem;
+      border: 1px solid transparent;
+      border-radius: 9px;
+      color: inherit;
+      text-align: left;
+      background: transparent;
+    }
+    .decision-row:hover { background: color-mix(in srgb, var(--forest) 7%, transparent); }
+    .decision-row[aria-current="true"] { border-color: var(--forest); background: color-mix(in srgb, var(--forest) 10%, transparent); }
+    .decision-id { font-family: var(--mono); color: var(--forest); font-size: .78rem; font-weight: 700; }
+    .decision-row strong { display: block; margin: .2rem 0; }
+    .row-meta { display: flex; justify-content: space-between; gap: .5rem; color: var(--muted); font-size: .8rem; }
+
+    .detail { min-height: 640px; }
+    .detail-body { padding: 1.25rem; }
+    .detail-title { margin: 0; font-size: 1.4rem; letter-spacing: -.02em; }
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: .2rem .55rem;
+      border-radius: 999px;
+      font-size: .78rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+    .pending { color: #73500c; background: var(--gold-pale); }
+    .approved { color: #154d34; background: #ddf4e5; }
+    .deferred { color: #24526d; background: var(--blue-pale); }
+    .blocked { color: #8b322a; background: var(--red-pale); }
+    @media (prefers-color-scheme: dark) {
+      .approved { color: #b9ecc7; background: #193a2a; }
+      .pending { color: #f0cb78; }
+    }
+
+    .recommendation {
+      margin: 1rem 0;
+      padding: 1rem;
+      border-left: 4px solid var(--forest);
+      background: color-mix(in srgb, var(--forest) 8%, transparent);
+    }
+    .recommendation h4 { margin: 0 0 .3rem; font-size: .86rem; text-transform: uppercase; letter-spacing: .08em; }
+    .recommendation p { margin: 0; }
+    .option-section { margin: 1rem 0; padding-top: .9rem; border-top: 1px solid var(--line); }
+    .option-section h4 { margin: 0 0 .5rem; font-size: .86rem; text-transform: uppercase; letter-spacing: .07em; }
+    .option-section > p { margin: 0 0 .7rem; color: var(--muted); font-size: .9rem; }
+    .option-list { display: grid; gap: .6rem; }
+    .option-card {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: .7rem;
+      width: 100%;
+      padding: .8rem;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      color: var(--ink);
+      text-align: left;
+      background: transparent;
+    }
+    .option-card:hover { border-color: var(--forest); background: color-mix(in srgb, var(--forest) 6%, transparent); }
+    .option-card[aria-pressed="true"] { border: 2px solid var(--forest); background: color-mix(in srgb, var(--forest) 11%, transparent); }
+    .option-key { display: grid; place-items: center; width: 30px; height: 30px; border: 1px solid currentColor; border-radius: 50%; color: var(--forest); font-family: var(--mono); font-size: .8rem; font-weight: 800; }
+    .option-card strong { display: block; }
+    .option-card small { display: block; margin-top: .15rem; color: var(--muted); line-height: 1.35; }
+    .option-tag { display: inline-block; margin-top: .35rem; padding: .1rem .4rem; border-radius: 4px; color: #73500c; background: var(--gold-pale); font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+    .detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+    .detail-section { padding-top: .8rem; border-top: 1px solid var(--line); }
+    .detail-section h4 { margin: 0 0 .4rem; font-size: .86rem; text-transform: uppercase; letter-spacing: .07em; }
+    .detail-section p { margin: 0; color: var(--muted); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; margin: 1rem 0; }
+    label { display: grid; gap: .35rem; font-size: .86rem; font-weight: 750; }
+    select, textarea, input {
+      width: 100%;
+      padding: .65rem .7rem;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      color: var(--ink);
+      background: var(--panel);
+    }
+    textarea { min-height: 110px; resize: vertical; font-weight: 400; }
+    .form-actions { display: flex; justify-content: space-between; gap: .7rem; flex-wrap: wrap; margin-top: 1rem; }
+    .helper { margin: .55rem 0 0; color: var(--muted); font-size: .82rem; }
+    .decision-log { margin: 1.2rem 0 0; padding: 0; list-style: none; }
+    .decision-log li { padding: .7rem 0; border-top: 1px solid var(--line); font-size: .9rem; }
+    .decision-log time { color: var(--muted); font-family: var(--mono); font-size: .75rem; }
+
+    dialog {
+      width: min(560px, calc(100% - 2rem));
+      padding: 0;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      color: var(--ink);
+      background: var(--panel);
+      box-shadow: 0 24px 80px rgb(0 0 0 / 35%);
+    }
+    dialog::backdrop { background: rgb(0 0 0 / 48%); }
+    .dialog-body { padding: 1.25rem; }
+    .dialog-body h3 { margin-top: 0; }
+    .dialog-body ol { padding-left: 1.2rem; }
+    .dialog-actions { display: flex; justify-content: flex-end; gap: .6rem; padding: 1rem 1.25rem; border-top: 1px solid var(--line); }
+
+    .toast {
+      position: fixed;
+      right: 1rem;
+      bottom: 1rem;
+      max-width: 360px;
+      padding: .8rem 1rem;
+      border-radius: 8px;
+      color: white;
+      background: var(--forest-dark);
+      box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: opacity 160ms ease, transform 160ms ease;
+    }
+    .toast.show { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 900px) {
+      .workspace { grid-template-columns: 1fr; }
+      .detail { min-height: auto; }
+      .metrics { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      main { padding: 1rem; }
+      .topbar, .brief { align-items: start; flex-direction: column; }
+      .metrics, .detail-grid, .form-grid { grid-template-columns: 1fr; }
+      .topbar-actions { width: 100%; }
+      .topbar-actions .button { flex: 1; }
+      .queue-head { align-items: start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#workshop">Skip to decision workshop</a>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="brand">
+        <h1>MNEMEX</h1>
+        <span>Decision and scope workshop</span>
+      </div>
+      <div class="topbar-actions" aria-label="Workshop actions">
+        <button class="button secondary" id="importButton" type="button">Import record</button>
+        <button class="button secondary" id="exportButton" type="button">Export decision record</button>
+        <button class="button" id="handoffButton" type="button">Copy build handoff</button>
+      </div>
+    </header>
+
+    <main id="workshop">
+      <section class="brief" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">Collaborative decision log</p>
+          <h2 id="page-title">Choose the blockers and scope that make MNEMEX safe to build.</h2>
+          <p>Select an option, then record the owner, conditions, and reason. This workshop includes Gillian's hosted Results Desk scope. It is local-only and never contacts a service or collects competitor data.</p>
+        </div>
+        <aside class="boundary-note">
+          <strong>Race-day boundary</strong><br>
+          MNEMEX supports preparation. A locked show roster and STRATHMARK's local evidence remain authoritative when the network is unavailable.
+        </aside>
+      </section>
+
+      <section class="metrics" aria-label="Decision summary">
+        <article class="metric"><strong id="pendingCount">0</strong><span>Pending owner decisions</span></article>
+        <article class="metric"><strong id="approvedCount">0</strong><span>Approved decisions</span></article>
+        <article class="metric"><strong id="blockedCount">0</strong><span>Phase 1 blockers</span></article>
+        <article class="metric"><strong id="readyCount">0</strong><span>Phase 1 direction</span></article>
+        <article class="metric"><strong id="resultsCount">0</strong><span>Results Desk blockers</span></article>
+      </section>
+
+      <section class="workspace" aria-label="Decision queue and detail">
+        <nav class="queue" aria-label="Phase 0 decision queue">
+          <div class="queue-head">
+            <h3>Decision queue</h3>
+            <div class="filter" aria-label="Filter decisions">
+              <button type="button" data-filter="all" aria-pressed="true">All</button>
+              <button type="button" data-filter="pending" aria-pressed="false">Pending</button>
+              <button type="button" data-filter="approved" aria-pressed="false">Approved</button>
+            </div>
+          </div>
+          <ol class="decision-list" id="decisionList"></ol>
+        </nav>
+
+        <section class="detail" aria-live="polite" aria-labelledby="detail-heading">
+          <div class="detail-head">
+            <h3 id="detail-heading">Decision review</h3>
+            <span class="status-chip pending" id="detailStatus">Pending</span>
+          </div>
+          <div class="detail-body">
+            <p class="eyebrow" id="detailId">D0-1</p>
+            <h3 class="detail-title" id="detailTitle"></h3>
+            <div class="recommendation">
+              <h4>Recommended option</h4>
+              <p id="detailRecommendation"></p>
+            </div>
+            <section class="option-section" aria-labelledby="optionHeading">
+              <h4 id="optionHeading">Choose an option</h4>
+              <p>Recommendations are visible, but nothing is decided until an owner selects and saves an option.</p>
+              <div class="option-list" id="optionList" role="group" aria-label="Decision options"></div>
+            </section>
+            <div class="detail-grid">
+              <section class="detail-section">
+                <h4>Why this decision matters</h4>
+                <p id="detailWhy"></p>
+              </section>
+              <section class="detail-section">
+                <h4>What remains blocked</h4>
+                <p id="detailBlocks"></p>
+              </section>
+            </div>
+
+            <form id="decisionForm">
+              <div class="form-grid">
+                <label>Decision status
+                  <select id="statusInput">
+                    <option value="pending">Pending owner decision</option>
+                    <option value="approved">Approved</option>
+                    <option value="deferred">Deferred with boundary</option>
+                    <option value="blocked">Blocked</option>
+                  </select>
+                </label>
+                <label>Accountable owner
+                  <input id="ownerInput" autocomplete="off" placeholder="Name or role">
+                </label>
+              </div>
+              <label>Decision and rationale
+                <textarea id="rationaleInput" placeholder="What was decided, why, and any conditions or review date."></textarea>
+              </label>
+              <p class="helper">Saved only in this browser. Export the record to share it or commit the approved outcome.</p>
+              <div class="form-actions">
+                <button class="button danger" type="button" id="resetDecision">Reset this decision</button>
+                <button class="button" type="submit">Save decision</button>
+              </div>
+            </form>
+
+            <ul class="decision-log" id="decisionLog" aria-label="Decision activity"></ul>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="guideDialog" aria-labelledby="guideTitle">
+    <div class="dialog-body">
+      <h3 id="guideTitle">How to use this workshop</h3>
+      <ol>
+        <li>Compare the options with the accountable owner. The highlighted recommendation is not a decision.</li>
+        <li>Select an option, then record conditions and any future review date.</li>
+        <li>Export the resulting JSON record for sharing or commit it beside the Phase 0 decision packet.</li>
+        <li>Phase 1 is ready only when the required Phase 0 decisions are approved.</li>
+      </ol>
+    </div>
+    <div class="dialog-actions">
+      <button class="button" type="button" id="closeGuide">Start review</button>
+    </div>
+  </dialog>
+
+  <input id="importFile" type="file" accept="application/json" hidden>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    "use strict";
+
+    const decisionSeed = [
+      {
+        id: "D0-1",
+        title: "Jurisdiction and age policy",
+        recommendation: "Use synthetic data in Phase 1. Do not include minors or guardian workflows in the first pilot unless the owner explicitly approves them.",
+        why: "Real competitor identity and contact data require a defined legal and operational boundary before collection.",
+        blocks: "Real PII, competitor accounts, and any pilot enrollment."
+      },
+      {
+        id: "D0-2",
+        title: "First portable field set",
+        recommendation: "Start with display name, public alias, scoped federation identifier, limited eligibility claim, and only the contact preference a show actually needs.",
+        why: "A portable profile must be useful without turning MNEMEX into a copy of a show's waiver, payment, or medical record.",
+        blocks: "Identity schema, consent scopes, and the portable-profile contract."
+      },
+      {
+        id: "D0-3",
+        title: "Career-history visibility",
+        recommendation: "Keep career history private to the competitor during the pilot. Public profiles stay deferred.",
+        why: "Private reconciliation proves record quality and dispute handling before MNEMEX makes an irreversible public-data promise.",
+        blocks: "Career projection UX and public publication policy."
+      },
+      {
+        id: "D0-4",
+        title: "Account and grant protocol",
+        recommendation: "Use a managed account provider or a deliberately limited enrollment-link flow. Do not build MNEMEX as a general OAuth identity provider in v1.",
+        why: "Account recovery, session safety, and consent integrity are security problems. They should not be improvised inside an archive prototype.",
+        blocks: "AccountCredential, browser-mediated consent grants, and profile access."
+      },
+      {
+        id: "D0-5",
+        title: "Partner onboarding and key custody",
+        recommendation: "Start with Missoula as the first registered partner. Require named contacts, separated staging/production clients, scoped keys, revocation contacts, and contract acceptance.",
+        why: "A show receiving profile data or sending results must be a known, accountable party, not just an API key.",
+        blocks: "Profile package issuance and result reconciliation."
+      },
+      {
+        id: "D0-6",
+        title: "Signing and request-authentication profile",
+        recommendation: "Approve one versioned profile for canonicalization, signing, keysets, request binding, replay detection, rotation, and emergency revocation.",
+        why: "Offline verification only works when both sides agree exactly which bytes, keys, events, and request contexts are valid.",
+        blocks: "Signed packages, locally pinned trust anchors, and partner service calls."
+      },
+      {
+        id: "D0-7",
+        title: "Transactional persistence boundary",
+        recommendation: "Use one server-side database transaction for inbox, provenance, career revision, and receipt. Do not rely on a sequence of client-side REST writes.",
+        why: "Result reconciliation must never leave a half-created career record after a timeout or process failure.",
+        blocks: "Phase 1 data model and Phase 4 inbox/reconciliation."
+      },
+      {
+        id: "D0-8",
+        title: "Recovery and retention",
+        recommendation: "Set RPO/RTO, encrypted backup, restore rehearsal, retention/deletion/hold schedules, and post-lock revocation/dispute behavior before production PII.",
+        why: "A system that owns identity and career history needs a recovery promise before it earns real data.",
+        blocks: "Production storage, pilot launch, and privacy operations."
+      },
+      {
+        id: "D0-9",
+        title: "Legacy-data migration",
+        recommendation: "Quarantine legacy records by default. Allow clean new profiles, but do not put migrated identity or career assertions in a portable profile until individually reviewed.",
+        why: "The prototype's historical records do not carry the consent, verification, or provenance guarantees of the new system.",
+        blocks: "Legacy import and career backfill only. It does not block a new consented profile."
+      },
+      {
+        id: "D0-10",
+        title: "Gillian's hosted Results Desk",
+        recommendation: "Host the Results Desk inside MNEMEX on Railway with Supabase storage/database, giving Gillian spreadsheet upload, manual entry, review, approval, and correction history.",
+        why: "The archive needs a dependable human-operated intake path so approved historical results can grow STRATHMARK's future evidence base.",
+        blocks: "Hosted staff intake, role design, spreadsheet parser, manual-entry workflow, and published-result API."
+      },
+      {
+        id: "D0-11",
+        title: "Results capture and STRATHMARK export scope",
+        recommendation: "Capture broader Timbersports results, but export only reviewed, prior, STRATHMARK-eligible SB/UH records until STRATHMARK supports more disciplines.",
+        why: "Gillian can build the archive now without claiming that every event has a valid current handicap model.",
+        blocks: "Result schema, validation rules, evidence export filter, and manager training."
+      },
+      {
+        id: "D0-12",
+        title: "Results review and publication control",
+        recommendation: "Let Gillian draft and submit results, with a second authorized reviewer publishing them to the historical record.",
+        why: "Spreadsheet interpretation and identity reconciliation are consequential enough to need visible separation before data becomes prediction evidence.",
+        blocks: "Results roles, approval workflow, correction authority, and audit trail."
+      }
+    ];
+
+    const optionCatalog = {
+      "D0-1": [
+        { id: "A", label: "Synthetic Phase 1, adult-only first pilot", tradeoff: "Smallest real-data exposure while policy is established.", recommended: true },
+        { id: "B", label: "Synthetic until every pilot policy is signed", tradeoff: "Safest boundary, but delays all pilot planning." },
+        { id: "C", label: "Include minors in the first pilot", tradeoff: "Broadens access, but adds guardian and retention work now." }
+      ],
+      "D0-2": [
+        { id: "A", label: "Minimal portable profile", tradeoff: "Display identity, scoped federation ID, eligibility claim, and only needed contact preference.", recommended: true },
+        { id: "B", label: "Expanded profile including legal identity", tradeoff: "Helps verification, but increases sensitive-data obligations." },
+        { id: "C", label: "Public-profile-first fields", tradeoff: "Optimizes visibility rather than safe show portability." }
+      ],
+      "D0-3": [
+        { id: "A", label: "Private pilot history", tradeoff: "Lets competitors verify records before public exposure.", recommended: true },
+        { id: "B", label: "Opt-in public pages in pilot", tradeoff: "Tests visibility earlier, with greater correction and privacy pressure." },
+        { id: "C", label: "Default-public career history", tradeoff: "Fastest audience reach, highest irreversible disclosure risk." }
+      ],
+      "D0-4": [
+        { id: "A", label: "Managed authentication provider", tradeoff: "Delegates recovery and MFA to a specialized service.", recommended: true },
+        { id: "B", label: "Limited enrollment-link flow", tradeoff: "Reduces account surface, but is less flexible for returning users." },
+        { id: "C", label: "Build MNEMEX authentication", tradeoff: "Maximum control, but adds a security product before core identity work." }
+      ],
+      "D0-5": [
+        { id: "A", label: "Missoula first, registered partner client", tradeoff: "One accountable integration with staging, keys, and named contacts.", recommended: true },
+        { id: "B", label: "Multiple shows from the start", tradeoff: "Tests portability faster, but multiplies support and trust work." },
+        { id: "C", label: "Unregistered API-key partners", tradeoff: "Fast onboarding, weak accountability and revocation." }
+      ],
+      "D0-6": [
+        { id: "A", label: "One signed contract and pinned keyset", tradeoff: "Explicit offline verification, replay protection, rotation, and revocation.", recommended: true },
+        { id: "B", label: "Online validation only", tradeoff: "Simpler initially, but violates the offline event boundary." },
+        { id: "C", label: "Unsigned shared JSON", tradeoff: "Quick prototype, no trustworthy portability or provenance." }
+      ],
+      "D0-7": [
+        { id: "A", label: "Server-side transaction boundary", tradeoff: "Requires deliberate backend design, prevents partial reconciliation.", recommended: true },
+        { id: "B", label: "Reviewed database RPC transaction", tradeoff: "Can retain managed infrastructure, needs careful security review." },
+        { id: "C", label: "Client-side REST write sequence", tradeoff: "Reuses the prototype, risks half-written career history." }
+      ],
+      "D0-8": [
+        { id: "A", label: "Approve recovery and retention before production PII", tradeoff: "Slower launch gate, clear operational promise.", recommended: true },
+        { id: "B", label: "Decide retention after pilot", tradeoff: "Faster prototype, weak treatment of real personal data." },
+        { id: "C", label: "No formal recovery target", tradeoff: "Lowest planning work, unacceptable for identity and career records." }
+      ],
+      "D0-9": [
+        { id: "A", label: "Quarantine legacy records, admit clean new profiles", tradeoff: "Protects portability without blocking new consented users.", recommended: true },
+        { id: "B", label: "Bulk-migrate legacy history first", tradeoff: "Creates a richer launch archive, increases identity and correction risk." },
+        { id: "C", label: "Discard legacy material", tradeoff: "Simplifies privacy posture, loses valuable historical evidence." }
+      ],
+      "D0-10": [
+        { id: "A", label: "Integrated MNEMEX Results Desk", tradeoff: "Railway-hosted MNEMEX web app with Supabase database/storage; one staff workflow and audit trail.", recommended: true },
+        { id: "B", label: "Separate STRATHEX Data Desk service", tradeoff: "More isolation, but adds a second deployment and secure reconciliation boundary." },
+        { id: "C", label: "Supabase-only admin dashboard", tradeoff: "Fastest initial form, weak fit for spreadsheet parsing, review queues, and provenance." }
+      ],
+      "D0-11": [
+        { id: "A", label: "Capture broad results, export reviewed SB/UH only", tradeoff: "Builds the archive now while respecting STRATHMARK's current model scope.", recommended: true },
+        { id: "B", label: "SB/UH-only intake", tradeoff: "Smallest tool, defers broader historical archiving for Gillian." },
+        { id: "C", label: "All disciplines exported to STRATHMARK", tradeoff: "Looks complete, but exceeds STRATHMARK's current supported model." }
+      ],
+      "D0-12": [
+        { id: "A", label: "Gillian submits, second reviewer publishes", tradeoff: "Strongest provenance and separation of duties.", recommended: true },
+        { id: "B", label: "Gillian publishes with full audit", tradeoff: "Faster small-team workflow, less independent checking." },
+        { id: "C", label: "Automatic publish after upload", tradeoff: "Fastest import, risks unreviewed identity, mapping, and score errors." }
+      ]
+    };
+
+    const requiredForPhase1 = new Set(["D0-1", "D0-2", "D0-4", "D0-6", "D0-7"]);
+    const requiredForResultsDesk = new Set(["D0-10", "D0-11", "D0-12"]);
+    const storageKey = "mnemex.phase0.decision-workshop.v2";
+    const now = () => new Date().toISOString();
+    const clone = value => JSON.parse(JSON.stringify(value));
+
+    function defaultState() {
+      return {
+        updatedAt: now(),
+        decisions: decisionSeed.map(item => ({
+          ...item,
+          status: "pending",
+          owner: "",
+          rationale: "",
+          selectedOption: "",
+          activity: [{ at: now(), message: "Workshop created. Awaiting owner decision." }]
+        }))
+      };
+    }
+
+    function loadState() {
+      try {
+        const stored = JSON.parse(localStorage.getItem(storageKey));
+        if (!stored || !Array.isArray(stored.decisions) || stored.decisions.length !== decisionSeed.length) return defaultState();
+        return stored;
+      } catch {
+        return defaultState();
+      }
+    }
+
+    let state = loadState();
+    let activeId = state.decisions[0].id;
+    let filter = "all";
+
+    const els = {
+      list: document.getElementById("decisionList"),
+      id: document.getElementById("detailId"),
+      title: document.getElementById("detailTitle"),
+      status: document.getElementById("detailStatus"),
+      recommendation: document.getElementById("detailRecommendation"),
+      options: document.getElementById("optionList"),
+      why: document.getElementById("detailWhy"),
+      blocks: document.getElementById("detailBlocks"),
+      statusInput: document.getElementById("statusInput"),
+      ownerInput: document.getElementById("ownerInput"),
+      rationaleInput: document.getElementById("rationaleInput"),
+      log: document.getElementById("decisionLog"),
+      pending: document.getElementById("pendingCount"),
+      approved: document.getElementById("approvedCount"),
+      blocked: document.getElementById("blockedCount"),
+      ready: document.getElementById("readyCount"),
+      results: document.getElementById("resultsCount"),
+      toast: document.getElementById("toast")
+    };
+
+    function saveState() {
+      state.updatedAt = now();
+      localStorage.setItem(storageKey, JSON.stringify(state));
+    }
+
+    function activeDecision() {
+      return state.decisions.find(item => item.id === activeId);
+    }
+
+    function statusLabel(status) {
+      return {
+        pending: "Pending",
+        approved: "Approved",
+        deferred: "Deferred",
+        blocked: "Blocked"
+      }[status];
+    }
+
+    function showToast(message) {
+      els.toast.textContent = message;
+      els.toast.classList.add("show");
+      window.clearTimeout(showToast.timer);
+      showToast.timer = window.setTimeout(() => els.toast.classList.remove("show"), 2600);
+    }
+
+    function renderMetrics() {
+      const pending = state.decisions.filter(item => item.status === "pending").length;
+      const approved = state.decisions.filter(item => item.status === "approved").length;
+      const blocked = [...requiredForPhase1].filter(id => state.decisions.find(item => item.id === id).status !== "approved").length;
+      const resultsBlocked = [...requiredForResultsDesk].filter(id => state.decisions.find(item => item.id === id).status !== "approved").length;
+      els.pending.textContent = pending;
+      els.approved.textContent = approved;
+      els.blocked.textContent = blocked;
+      els.ready.textContent = blocked === 0 ? "Ready" : "Not yet";
+      els.results.textContent = resultsBlocked;
+    }
+
+    function renderList() {
+      els.list.replaceChildren();
+      const visible = state.decisions.filter(item => filter === "all" || item.status === filter);
+      for (const item of visible) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "decision-row";
+        button.setAttribute("aria-current", String(item.id === activeId));
+        button.innerHTML = "<span class='decision-id'>" + item.id + "</span><strong></strong><span class='row-meta'><span></span><span class='status-chip'></span></span>";
+        button.querySelector("strong").textContent = item.title;
+        button.querySelector(".row-meta span:first-child").textContent = item.owner || "No owner";
+        const chip = button.querySelector(".status-chip");
+        chip.classList.add(item.status);
+        chip.textContent = statusLabel(item.status);
+        button.addEventListener("click", () => {
+          activeId = item.id;
+          render();
+          document.querySelector(".detail").scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+        els.list.appendChild(button);
+      }
+      if (!visible.length) {
+        const empty = document.createElement("li");
+        empty.className = "helper";
+        empty.textContent = "No decisions match this filter.";
+        els.list.appendChild(empty);
+      }
+    }
+
+    function renderDetail() {
+      const item = activeDecision();
+      els.id.textContent = item.id;
+      els.title.textContent = item.title;
+      els.recommendation.textContent = item.recommendation;
+      renderOptions(item);
+      els.why.textContent = item.why;
+      els.blocks.textContent = item.blocks;
+      els.status.textContent = statusLabel(item.status);
+      els.status.className = "status-chip " + item.status;
+      els.statusInput.value = item.status;
+      els.ownerInput.value = item.owner;
+      els.rationaleInput.value = item.rationale;
+      els.log.replaceChildren();
+      [...item.activity].reverse().forEach(entry => {
+        const li = document.createElement("li");
+        const time = document.createElement("time");
+        time.dateTime = entry.at;
+        time.textContent = new Date(entry.at).toLocaleString();
+        li.append(time, document.createElement("br"), document.createTextNode(entry.message));
+        els.log.appendChild(li);
+      });
+    }
+
+    function renderOptions(item) {
+      const options = optionCatalog[item.id] || [];
+      els.options.replaceChildren();
+      for (const option of options) {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = "option-card";
+        button.setAttribute("aria-pressed", String(item.selectedOption === option.id));
+
+        const key = document.createElement("span");
+        key.className = "option-key";
+        key.textContent = option.id;
+        const label = document.createElement("strong");
+        label.textContent = option.label;
+        const tradeoff = document.createElement("span");
+        tradeoff.textContent = option.tradeoff;
+        button.append(key, label, tradeoff);
+
+        if (option.recommended) {
+          const tag = document.createElement("span");
+          tag.className = "option-tag";
+          tag.textContent = "Recommended";
+          button.appendChild(tag);
+        }
+
+        button.addEventListener("click", () => {
+          if (item.selectedOption === option.id) return;
+          item.selectedOption = option.id;
+          item.activity.push({ at: now(), message: "Selected option " + option.id + ": " + option.label + "." });
+          saveState();
+          render();
+          showToast("Option selected. Add the owner and rationale, then save.");
+        });
+        els.options.appendChild(button);
+      }
+    }
+
+    function renderFilters() {
+      document.querySelectorAll("[data-filter]").forEach(button => {
+        button.setAttribute("aria-pressed", String(button.dataset.filter === filter));
+      });
+    }
+
+    function render() {
+      renderMetrics();
+      renderFilters();
+      renderList();
+      renderDetail();
+    }
+
+    function recordSave(event) {
+      event.preventDefault();
+      const item = activeDecision();
+      if (els.statusInput.value === "approved" && !item.selectedOption) {
+        showToast("Choose an option before marking this decision approved.");
+        return;
+      }
+      const previousStatus = item.status;
+      item.status = els.statusInput.value;
+      item.owner = els.ownerInput.value.trim();
+      item.rationale = els.rationaleInput.value.trim();
+      const option = (optionCatalog[item.id] || []).find(candidate => candidate.id === item.selectedOption);
+      const message = previousStatus !== item.status
+        ? "Status changed from " + statusLabel(previousStatus) + " to " + statusLabel(item.status) + "."
+        : option ? "Saved option " + option.id + ": " + option.label + "." : "Decision details updated.";
+      item.activity.push({ at: now(), message });
+      saveState();
+      render();
+      showToast("Saved locally. Export when you are ready to share.");
+    }
+
+    function resetActive() {
+      const reset = defaultState().decisions.find(item => item.id === activeId);
+      const index = state.decisions.findIndex(item => item.id === activeId);
+      state.decisions[index] = reset;
+      saveState();
+      render();
+      showToast(activeId + " reset to pending.");
+    }
+
+    function filenameDate() {
+      return new Date().toISOString().slice(0, 10);
+    }
+
+    function exportRecord() {
+      const payload = {
+        schema: "mnemex.phase0.decision-record.v1",
+        exportedAt: now(),
+        source: "MNEMEX local decision workshop",
+        decisions: state.decisions.map(({ activity, ...item }) => ({ ...item, activity }))
+      };
+      download("mnemex-phase0-decisions-" + filenameDate() + ".json", JSON.stringify(payload, null, 2), "application/json");
+      showToast("Decision record exported.");
+    }
+
+    function buildHandoff() {
+      const approved = state.decisions.filter(item => item.status === "approved");
+      const phase1Blocked = [...requiredForPhase1].filter(id => state.decisions.find(item => item.id === id).status !== "approved");
+      const resultsBlocked = [...requiredForResultsDesk].filter(id => state.decisions.find(item => item.id === id).status !== "approved");
+      const decisionLine = item => {
+        const option = (optionCatalog[item.id] || []).find(candidate => candidate.id === item.selectedOption);
+        const selection = option ? "Option " + option.id + " — " + option.label : "No option selected";
+        return "- " + item.id + " " + item.title + " [" + selection + "]: " + (item.rationale || "Approved; rationale not yet recorded.");
+      };
+      const blockerLines = ids => ids.map(id => {
+        const item = state.decisions.find(decision => decision.id === id);
+        return "- " + item.id + " " + item.title + " (" + statusLabel(item.status) + ")";
+      });
+      const text = [
+        "# MNEMEX build handoff",
+        "",
+        "Exported: " + new Date().toLocaleString(),
+        "",
+        "## Approved decisions",
+        ...(approved.length ? approved.map(decisionLine) : ["- None yet."]),
+        "",
+        "## Remaining profile Phase 1 blockers",
+        ...(phase1Blocked.length ? blockerLines(phase1Blocked) : ["- None. Profile implementation directions are selected. Production activation evidence may still remain."]),
+        "",
+        "## Remaining Gillian Results Desk blockers",
+        ...(resultsBlocked.length ? blockerLines(resultsBlocked) : ["- None. Results Desk implementation directions are selected. Production activation evidence may still remain."]),
+        "",
+        "## Boundary",
+        "No real PII, production credential, partner credential, public career profile, or direct STRATHMARK database write is enabled until the approved Phase 0 gates permit it. Results reach STRATHMARK only through an explicit reviewed prior-results snapshot."
+      ].join("\n");
+      return text;
+    }
+
+    async function copyHandoff() {
+      const text = buildHandoff();
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast("Build handoff copied.");
+      } catch {
+        download("mnemex-build-handoff-" + filenameDate() + ".md", text, "text/markdown");
+        showToast("Clipboard unavailable. Downloaded the handoff instead.");
+      }
+    }
+
+    function download(name, content, type) {
+      const blob = new Blob([content], { type });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = name;
+      link.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function importRecord(file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const incoming = JSON.parse(reader.result);
+          if (incoming.schema !== "mnemex.phase0.decision-record.v1" || !Array.isArray(incoming.decisions)) throw new Error("Unsupported decision record.");
+          const incomingIds = new Set(incoming.decisions.map(item => item.id));
+          if (incomingIds.size !== decisionSeed.length || !decisionSeed.every(item => incomingIds.has(item.id))) throw new Error("Decision record does not match this workshop.");
+          state = { updatedAt: now(), decisions: incoming.decisions };
+          activeId = state.decisions[0].id;
+          saveState();
+          render();
+          showToast("Decision record imported.");
+        } catch (error) {
+          showToast(error.message || "Could not import that file.");
+        }
+      };
+      reader.readAsText(file);
+    }
+
+    document.getElementById("decisionForm").addEventListener("submit", recordSave);
+    document.getElementById("resetDecision").addEventListener("click", resetActive);
+    document.getElementById("exportButton").addEventListener("click", exportRecord);
+    document.getElementById("handoffButton").addEventListener("click", copyHandoff);
+    document.getElementById("importButton").addEventListener("click", () => document.getElementById("importFile").click());
+    document.getElementById("importFile").addEventListener("change", event => {
+      if (event.target.files[0]) importRecord(event.target.files[0]);
+      event.target.value = "";
+    });
+    document.querySelectorAll("[data-filter]").forEach(button => {
+      button.addEventListener("click", () => {
+        filter = button.dataset.filter;
+        const first = state.decisions.find(item => filter === "all" || item.status === filter);
+        if (first) activeId = first.id;
+        render();
+      });
+    });
+
+    const guide = document.getElementById("guideDialog");
+    document.getElementById("closeGuide").addEventListener("click", () => guide.close());
+    render();
+    if (!localStorage.getItem(storageKey + ".seen")) {
+      guide.showModal();
+      localStorage.setItem(storageKey + ".seen", "true");
+    }
+  </script>
+</body>
+</html>

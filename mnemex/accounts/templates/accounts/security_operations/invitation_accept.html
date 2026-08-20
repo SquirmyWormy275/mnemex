@@ -1,0 +1,20 @@
+{% extends "allauth/layouts/base.html" %}
+{% block head_title %}Accept access invitation{% endblock %}
+{% block content %}
+<h1>Accept access invitation</h1>
+<p class="lede">Enter the one-time code you received through the established secure channel. The code is never placed in this page address.</p>
+<dl class="operation-facts">
+  <div><dt>Request</dt><dd>{{ invitation.request_id }}</dd></div>
+  <div><dt>Access</dt><dd>{{ invitation.get_role_display }}</dd></div>
+  <div><dt>Scope</dt><dd>{{ invitation.get_scope_display }}</dd></div>
+  <div><dt>Evidence reference</dt><dd>{{ invitation.external_evidence_reference }}</dd></div>
+  <div><dt>Expires</dt><dd>{{ invitation.expires_at|date:"M j, Y H:i T" }}</dd></div>
+</dl>
+<form method="post" autocomplete="off">
+  {% csrf_token %}
+  {{ form.non_field_errors }}
+  <div class="field">{{ form.secret.label_tag }}{{ form.secret }}{{ form.secret.errors }}</div>
+  <button type="submit">Accept invitation</button>
+</form>
+<p class="boundary">Your verified email and a newly enrolled authenticator are required before access can be granted.</p>
+{% endblock %}

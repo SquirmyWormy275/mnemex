@@ -1,0 +1,12 @@
+{% extends "results/base.html" %}
+{% block title %}Inventory legacy workbook{% endblock %}
+{% block content %}
+<section class="heading"><p class="eyebrow">Manager action · Step 1</p><h1>Inventory a private workbook</h1><p>MNEMEX stores the workbook by digest, records immutable provenance, and discovers structure without displaying competitor rows.</p></section>
+<aside class="boundary"><strong>Private-source boundary:</strong> Use only synthetic data in this build environment. Do not upload legal identity, contact details, credentials, or a production workbook.</aside>
+<form class="panel" method="post" enctype="multipart/form-data" novalidate>{% csrf_token %}
+{% if form.non_field_errors %}<div class="errors">{{ form.non_field_errors }}</div>{% endif %}
+{% for field in form %}<div class="field">{{ field.label_tag }}{{ field }}{% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}{{ field.errors }}</div>{% endfor %}
+<button class="primary" type="submit">Store privately and discover workbook</button>
+</form>
+<p><a href="{% url 'legacy_migration:dashboard' %}">Cancel and return to migration dashboard</a></p>
+{% endblock %}

@@ -1,16 +1,8 @@
-"""STRATHMARK adapter package.
+"""Compatibility guards for the retired pre-review STRATHMARK adapters.
 
-Projects MNEMEX CanonicalRow records onto STRATHMARK's HistoricalResult
-shape and serializes the result for STRATHMARK's import_legacy.py.
-
-v1 ships JSONL only (jsonl.py). HTTP and Supabase adapters are stubs
-that raise NotImplementedError until v1.1+.
-
-Tier classification:
-  Tier 1 -- exports cleanly against STRATHMARK 0.4.1 today
-  Tier 2 -- ships v1, feature-flag-DISABLED until STRATHMARK 0.5
-  Tier 3 -- never exported (STRATHMARK is a handicap engine; Tier 3 is
-            captured in MNEMEX archive only)
+Use ``mnemex.export.adapters.StoredEvidenceSnapshotSource`` with the
+STRATHMARK 2.x offline evidence-snapshot contract. Direct JSONL and raw-row
+projection paths are disabled because they bypass human eligibility review.
 """
 
 from __future__ import annotations
@@ -21,9 +13,6 @@ __all__ = ["to_strathmark_results", "write_strathmark_jsonl"]
 
 
 def write_strathmark_jsonl(rows, output_path):  # type: ignore[no-untyped-def]
-    """Serialize Tier 1 projection of MNEMEX rows to a JSONL file ready
-    for STRATHMARK's import_legacy.py.
-
-    Implementation in Milestone 6.
-    """
-    raise NotImplementedError("write_strathmark_jsonl lands in Milestone 6")
+    raise PermissionError(
+        "direct JSONL export is disabled; use the reviewed STRATHMARK 2.x snapshot source"
+    )

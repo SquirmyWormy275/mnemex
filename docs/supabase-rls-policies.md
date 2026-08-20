@@ -1,4 +1,15 @@
-# MNEMEX Supabase RLS Policies
+# DEPRECATED - DO NOT EXECUTE: Legacy Supabase RLS Policies
+
+> **Production use is not authorized.** These policies belong to the retired
+> direct-client prototype. Do not grant STRATHMARK direct database reads, do
+> not enable the STRATHEX inbox described here, and do not provision credentials
+> from this document. The binding architecture is
+> [`plans/2026-08-14-mnemex-universal-profile-architecture.md`](plans/2026-08-14-mnemex-universal-profile-architecture.md):
+> Django owns the server-side transaction boundary, shows retain authoritative
+> event state, and STRATHMARK receives only an explicit reviewed evidence
+> snapshot. This file is retained only to support future migration review.
+
+# MNEMEX Supabase RLS Policies (retired proposal)
 
 Three roles operate on the MNEMEX database. Each has a precisely scoped
 contract; nothing else.

@@ -1,15 +1,8 @@
-"""Export hub — produces output formats from canonical.jsonl.
+"""Human-reviewed, PII-minimized exports from MNEMEX.
 
-v1 formats:
-  csv.py        -- standard CSV
-  json.py       -- pretty-printed JSON with full schema
-  excel.py      -- legacy 9-column XLSX + richer multi-sheet variant
-
-v1.1+ deferred:
-  parquet.py    -- pyarrow-based Parquet
-  sqlite.py     -- SQLite database export
-
-Implementations land in Milestone 6.
+The current STRATHMARK boundary is an immutable 2.x evidence snapshot for
+reviewed Standing Block and Underhand history. Broad MNEMEX capture remains
+separate and does not imply export eligibility.
 """
 
 from __future__ import annotations
