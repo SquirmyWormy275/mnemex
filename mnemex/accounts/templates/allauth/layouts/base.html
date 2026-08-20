@@ -1,0 +1,37 @@
+{% load static %}<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>{% block head_title %}Account security{% endblock %} · MNEMEX</title>
+  <link rel="stylesheet" href="{% static 'accounts/security.css' %}">
+  <link rel="stylesheet" href="{% static 'accounts/security-operations.css' %}">
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+  <header>
+    <a class="brand" href="{% if user.is_authenticated %}{% url 'mfa_index' %}{% else %}{% url 'account_login' %}{% endif %}">MNEMEX <span>Account Security</span></a>
+    {% if user.is_authenticated %}
+      <nav aria-label="Account">
+        {% if user.privileged_roles.exists %}<a href="{% url 'results:dashboard' %}">Results Desk</a>{% endif %}
+        <a href="{% url 'mfa_index' %}">Security</a>
+        <form method="post" action="{% url 'account_logout' %}">{% csrf_token %}<button class="link" type="submit">Sign out</button></form>
+      </nav>
+    {% endif %}
+  </header>
+  <main class="security-shell">
+    <section class="security-panel">
+      <p class="eyebrow">MNEMEX account security</p>
+      {% if messages %}
+        <div class="messages" role="status">{% for message in messages %}<p>{{ message }}</p>{% endfor %}</div>
+      {% endif %}
+      {% block content %}{% endblock %}
+    </section>
+    <aside class="security-note">
+      <strong>Portable identity, protected access.</strong>
+      <p>Your MNEMEX profile is reusable across participating shows. Show-day systems continue from their pinned local roster and do not depend on this sign-in.</p>
+    </aside>
+  </main>
+  {% block extra_body %}{% endblock %}
+</body>
+</html>

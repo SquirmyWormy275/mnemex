@@ -1,0 +1,3 @@
+A security access step was recorded for your MNEMEX account at {{ timestamp }}.
+
+If you did not expect this, contact the event administrator using your established contact method. No secret or contact detail is included in this message.

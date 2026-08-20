@@ -28,19 +28,14 @@ Schema invariants (asserted in tests/test_schema.py and at row construction):
         PLACE_ONLY rows are filtered out of any analytics path that
         assumes "lower score = better."
   5. For row-level DQ (`dq_reason` set, no completed run):
-        `final_score=None`. STRATHMARK Tier 1 projection skips the row.
+        `final_score=None`. The reviewed STRATHMARK snapshot excludes the row.
 
-Tier classification (which disciplines export to STRATHMARK):
+Current STRATHMARK export classification:
 
-  TIER1_DISCIPLINES -- export cleanly against STRATHMARK 0.4.1 today.
-                       Time-scored speed events.
-  TIER2_DISCIPLINES -- need STRATHMARK to grow a `score_type` field
-                       (HHH/VHH are hits-based). v1 implements but
-                       feature-flag-disables.
-  TIER3_DISCIPLINES -- captured in MNEMEX archive only, NEVER exported
-                       to STRATHMARK. STRATHMARK is a handicap engine;
-                       distance / knowledge / place-only events don't
-                       belong there.
+  TIER1_DISCIPLINES -- reviewed Standing Block and Underhand only.
+  TIER2_DISCIPLINES -- empty; no feature flag expands current scope.
+  TIER3_DISCIPLINES -- broadly captured in MNEMEX but not eligible for
+                       the current STRATHMARK 2.x evidence snapshot.
 """
 
 from __future__ import annotations
@@ -60,9 +55,7 @@ class ScoreType(str, Enum):
     HITS = "hits"  # integer count; lower is better
     DISTANCE = "distance"  # meters / feet; higher is better (caber, axe-throw distance)
     RAW_SCORE = "raw_score"  # written-test points; higher is better
-    PLACE_ONLY = (
-        "place_only"  # finishing position published, no time (axe throw, log roll)
-    )
+    PLACE_ONLY = "place_only"  # finishing position published, no time (axe throw, log roll)
 
 
 class Division(str, Enum):
@@ -110,12 +103,8 @@ class ExtractionStatus(str, Enum):
     FAILED_TIMEOUT = "failed_timeout"  # per-call timeout exceeded
     FAILED_PARSE = "failed_parse"  # model returned invalid / non-schema JSON
     PARTIAL = "partial"  # JSON valid but row count below source count
-    PENDING_STALE = (
-        "pending_stale"  # > 14 days in pending; surfaced via review --failures
-    )
-    PENDING_BUDGET = (
-        "pending_budget"  # deferred to next budget window (cost ceiling hit)
-    )
+    PENDING_STALE = "pending_stale"  # > 14 days in pending; surfaced via review --failures
+    PENDING_BUDGET = "pending_budget"  # deferred to next budget window (cost ceiling hit)
     NEEDS_INPUT = "needs_input"  # human-resolvable identity gap
     # (first-name-only entry with no contextual hint)
 
@@ -158,19 +147,17 @@ class Discipline(str, Enum):
     TEAM_RELAY = "TEAM_RELAY"
     # Forestry knowledge events (AWFC conclave staples).
     # All ScoreType.RAW_SCORE; never export to STRATHMARK.
-    WILDLIFE_ID = "WILDLIFE_ID"          # animal / sign / track identification
-    COMPASS_PACING = "COMPASS_PACING"    # navigation accuracy
-    FORESTRY_BOWL = "FORESTRY_BOWL"      # forestry knowledge quiz bowl
-    WOOD_ID = "WOOD_ID"                  # wood / tree species identification
+    WILDLIFE_ID = "WILDLIFE_ID"  # animal / sign / track identification
+    COMPASS_PACING = "COMPASS_PACING"  # navigation accuracy
+    FORESTRY_BOWL = "FORESTRY_BOWL"  # forestry knowledge quiz bowl
+    WOOD_ID = "WOOD_ID"  # wood / tree species identification
 
 
 class FinalScorePolicy(str, Enum):
     """How `final_score` is derived from `runs`. See Schema invariant 1."""
 
     SINGLE_RUN = "single_run"  # one run, value is final
-    BEST_OF_RUNS = (
-        "best_of_runs"  # min(values) for TIME/HITS; max() for DISTANCE/RAW_SCORE
-    )
+    BEST_OF_RUNS = "best_of_runs"  # min(values) for TIME/HITS; max() for DISTANCE/RAW_SCORE
     AVERAGE_OF_RUNS = "average_of_runs"  # arithmetic mean of completed runs
     SUM_OF_RUNS = "sum_of_runs"  # rare; documented for forward-compat
 
@@ -207,89 +194,33 @@ class SourceType(str, Enum):
 
 
 # ---------------------------------------------------------------------------
-# Tier classification: which disciplines export to STRATHMARK.
+# Current STRATHMARK export policy. MNEMEX still captures every discipline,
+# but only reviewed Standing Block and Underhand career assertions may enter
+# a STRATHMARK 2.x evidence snapshot.
 # ---------------------------------------------------------------------------
 
 TIER1_DISCIPLINES: frozenset[Discipline] = frozenset(
     {
-        # Time-scored speed events that STRATHMARK 0.4.1 handles cleanly.
-        # All have ScoreType.TIME and (optionally) wood metadata.
         Discipline.UNDERHAND,
         Discipline.STANDING_BLOCK,
-        Discipline.SINGLE_BUCK,
-        Discipline.DOUBLE_BUCK,
-        Discipline.JACK_AND_JILL,
-        Discipline.OBSTACLE_POLE,
-        Discipline.POWER_SAW,
-        Discipline.HOT_SAW,
-        Discipline.STOCK_SAW,
-        Discipline.SPRINGBOARD_1BD,
-        Discipline.SPRINGBOARD_2BD,
-        Discipline.HORIZONTAL_SPEED,
-        Discipline.VERTICAL_SPEED,
     }
 )
 
-TIER2_DISCIPLINES: frozenset[Discipline] = frozenset(
-    {
-        # Hits-based axe events. Need STRATHMARK >= 0.5 with a `score_type` field
-        # so the prediction cascade can treat hits and time as different scales.
-        # v1 implements the projection behind a feature flag.
-        Discipline.HORIZONTAL_HARDHIT,
-        Discipline.VERTICAL_HARDHIT,
-    }
-)
+TIER2_DISCIPLINES: frozenset[Discipline] = frozenset()
 
-TIER3_DISCIPLINES: frozenset[Discipline] = frozenset(
-    {
-        # Captured in MNEMEX archive only. NEVER exported to STRATHMARK.
-        # STRATHMARK is a handicap engine; distance / knowledge / place-only
-        # events don't model in handicap math.
-        Discipline.AXE_THROW,
-        Discipline.SPEED_AXE_THROW,
-        Discipline.CABER_THROW,
-        Discipline.BIRLING,
-        Discipline.PULP_TOSS,
-        Discipline.DENDROLOGY,
-        Discipline.TIMBER_CRUISE,
-        Discipline.TRAVERSE,
-        Discipline.STEEPLE_CHASE,
-        Discipline.WRAPPER_THROW,
-        Discipline.TEAM_RELAY,
-        Discipline.POLE_CLIMB,  # uses pole equipment STRATHMARK has no model for
-        Discipline.CHOKER_RACE,  # multi-run + obstacle structure outside handicap math
-        # Forestry knowledge events: ScoreType.RAW_SCORE; quiz / identification format.
-        Discipline.WILDLIFE_ID,
-        Discipline.COMPASS_PACING,
-        Discipline.FORESTRY_BOWL,
-        Discipline.WOOD_ID,
-    }
-)
+TIER3_DISCIPLINES: frozenset[Discipline] = frozenset(set(Discipline) - TIER1_DISCIPLINES)
 
 # Sanity invariant -- asserted in tests/test_schema.py:
 #   set(Discipline) == TIER1_DISCIPLINES | TIER2_DISCIPLINES | TIER3_DISCIPLINES
 #   and the three sets are pairwise disjoint.
 
 
-# Mapping from MNEMEX Discipline -> string token STRATHMARK expects in
-# HistoricalResult.discipline. Each mapping is unique; no overloading.
-# STRATHMARK 0.4.1's existing data uses tokens "SB" and "UH" only -- the
-# expanded tokens below land via a coordinated STRATHMARK 0.4.2 release
-# (see Reviewer Concern: STRATHMARK token-vocabulary expansion).
+# Exact STRATHMARK 2.x event-code vocabulary approved for the current export.
+# "SB" is Standing Block. Single Buck remains captured in MNEMEX and is not
+# eligible for this snapshot contract.
 STRATHMARK_DISCIPLINE_MAP: dict[Discipline, str] = {
     Discipline.UNDERHAND: "UH",
-    Discipline.STANDING_BLOCK: "STB",  # NOT "SB" -- avoid collision with Single Buck
-    Discipline.SINGLE_BUCK: "SBUCK",
-    Discipline.DOUBLE_BUCK: "DBUCK",
-    Discipline.JACK_AND_JILL: "JJ",
-    Discipline.OBSTACLE_POLE: "OP",
-    Discipline.POWER_SAW: "PSAW",
-    Discipline.HOT_SAW: "HSAW",
-    Discipline.STOCK_SAW: "SSAW",
-    Discipline.SPRINGBOARD_1BD: "SPR1",
-    Discipline.SPRINGBOARD_2BD: "SPR2",
-    Discipline.HORIZONTAL_SPEED: "HS",
-    Discipline.VERTICAL_SPEED: "VS",
+    Discipline.STANDING_BLOCK: "SB",
 }
 
 

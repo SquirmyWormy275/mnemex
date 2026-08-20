@@ -1,0 +1,58 @@
+{% extends "allauth/layouts/base.html" %}{% load static %}
+{% block head_title %}Security operations{% endblock %}
+{% block content %}
+<h1>Security operations</h1>
+<p class="lede">Review staff invitations and lost-authenticator recoveries. No contact details are shown.</p>
+{% if initiation_error %}<p class="errorlist" role="alert">Security operation could not be started. Recheck the independent record, account ID, scope, and evidence reference.</p>{% endif %}
+{% if invitation_secret %}<section class="one-time-code" aria-labelledby="invitation-created-heading">
+  <h2 id="invitation-created-heading">Invitation created</h2>
+  <p>Copy this code into the approved secure channel now. It is shown once and is never included in a link, audit event, or notification.</p>
+  <p class="setup-key">Request {{ created_invitation.request_id }}<code id="one-time-invitation-code">{{ invitation_secret }}</code></p>
+  <p class="boundary">Leaving or refreshing this page removes the displayed code. MNEMEX stores only its purpose-bound hash.</p>
+</section>{% endif %}
+<section>
+  <h2>Start a role invitation</h2>
+  <p>Use the opaque account ID and evidence reference from the independently verified staff record.</p>
+  <form method="post" autocomplete="off">{% csrf_token %}<input type="hidden" name="action" value="create_invitation">
+    <div class="field">{{ invitation_form.subject_account_id.label_tag }}{{ invitation_form.subject_account_id }}<small>{{ invitation_form.subject_account_id.help_text }}</small></div>
+    <div class="field">{{ invitation_form.role.label_tag }}{{ invitation_form.role }}</div>
+    <div class="field">{{ invitation_form.scope.label_tag }}{{ invitation_form.scope }}</div>
+    <div class="field">{{ invitation_form.organization.label_tag }}{{ invitation_form.organization }}</div>
+    <div class="field">{{ invitation_form.external_evidence_reference.label_tag }}{{ invitation_form.external_evidence_reference }}</div>
+    <button type="submit">Create one-time invitation</button>
+  </form>
+</section>
+<section>
+  <h2>Start lost-authenticator recovery</h2>
+  <p>This creates the request only. A different authorized administrator must independently approve it.</p>
+  <form method="post" autocomplete="off">{% csrf_token %}<input type="hidden" name="action" value="create_recovery">
+    <div class="field">{{ recovery_form.subject_account_id.label_tag }}{{ recovery_form.subject_account_id }}<small>{{ recovery_form.subject_account_id.help_text }}</small></div>
+    <div class="field">{{ recovery_form.external_evidence_reference.label_tag }}{{ recovery_form.external_evidence_reference }}</div>
+    <div class="field">{{ recovery_form.reason_code.label_tag }}{{ recovery_form.reason_code }}</div>
+    <button type="submit">Create recovery request</button>
+  </form>
+</section>
+<h2>Recovery requests</h2>
+{% if recoveries %}<div class="operation-list">{% for recovery in recoveries %}<article>
+  <h3><a href="{% url 'accounts:security-operation-detail' recovery.request_id %}">Request {{ recovery.request_id }}</a></h3>
+  <dl class="operation-facts compact">
+    <div><dt>Evidence</dt><dd>{{ recovery.external_evidence_reference }}</dd></div>
+    <div><dt>Status</dt><dd>{{ recovery.operation_state.get_status_display }}</dd></div>
+    <div><dt>Age</dt><dd>{{ recovery.created_at|timesince }}</dd></div>
+    <div><dt>Expires</dt><dd>{{ recovery.expires_at|date:"M j, H:i T" }}</dd></div>
+    <div><dt>Next action</dt><dd>{% if recovery.operation_state.status == 'pending_approval' %}Independent approval{% elif recovery.operation_state.status == 'awaiting_reenrollment' %}Confirm MFA setup{% else %}No action{% endif %}</dd></div>
+  </dl>
+</article>{% endfor %}</div>{% else %}<p class="empty">No recovery requests need attention.</p>{% endif %}
+<h2>Role invitations</h2>
+{% if invitations %}<div class="operation-list">{% for invitation in invitations %}<article>
+  <h3>Request {{ invitation.request_id }}</h3>
+  <dl class="operation-facts compact">
+    <div><dt>Evidence</dt><dd>{{ invitation.external_evidence_reference }}</dd></div>
+    <div><dt>Access</dt><dd>{{ invitation.get_role_display }}</dd></div>
+    <div><dt>Scope</dt><dd>{{ invitation.get_scope_display }}</dd></div>
+    <div><dt>Status</dt><dd>{{ invitation.operation_state.get_status_display }}</dd></div>
+    <div><dt>Next action</dt><dd>{% if invitation.operation_state.status == 'pending' %}Wait for acceptance{% else %}No action{% endif %}</dd></div>
+  </dl>
+</article>{% endfor %}</div>{% else %}<p class="empty">No role invitations are in this queue.</p>{% endif %}
+{% endblock %}
+{% block extra_body %}{% include "accounts/action_step_up.html" %}<script src="{% static 'results/privileged-submit.js' %}" defer></script>{% endblock %}

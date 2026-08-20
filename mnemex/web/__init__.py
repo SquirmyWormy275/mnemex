@@ -1,0 +1,1 @@
+"""Hosted MNEMEX Django application."""

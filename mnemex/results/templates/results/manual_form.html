@@ -1,0 +1,53 @@
+{% extends "results/base.html" %}
+{% load static %}
+{% block title %}Manual entry{% endblock %}
+{% block content %}
+<a href="{% url 'results:dashboard' %}">← Results Desk</a>
+<section class="heading">
+  <p class="eyebrow">Direct intake</p>
+  <h1>Manual entry</h1>
+  <p>Each non-empty row joins one provenance-backed manual batch. Heat and wood fields may be left blank when the show does not publish them.</p>
+</section>
+<form method="post" class="panel wide">
+  {% csrf_token %}
+  {% include "results/form_fields.html" with form=batch_form %}
+  {{ row_formset.management_form }}
+  {% if row_formset.non_form_errors %}<div class="errors" role="alert">{{ row_formset.non_form_errors }}</div>{% endif %}
+  <div class="formset-tools">
+    <button id="add-result-row" class="secondary" type="button" aria-controls="manual-result-rows">Add result row</button>
+    <span id="result-row-count" role="status" aria-live="polite"></span>
+  </div>
+  <div class="table">
+    <table>
+      <thead><tr><th>Result ID</th><th>Revision</th><th>Event ID</th><th>Event name</th><th>Result date</th><th>Competitor</th><th>Discipline</th><th>Score type</th><th>Score</th><th>Heat ID</th><th>Wood species</th><th>Wood diameter (mm)</th><th>Wood quality</th><th>Row action</th></tr></thead>
+      <tbody id="manual-result-rows">
+        {% for row_form in row_formset %}
+        <tr class="manual-result-row" data-form-index="{{ forloop.counter0 }}">
+          {% for field in row_form %}
+          <td data-label="{{ field.label }}">
+            <label class="sr" data-field-label="{{ field.label }}" for="{{ field.id_for_label }}">Row {{ forloop.parentloop.counter }} {{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}<div class="errors" role="alert">{{ field.errors }}</div>{% endif %}
+          </td>
+          {% endfor %}
+          <td data-label="Row action"><button class="remove-result-row secondary" type="button">Remove row {{ forloop.counter }}</button></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <template id="empty-result-row">
+    <tr class="manual-result-row" data-form-index="__prefix__">
+      {% for field in row_formset.empty_form %}
+      <td data-label="{{ field.label }}">
+        <label class="sr" data-field-label="{{ field.label }}" for="{{ field.id_for_label }}">Row __prefix__ {{ field.label }}</label>
+        {{ field }}
+      </td>
+      {% endfor %}
+      <td data-label="Row action"><button class="remove-result-row secondary" type="button">Remove row</button></td>
+    </tr>
+  </template>
+  <button class="primary" type="submit">Validate and publish source rows</button>
+</form>
+{% endblock %}
+{% block scripts %}<script src="{% static 'results/manual-formset.js' %}" defer></script>{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "results/base.html" %}
+{% block title %}Configure migration plan{% endblock %}
+{% block content %}
+<section class="heading"><p class="eyebrow">Manager action · Step 2</p><h1>Pin the sheet and table plan</h1><p>Every discovered sheet must be explicitly included or ignored. Included sheets can contain multiple rectangular table regions.</p></section>
+<aside class="notice"><strong>Mapping rule kinds:</strong> <code>column</code> reads an exact header; <code>constant</code> supplies a reviewed fixed value; <code>derived</code> with <code>artifact_coordinate_id</code> creates a stable source ID. Mapped formulas fail closed.</aside>
+{% if inspection %}
+<h2>Discovered structure</h2>
+<div class="table"><table><thead><tr><th>Order</th><th>Exact sheet name</th><th>Visibility</th><th>Bounds</th><th>Header candidates</th><th>Formula cells</th></tr></thead><tbody>
+{% for sheet in inspection.sheets %}<tr><td data-label="Order">{{ sheet.index }}</td><td data-label="Exact sheet name"><code>{{ sheet.name }}</code></td><td data-label="Visibility">{{ sheet.visibility|title }}</td><td data-label="Bounds">{{ sheet.max_row }} rows × {{ sheet.max_column }} columns</td><td data-label="Header candidates">{% if sheet.header_candidates %}{{ sheet.header_candidates|join:", " }}{% else %}None{% endif %}</td><td data-label="Formula cells">{{ sheet.formula_cells|length }}</td></tr>{% endfor %}
+</tbody></table></div>
+{% endif %}
+<form class="panel wide" method="post" novalidate>{% csrf_token %}
+{% if form.non_field_errors %}<div class="errors">{{ form.non_field_errors }}</div>{% endif %}
+{% for field in form %}<div class="field">{{ field.label_tag }}{{ field }}{% if field.help_text %}<small>{{ field.help_text }}</small>{% endif %}{{ field.errors }}</div>{% endfor %}
+<details><summary>Show a one-table mapping example</summary><pre class="example-json">{
+  "sheet_name": "Synthetic Results",
+  "disposition": "included",
+  "tables": [{
+    "label": "qualifying",
+    "header_row": 5,
+    "start_row": 5,
+    "end_row": 25,
+    "start_column": 1,
+    "end_column": 8,
+    "mapping_rules": {
+      "source_result_id": {"kind": "derived", "name": "artifact_coordinate_id"},
+      "source_revision": {"kind": "constant", "value": 1},
+      "source_event_id": {"kind": "constant", "value": "synthetic-event-2026"},
+      "event_name": {"kind": "constant", "value": "Synthetic Legacy Show"},
+      "result_date": {"kind": "constant", "value": "2026-07-18"},
+      "competitor_name": {"kind": "column", "column": "Competitor"},
+      "discipline": {"kind": "constant", "value": "UNDERHAND"},
+      "score_type": {"kind": "constant", "value": "time"},
+      "score": {"kind": "column", "column": "Score"}
+    }
+  }]
+}</pre></details>
+<button class="primary" type="submit">Validate and pin immutable plan</button>
+</form>
+<p><a href="{% url 'legacy_migration:run-detail' run.run_id %}">Return to run without configuring</a></p>
+{% endblock %}

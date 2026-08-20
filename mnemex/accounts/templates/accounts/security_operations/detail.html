@@ -1,0 +1,31 @@
+{% extends "allauth/layouts/base.html" %}{% load static %}
+{% block head_title %}Recovery request{% endblock %}
+{% block content %}
+<p><a href="{% url 'accounts:security-operations' %}">← Security operations</a></p>
+<h1>Recovery request</h1>
+<dl class="operation-facts">
+  <div><dt>Request</dt><dd>{{ recovery.request_id }}</dd></div>
+  <div><dt>External evidence</dt><dd>{{ recovery.external_evidence_reference }}</dd></div>
+  <div><dt>Reason</dt><dd>{{ recovery.get_reason_code_display }}</dd></div>
+  <div><dt>Status</dt><dd>{{ recovery.operation_state.get_status_display }}</dd></div>
+  <div><dt>Created</dt><dd>{{ recovery.created_at|date:"M j, Y H:i T" }}</dd></div>
+  <div><dt>Expires</dt><dd>{{ recovery.expires_at|date:"M j, Y H:i T" }}</dd></div>
+  <div><dt>Approval</dt><dd>{% if recovery.operation_state.approved_at %}Recorded {{ recovery.operation_state.approved_at|date:"M j, Y H:i T" }}{% else %}Not yet recorded{% endif %}</dd></div>
+  <div><dt>Next action</dt><dd>{% if recovery.operation_state.status == 'pending_approval' %}Match the independent evidence and approve{% elif recovery.operation_state.status == 'awaiting_reenrollment' %}Confirm new MFA enrollment, then restore{% else %}No action{% endif %}</dd></div>
+</dl>
+{% if recovery.operation_state.status == 'pending_approval' %}<section>
+  <h2>Approve recovery</h2><p>The approver must be different from the requester. Compare the independent record before entering its reference.</p>
+  <form method="post" autocomplete="off">{% csrf_token %}<input type="hidden" name="action" value="approve">
+    {{ approval_form.non_field_errors }}<div class="field">{{ approval_form.external_evidence_reference.label_tag }}{{ approval_form.external_evidence_reference }}<small>{{ approval_form.external_evidence_reference.help_text }}</small>{{ approval_form.external_evidence_reference.errors }}</div>
+    <button type="submit">Approve and suspend access</button>
+  </form>
+</section>{% elif recovery.operation_state.status == 'awaiting_reenrollment' %}<section>
+  <h2>Restore after MFA setup</h2><p>Access stays suspended until the account has enrolled a new authenticator and an administrator explicitly restores it.</p>
+  <form method="post">{% csrf_token %}<input type="hidden" name="action" value="restore">
+    {{ restoration_form.non_field_errors }}<div class="field">{{ restoration_form.confirm_reenrollment }} {{ restoration_form.confirm_reenrollment.label_tag }}{{ restoration_form.confirm_reenrollment.errors }}</div>
+    <button type="submit">Restore privileges</button>
+  </form>
+</section>{% endif %}
+<p class="boundary">This page deliberately omits names, email addresses, phone numbers, invitation codes, and authenticator details.</p>
+{% endblock %}
+{% block extra_body %}{% include "accounts/action_step_up.html" %}<script src="{% static 'results/privileged-submit.js' %}" defer></script>{% endblock %}

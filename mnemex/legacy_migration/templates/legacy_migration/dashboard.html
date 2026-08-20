@@ -1,0 +1,18 @@
+{% extends "results/base.html" %}
+{% block title %}Legacy Migration Workbench{% endblock %}
+{% block content %}
+<section class="heading">
+  <p class="eyebrow">Synthetic-first archive workflow</p>
+  <h1>Legacy Migration Workbench</h1>
+  <p>Discover complex workbooks, pin an explicit table plan, preview every row, and require a separate exact-digest review before publication.</p>
+</section>
+<aside class="boundary"><strong>Authority boundary:</strong> MNEMEX records portable finalized history. Shows retain authority over local registration, scoring, and final event state. Approved migration work is queued for a durable background worker with bounded retries. Race day never requires this service.</aside>
+{% if can_upload %}<p><a class="primary button" href="{% url 'legacy_migration:upload' %}">Manager action: inventory a private XLSX</a></p>{% endif %}
+<p><a href="{% url 'results:dashboard' %}">← Back to Results Desk</a></p>
+<h2>Accessible migration runs</h2>
+{% if dashboard_rows %}
+<div class="table"><table><thead><tr><th>Created</th><th>Organization</th><th>State</th><th>Worker status</th><th>Dry-run rows</th><th>Processed rows</th><th></th></tr></thead><tbody>
+{% for row in dashboard_rows %}<tr><td data-label="Created">{{ row.run.created_at|date:"M j, Y H:i" }}</td><td data-label="Organization">{{ row.run.organization.name }}</td><td data-label="State"><span class="status {{ row.run.state }}">{{ row.run.get_state_display }}</span></td><td data-label="Worker status">{% for job_row in row.job_rows %}<div><strong>{{ job_row.status_label }}</strong>{% if job_row.is_stale %} · heartbeat stale{% endif %}</div><div>Failures {{ job_row.job.failure_count }} of {{ job_row.job.max_attempts }} · Claims {{ job_row.job.attempt_count }}</div><div>Next checkpoint {{ job_row.job.next_checkpoint_sequence }}</div><div>Heartbeat: {% if job_row.job.heartbeat_at %}{{ job_row.job.heartbeat_at|date:"M j, Y H:i:s" }}{% else %}not started{% endif %}</div><div>Next retry: {% if job_row.next_retry %}{{ job_row.next_retry|date:"M j, Y H:i:s" }}{% else %}none{% endif %}</div><small class="stacked-note">{{ job_row.guidance }}</small>{% empty %}Not queued{% endfor %}</td><td data-label="Dry-run rows">{{ row.run.total_rows }}</td><td data-label="Processed rows">{{ row.run.applied_rows }}</td><td><a href="{% url 'legacy_migration:run-detail' row.run.run_id %}">Open workbench</a></td></tr>{% endfor %}
+</tbody></table></div>
+{% else %}<p class="empty">No legacy migration runs are available in your assigned organizations.</p>{% endif %}
+{% endblock %}

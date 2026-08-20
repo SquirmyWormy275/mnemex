@@ -1,0 +1,16 @@
+{% extends "mfa/base_entrance.html" %}
+{% block head_title %}Verify your sign-in{% endblock %}
+{% block content %}
+  <h1>Verify your sign-in</h1>
+  <p class="lede">Enter the current code from your authenticator app or one unused recovery code.</p>
+  <form method="post" action="{% url 'mfa_authenticate' %}">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    <div class="field">{{ form.code.label_tag }}{{ form.code }}{{ form.code.errors }}</div>
+    <button class="primary" type="submit">Verify and continue</button>
+  </form>
+  <form class="subaction" method="post" action="{% url 'account_logout' %}">
+    {% csrf_token %}<input type="hidden" name="next" value="{% url 'account_login' %}">
+    <button class="link dark" type="submit">Cancel sign-in</button>
+  </form>
+{% endblock %}

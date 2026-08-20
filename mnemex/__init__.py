@@ -1,12 +1,14 @@
-"""MNEMEX — Timbersports historical archive.
+"""MNEMEX — universal timbersports competitor identity and career record.
 
-Third leg of the STRATHEX ecosystem alongside STRATHEX (live tournament
-management) and STRATHMARK (handicap engine). MNEMEX scrapes historical
-results from federations / events / scorebooks and feeds STRATHMARK's
-training data via the Tier 1 contract.
+MNEMEX owns portable competitor profiles, consented identity projections,
+reconciled career history, and result provenance. Participating shows retain
+authority over registration, event operations, scoring, and finalized event
+state. Race day runs from a pinned local snapshot without a live MNEMEX
+dependency.
 
-Scope discipline: historical-only. Live-result entry belongs in STRATHEX.
-See docs/MNEMEX-design-2026-05-04.md for the full design rationale.
+The package still exposes the legacy archive and ingestion API while those
+modules are migrated into the approved hosted modular-monolith architecture.
+See docs/plans/2026-08-14-mnemex-universal-profile-architecture.md.
 
 Public API
 ----------
@@ -49,35 +51,6 @@ from __future__ import annotations
 __version__ = "0.1.0a0"
 
 # Schema
-from mnemex.schema import (  # noqa: F401
-    CanonicalRow,
-    CompetitorRef,
-    RunResult,
-    Discipline,
-    ScoreType,
-    FinalScorePolicy,
-    Division,
-    DQReason,
-    EventCircuit,
-    ExtractionStatus,
-    SourceType,
-    TIER1_DISCIPLINES,
-    TIER2_DISCIPLINES,
-    TIER3_DISCIPLINES,
-    STRATHMARK_DISCIPLINE_MAP,
-    DEFAULT_SCORE_POLICY,
-)
-
-# Ingestion runs
-from mnemex.ingestion_runs import (  # noqa: F401
-    IngestionRun,
-    generate_run_id,
-    start_run,
-    complete_run,
-    fail_run,
-    mark_partial,
-)
-
 # Identity
 from mnemex.identity import (  # noqa: F401
     CanonicalAthlete,
@@ -85,21 +58,49 @@ from mnemex.identity import (  # noqa: F401
     NeedsReview,
 )
 
+# Ingestion runs
+from mnemex.ingestion_runs import (  # noqa: F401
+    IngestionRun,
+    complete_run,
+    fail_run,
+    generate_run_id,
+    mark_partial,
+    start_run,
+)
+from mnemex.schema import (  # noqa: F401
+    DEFAULT_SCORE_POLICY,
+    STRATHMARK_DISCIPLINE_MAP,
+    TIER1_DISCIPLINES,
+    TIER2_DISCIPLINES,
+    TIER3_DISCIPLINES,
+    CanonicalRow,
+    CompetitorRef,
+    Discipline,
+    Division,
+    DQReason,
+    EventCircuit,
+    ExtractionStatus,
+    FinalScorePolicy,
+    RunResult,
+    ScoreType,
+    SourceType,
+)
+
 # Store (Supabase-backed). Functions raise RuntimeError at call time
 # if MNEMEX_SUPABASE_URL / MNEMEX_SUPABASE_SERVICE_ROLE_KEY are unset,
 # so import-time has no credential dependency.
 from mnemex.store import (  # noqa: F401
-    write_competitor,
-    write_ingestion_run,
-    write_results,
+    export_canonical_jsonl,
+    health_check,
+    queue_for_reconciliation,
     read_canonical,
-    read_results_full,
     read_competitor,
     read_competitor_by_federation_id,
     read_ingestion_run,
-    queue_for_reconciliation,
-    export_canonical_jsonl,
-    health_check,
+    read_results_full,
+    write_competitor,
+    write_ingestion_run,
+    write_results,
 )
 
 __all__ = [

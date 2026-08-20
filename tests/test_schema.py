@@ -42,23 +42,15 @@ class TestTierClassification:
         )
 
     def test_tiers_are_disjoint(self) -> None:
-        assert not (
-            TIER1_DISCIPLINES & TIER2_DISCIPLINES
-        ), "TIER1 and TIER2 must be disjoint"
-        assert not (
-            TIER1_DISCIPLINES & TIER3_DISCIPLINES
-        ), "TIER1 and TIER3 must be disjoint"
-        assert not (
-            TIER2_DISCIPLINES & TIER3_DISCIPLINES
-        ), "TIER2 and TIER3 must be disjoint"
+        assert not (TIER1_DISCIPLINES & TIER2_DISCIPLINES), "TIER1 and TIER2 must be disjoint"
+        assert not (TIER1_DISCIPLINES & TIER3_DISCIPLINES), "TIER1 and TIER3 must be disjoint"
+        assert not (TIER2_DISCIPLINES & TIER3_DISCIPLINES), "TIER2 and TIER3 must be disjoint"
 
-    def test_tier1_contains_known_speed_events(self) -> None:
-        # Sanity-check the load-bearing Tier 1 entries.
-        assert Discipline.UNDERHAND in TIER1_DISCIPLINES
-        assert Discipline.STANDING_BLOCK in TIER1_DISCIPLINES
-        assert Discipline.SINGLE_BUCK in TIER1_DISCIPLINES
-        assert Discipline.HORIZONTAL_SPEED in TIER1_DISCIPLINES
-        assert Discipline.VERTICAL_SPEED in TIER1_DISCIPLINES
+    def test_current_strathmark_export_scope_is_only_sb_and_uh(self) -> None:
+        assert TIER1_DISCIPLINES == {
+            Discipline.UNDERHAND,
+            Discipline.STANDING_BLOCK,
+        }
 
     def test_tier3_contains_caber_and_dendrology(self) -> None:
         # Sanity-check the load-bearing "never exported" entries.
@@ -75,9 +67,9 @@ class TestTierClassification:
 
     def test_tier_counts(self) -> None:
         # Concrete counts catch silent reclassification regressions.
-        assert len(TIER1_DISCIPLINES) == 13
-        assert len(TIER2_DISCIPLINES) == 2
-        assert len(TIER3_DISCIPLINES) == 17  # 13 original + 4 new knowledge events
+        assert len(TIER1_DISCIPLINES) == 2
+        assert len(TIER2_DISCIPLINES) == 0
+        assert len(TIER3_DISCIPLINES) == 30
 
 
 class TestNewKnowledgeDisciplines:
@@ -113,38 +105,25 @@ class TestNewKnowledgeDisciplines:
 
 
 class TestStrathmarkDisciplineMap:
-    """Each Tier 1 discipline maps to a UNIQUE STRATHMARK token.
-
-    SB collision (Standing Block vs Single Buck both -> "SB") was a
-    correctness defect caught at /plan-eng-review iter-3 and fixed by
-    using STB / SBUCK as distinct tokens.
-    """
+    """The approved reviewed export contains Standing Block and Underhand only."""
 
     def test_every_tier1_has_a_token(self) -> None:
         unmapped = TIER1_DISCIPLINES - set(STRATHMARK_DISCIPLINE_MAP.keys())
         assert not unmapped, f"Tier 1 disciplines without STRATHMARK token: {unmapped}"
 
-    def test_tokens_are_unique(self) -> None:
-        tokens = list(STRATHMARK_DISCIPLINE_MAP.values())
-        duplicates = {t for t in tokens if tokens.count(t) > 1}
-        assert not duplicates, (
-            f"Duplicate STRATHMARK tokens: {duplicates}. "
-            f"Each Discipline must map to a unique token."
-        )
-
-    def test_sb_collision_is_resolved(self) -> None:
-        # Standing Block != Single Buck. Different kinematics.
-        assert (
-            STRATHMARK_DISCIPLINE_MAP[Discipline.STANDING_BLOCK]
-            != STRATHMARK_DISCIPLINE_MAP[Discipline.SINGLE_BUCK]
-        ), "Standing Block and Single Buck must have distinct STRATHMARK tokens"
+    def test_current_tokens_are_exact(self) -> None:
+        assert STRATHMARK_DISCIPLINE_MAP == {
+            Discipline.STANDING_BLOCK: "SB",
+            Discipline.UNDERHAND: "UH",
+        }
+        assert Discipline.SINGLE_BUCK not in STRATHMARK_DISCIPLINE_MAP
 
     def test_no_tier3_discipline_has_a_token(self) -> None:
         # Tier 3 events never export. Adding them to the map would be a bug.
         leaked = TIER3_DISCIPLINES & set(STRATHMARK_DISCIPLINE_MAP.keys())
-        assert (
-            not leaked
-        ), f"Tier 3 disciplines must not appear in STRATHMARK_DISCIPLINE_MAP: {leaked}"
+        assert not leaked, (
+            f"Tier 3 disciplines must not appear in STRATHMARK_DISCIPLINE_MAP: {leaked}"
+        )
 
 
 class TestDefaultScorePolicy:
