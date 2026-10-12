@@ -88,6 +88,21 @@ Keep CLI output plain and useful: errors identify the affected input and the
 next action. Follow the existing schema's compatibility rules; do not rename
 or remove persisted enum values without an explicit migration.
 
+## Contributor workflow
+
+Keep the existing gstack and Superpowers workflow conventions. gstack supplies
+plan reviews, `/review`, browser `/qa`, branch finishing through `/ship`, and
+`/retro`. For multi-file features, refactors and new modules, use the
+Superpowers brainstorming, writing-plans and executing-plans workflow with TDD.
+Quick maintenance fixes use the direct gstack review workflow. Codex QA remains
+the independent QA layer after `/review`.
+
+These review tools do not supersede the approved architecture or reopen settled
+product decisions. Check the branch before release/deploy commands, preserve
+user changes and report the commands and verification actually performed.
+When investigating unexpected Python imports, check stale bytecode before
+changing source that already matches the approved behavior.
+
 ## Production and delivery
 
 Hosted activation remains incomplete. Follow the current README, hosted
