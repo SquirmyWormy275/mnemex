@@ -123,6 +123,19 @@ a built Railway image, a hosted private bucket, provider backup/restore evidence
 throttling, independent operator rehearsal, offline owner signature, and a separate
 activation decision remain unfinished.
 
+## Automated checks
+
+[GitHub Actions](.github/workflows/ci.yml) runs the Django system check,
+migration-drift check and existing synthetic pytest suite on Linux and Windows
+for pushes to `main` and pull requests. It installs the STRATHMARK 2.x extra to
+exercise the reviewed export contract. Test receipts are retained as artifacts.
+Optional local-Supabase, LibreOffice and live-provider checks remain separately
+gated; their skips are not provider or deployment evidence.
+
+See [CLAUDE.md](CLAUDE.md) and [AGENTS.md](AGENTS.md) for current contributor
+instructions. The legacy production-disabled JSONL exporter stays manual and
+separate from these checks.
+
 ## Repository layout
 
 ```text

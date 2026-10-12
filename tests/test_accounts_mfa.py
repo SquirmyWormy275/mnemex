@@ -390,6 +390,9 @@ def test_privileged_login_without_factor_is_sent_to_enrollment() -> None:
     assert account.mfa_enrolled_at is None
 
 
+# allauth emits enrollment signals after commit. A real transaction also lets
+# session rotation run before response cookies are written, as in production.
+@pytest.mark.django_db(transaction=True)
 def test_confirmed_enrollment_encrypts_secret_and_emits_safe_audit() -> None:
     account = _account("enrollment")
     client = Client()
@@ -645,6 +648,7 @@ def test_nonprivileged_account_lands_in_security_center() -> None:
     assert client.get(reverse("mfa_index")).status_code == 200
 
 
+@pytest.mark.django_db(transaction=True)
 def test_security_notification_failure_does_not_split_totp_enrollment() -> None:
     account = _account("notification-failure")
     client = Client()
