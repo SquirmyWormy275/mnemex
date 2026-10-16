@@ -1,9 +1,12 @@
 from allauth.account import views as account_views
 from django.urls import include, path
 
+from mnemex.partners.views import ingest_result, result_status
 from mnemex.web import health
 
 urlpatterns = [
+    path("partners/results/ingest", ingest_result, name="show-result-ingest"),
+    path("partners/results/status", result_status, name="show-result-status"),
     # Compatibility names keep existing operator templates and bookmarks
     # working while allauth owns the actual staged authentication flow.
     path("accounts/login/", account_views.login, name="login"),

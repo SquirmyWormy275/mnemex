@@ -1,6 +1,10 @@
 from __future__ import annotations
 
 from pathlib import Path
+
+# Narrow synthetic show inbox is opt-in. This is independent of all production
+# account/PII activation gates and is never enabled by a received payload.
+MNEMEX_SHOW_RESULTS_ENABLED = False
 from typing import Any
 
 BASE_DIR = Path(__file__).resolve().parents[3]
