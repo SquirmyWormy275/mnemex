@@ -46,9 +46,8 @@ class Command(BaseCommand):
             token_sha256=hashlib.sha256(token.encode()).hexdigest(),
             expires_at=timezone.now() + timedelta(days=1),
         )
-        with target.open("x") as output:
-            if os.name != "nt":
-                os.fchmod(output.fileno(), 0o600)
+        fd = os.open(target, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+        with os.fdopen(fd, "w") as output:
             json.dump({"source_show_id": source.pk, "token": token}, output)
         self.stdout.write(
             "Sandbox source credential written to the private destination; production remains disabled."
