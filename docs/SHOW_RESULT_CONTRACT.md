@@ -58,8 +58,17 @@ Run `pytest tests/test_show_result_inbox.py`, Django checks and migration drift,
 then the full synthetic suite. Missoula's `tests/test_managed_events.py` can
 launch the actual installed Django receiver in fresh SQLite storage and tests
 real HTTP outages and committed-response loss, separately from R08's simulated
-shadow peer. Migrations partners 0002/0003 are additive. Roll back application
+shadow peer. Migrations partners 0002–0004 are additive. Roll back application
 code with this receiver disabled; retain inbox/source/credential/conflict tables
 and independent backups. Do not drop received source history to roll back code.
 All provider/restore/operator activation evidence stays pending unless separately
 qualified under the existing 14-gate registry.
+
+Correction identity and status scope follow-up: entry identity, issued field,
+discipline, date and wood remain bound across source revisions. A direct invalid
+correction receives a durable conflicting receipt before an immutable inbox slot
+is allocated; a valid correction can then arrive under a new delivery identity.
+Reordered conflicting evidence remains retained and blocks contiguous projection
+for explicit reconciliation. Status counts are scoped to the credential's show,
+including conflict counts. Additive partners migration 0004 leaves older
+unattributed conflicts null and private; it never guesses their show.

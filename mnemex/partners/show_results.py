@@ -204,6 +204,28 @@ def validate(envelope, source_show_id):
         raise ShowResultError("participant_reference_required")
 
 
+def predecessor_error(source, prior):
+    if source["supersedes_source_digest"] != prior.payload["source_digest"]:
+        return "source_predecessor_conflict"
+    previous = prior.payload["source"]
+    if source["outcome"]["entry_id"] != previous["outcome"]["entry_id"]:
+        return "source_entry_binding_conflict"
+    if any(
+        source[key] != previous[key]
+        for key in (
+            "source_event_id",
+            "heat_id",
+            "field_digest",
+            "issue_id",
+            "discipline",
+            "event_date",
+            "wood",
+        )
+    ):
+        return "issued_source_binding_conflict"
+    return None
+
+
 def conflict(client, envelope, reason):
     payload_digest = result_binding(envelope)
     previous = ShowResultConflict.objects.filter(
@@ -225,6 +247,7 @@ def conflict(client, envelope, reason):
     }
     ShowResultConflict.objects.create(
         client=client,
+        source_show_id=source["source_show_id"],
         source_result_id=source["source_result_id"],
         source_revision=source["source_revision"],
         payload_digest=payload_digest,
@@ -278,6 +301,16 @@ def receive_show_result(client, source_show_id, envelope):
         idem.status, idem.response = "completed", receipt
         idem.save(update_fields=("status", "response", "updated_at"))
         return receipt
+    # Refuse a direct invalid correction before allocating its immutable source
+    # revision. Its durable conflict receipt cannot poison a later valid retry.
+    if stream.current_revision and source["source_revision"] == stream.current_revision + 1:
+        prior = ShowResultInbox.objects.get(stream=stream, source_revision=stream.current_revision)
+        reason = predecessor_error(source, prior)
+        if reason:
+            receipt = conflict(client, envelope, reason)
+            idem.status, idem.response = "completed", receipt
+            idem.save(update_fields=("status", "response", "updated_at"))
+            return receipt
     identity_state = "unlinked"  # A reference is not consent or identity proof.
     state = (
         identity_state
@@ -312,17 +345,9 @@ def receive_show_result(client, source_show_id, envelope):
             prior = ShowResultInbox.objects.get(
                 stream=stream, source_revision=stream.current_revision
             )
-            if (
-                next_row.payload["source"]["supersedes_source_digest"]
-                != prior.payload["source_digest"]
-            ):
-                conflict(client, next_row.payload, "source_predecessor_conflict")
-                break
-            if any(
-                next_row.payload["source"][key] != prior.payload["source"][key]
-                for key in ("source_event_id", "heat_id", "field_digest", "issue_id")
-            ):
-                conflict(client, next_row.payload, "issued_source_binding_conflict")
+            reason = predecessor_error(next_row.payload["source"], prior)
+            if reason:
+                conflict(client, next_row.payload, reason)
                 break
         stream.current_revision += 1
     stream.identity_state = identity_state

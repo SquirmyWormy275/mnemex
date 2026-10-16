@@ -142,6 +142,8 @@ class ShowResultInbox(models.Model):
 
 
 class ShowResultConflict(models.Model):
+    # Existing unattributed conflict receipts remain private, never guessed.
+    source_show_id = models.CharField(max_length=224, null=True)
     conflict_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     client = models.ForeignKey(PartnerClient, on_delete=models.PROTECT)
     source_result_id = models.CharField(max_length=512)

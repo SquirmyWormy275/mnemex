@@ -76,7 +76,9 @@ def result_status(request):
             "schema_version": "mnemex.show-result-status.v1",
             "stream_count": streams.count(),
             "source_revision_count": ShowResultInbox.objects.filter(stream__in=streams).count(),
-            "conflict_count": ShowResultConflict.objects.filter(client=credential.client).count(),
+            "conflict_count": ShowResultConflict.objects.filter(
+                client=credential.client, source_show_id=credential.source_show_id
+            ).count(),
             "streams": list(
                 streams.order_by("source_result_id").values(
                     "source_result_id", "current_revision", "identity_state"
