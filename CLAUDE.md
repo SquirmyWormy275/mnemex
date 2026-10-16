@@ -1,5 +1,13 @@
 # Working in MNEMEX
 
+The October 15 approved modular effort adds a bounded
+[synthetic show-result inbox](docs/SHOW_RESULT_CONTRACT.md). It preserves
+unlinked source attempts and explicit receipts without enabling full profile
+portability or production. Shared components are developed incrementally with
+Missoula as the integration testbed; the historical warning against speculative
+wholesale platform replacement does not prohibit this approved work.
+
+
 MNEMEX is the STRATHEX ecosystem's universal competitor identity, portable-profile,
 career-history and provenance service. Its integrated Results Desk preserves and
 reconciles source results. This repository is `SquirmyWormy275/mnemex`.
@@ -22,8 +30,11 @@ product choices. Preserve them with their dates.
 
 - MNEMEX owns the person, aliases, encrypted legal identity, consent grants,
   reconciled career record and provenance chain.
-- A show owns registration, entries, waivers, partners, payments, roster, marks,
-  scoring, official results, corrections and finalized event state. MNEMEX does
+- A show owns registration, entries, waivers, partners, payments and whole-show
+  scheduling. For calculation-only events it owns marks/results; for explicitly
+  delegated events STRATHMARK operations own fields, marks, results and progression
+  on behalf of its authorized officials. The host accepts source revisions and
+  retains points/payout authority. MNEMEX does
   not score an event or decide its winner.
 - Before roster lock, a show may validate a consented, purpose-bounded profile
   projection. At lock it pins a local snapshot; race-day operation must not

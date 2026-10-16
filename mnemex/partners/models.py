@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import uuid
 
+from django.core.exceptions import PermissionDenied
 from django.db import models
 
 
@@ -68,3 +69,91 @@ class PartnerClient(models.Model):
             and self.revoked_at is None
             and self.organization.status == PartnerOrganization.Status.ACTIVE
         )
+
+
+class ShowClientCredential(models.Model):
+    """Narrow machine credential; no database or browser authority."""
+
+    credential_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    client = models.ForeignKey(PartnerClient, on_delete=models.PROTECT)
+    source_show_id = models.CharField(max_length=224)
+    token_sha256 = models.CharField(max_length=64, unique=True)
+    expires_at = models.DateTimeField()
+    revoked_at = models.DateTimeField(null=True, blank=True)
+
+
+class ShowSource(models.Model):
+    source_show_id = models.CharField(max_length=224, primary_key=True)
+    client = models.ForeignKey(PartnerClient, on_delete=models.PROTECT)
+
+
+class ShowResultStream(models.Model):
+    client = models.ForeignKey(PartnerClient, on_delete=models.PROTECT)
+    source_show_id = models.CharField(max_length=224)
+    source_result_id = models.CharField(max_length=512)
+    current_revision = models.PositiveIntegerField(default=0)
+    identity_state = models.CharField(max_length=32, default="unlinked")
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=("client", "source_show_id", "source_result_id"),
+                name="unique_show_result_stream",
+            )
+        ]
+
+
+class ImmutableShowQuerySet(models.QuerySet):
+    def update(self, **kwargs):
+        raise PermissionDenied("show source revisions are immutable")
+
+    def delete(self):
+        raise PermissionDenied("show source revisions are immutable")
+
+
+class ShowResultInbox(models.Model):
+    receipt_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    stream = models.ForeignKey(ShowResultStream, on_delete=models.PROTECT, related_name="revisions")
+    source_revision = models.PositiveIntegerField()
+    message_id = models.CharField(max_length=224)
+    payload_digest = models.CharField(max_length=64)
+    payload = models.JSONField()
+    receipt = models.JSONField()
+    received_at = models.DateTimeField(auto_now_add=True)
+    objects = ImmutableShowQuerySet.as_manager()
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=("stream", "source_revision"), name="unique_show_source_revision"
+            ),
+            models.CheckConstraint(
+                condition=models.Q(source_revision__gte=1), name="show_source_revision_positive"
+            ),
+        ]
+
+    def save(self, *args, **kwargs):
+        if not self._state.adding:
+            raise PermissionDenied("show source revisions are immutable")
+        return super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        raise PermissionDenied("show source revisions are immutable")
+
+
+class ShowResultConflict(models.Model):
+    conflict_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    client = models.ForeignKey(PartnerClient, on_delete=models.PROTECT)
+    source_result_id = models.CharField(max_length=512)
+    source_revision = models.PositiveIntegerField()
+    payload_digest = models.CharField(max_length=64)
+    reason = models.CharField(max_length=80)
+    receipt = models.JSONField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=("client", "payload_digest"), name="unique_show_conflict_payload"
+            )
+        ]

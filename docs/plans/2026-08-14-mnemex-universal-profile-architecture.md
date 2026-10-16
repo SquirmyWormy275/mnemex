@@ -1,5 +1,15 @@
 # MNEMEX universal competitor profile architecture
 
+Current clarification, 2026-10-16: the October 15 owner-approved modular effort
+explicitly permits incremental multi-show components, using Missoula from the
+outset. The retirement of a speculative generic-platform rewrite remains
+historical guidance, not a prohibition on this work. See the current
+[show-result contract](../SHOW_RESULT_CONTRACT.md) and
+[ecosystem authority map](https://github.com/SquirmyWormy275/STRATHMARK/blob/main/docs/MODULAR_ECOSYSTEM.md).
+The implemented synthetic receiver is narrower than the full portability phases
+below; production activation and profile consent gates remain unchanged.
+
+
 **Status:** build direction approved on 2026-08-14; no feature implementation has started.
 
 The authoritative selections are recorded in

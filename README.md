@@ -1,5 +1,13 @@
 # MNEMEX
 
+The October 15 approved modular effort adds a bounded
+[synthetic show-result inbox](docs/SHOW_RESULT_CONTRACT.md). It preserves
+unlinked source attempts and explicit receipts without enabling full profile
+portability or production. Shared components are developed incrementally with
+Missoula as the integration testbed; the historical warning against speculative
+wholesale platform replacement does not prohibit this approved work.
+
+
 MNEMEX is the STRATHEX ecosystem's universal competitor identity,
 portable-profile, career-history, and provenance service.
 
@@ -57,7 +65,8 @@ implemented locally and has not been production-enabled or deployed:
 | Railway process contract | Implemented locally: one image, separate Gunicorn web and supervised worker services, one web pre-deploy migration owner, fingerprinted static assets, bounded queue work, graceful drain boundaries, and redacted health signals; no image has been deployed |
 | Backup and recovery contract | Implemented locally with immutable manifests, pristine-target refusal, database/object/key reconciliation, expired-lease normalization, exact cleanup, and redacted evidence; provider restore evidence is still pending |
 | Activation evidence | Implemented locally as a closed 14-gate registry, immutable evidence, deterministic redacted reports, environment binding, freshness checks, and offline Ed25519 verification; the report cannot enable production privilege |
-| Portable-profile/show adapters and offline roster snapshots | Planned; not implemented |
+| Synthetic show-result inbox/outbox boundary | Implemented locally; scoped sandbox machine API, source revision reconciliation, unlinked identities; production disabled |
+| Full portable profiles, show grants and offline roster snapshots | Planned; not implemented |
 | Opt-in public career pages | Planned; not implemented |
 | Railway/Supabase production deployment and full private-object restore | Not activated |
 
