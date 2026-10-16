@@ -14,10 +14,13 @@ from decimal import Decimal, InvalidOperation
 
 from django.conf import settings
 from django.db import transaction
+from django.utils import timezone
 
+from mnemex.foundation.models import IdempotencyRecord
 from mnemex.foundation.services import IdempotencyConflict, claim_idempotency, record_audit_event
 from mnemex.partners.models import (
     PartnerClient,
+    ShowClientCredential,
     ShowResultConflict,
     ShowResultInbox,
     ShowResultStream,
@@ -73,7 +76,7 @@ def validate(envelope, source_show_id):
     closed(envelope, {"schema_version", "message_id", "source", "source_digest", "participant"})
     if envelope["schema_version"] != "mnemex.show-result.v1":
         raise ShowResultError("unsupported_show_result_contract")
-    reference(envelope["message_id"])
+    reference(envelope["message_id"], 200)
     source = envelope["source"]
     closed(
         source,
@@ -226,7 +229,7 @@ def predecessor_error(source, prior):
     return None
 
 
-def conflict(client, envelope, reason):
+def conflict(client, envelope, reason, credential=None):
     payload_digest = result_binding(envelope)
     previous = ShowResultConflict.objects.filter(
         client=client, payload_digest=payload_digest
@@ -247,6 +250,8 @@ def conflict(client, envelope, reason):
     }
     ShowResultConflict.objects.create(
         client=client,
+        credential=credential,
+        payload=envelope,
         source_show_id=source["source_show_id"],
         source_result_id=source["source_result_id"],
         source_revision=source["source_revision"],
@@ -259,13 +264,13 @@ def conflict(client, envelope, reason):
         target_type="partner_client",
         target_id=str(client.pk),
         payload_digest=payload_digest,
-        metadata={"reason": reason},
+        metadata={"reason": reason, "credential_id": str(credential.pk) if credential else None},
     )
     return receipt
 
 
 @transaction.atomic
-def receive_show_result(client, source_show_id, envelope):
+def receive_show_result(client, source_show_id, envelope, *, credential=None):
     if not getattr(settings, "MNEMEX_SHOW_RESULTS_ENABLED", False):
         raise ShowResultError("show_result_receiver_disabled")
     validate(envelope, source_show_id)
@@ -276,15 +281,55 @@ def receive_show_result(client, source_show_id, envelope):
         raise ShowResultError("active_sandbox_client_required: production qualification pending")
     if not ShowSource.objects.filter(source_show_id=source_show_id, client=client).exists():
         raise ShowResultError("source_show_not_registered_to_client")
+    if credential is not None:
+        credential = (
+            ShowClientCredential.objects.select_for_update()
+            .filter(
+                pk=credential.pk,
+                client=client,
+                source_show_id=source_show_id,
+                revoked_at__isnull=True,
+                expires_at__gt=timezone.now(),
+            )
+            .first()
+        )
+        if credential is None:
+            raise ShowResultError("credential_invalid")
     source = envelope["source"]
     payload_digest = result_binding(envelope)
-    scope = "show-results:" + str(client.pk)
+    # Preserve exact legacy receipts and their original changed-retry binding.
+    # A known legacy owner never reserves a different source's namespace.
+    legacy = IdempotencyRecord.objects.filter(
+        scope="show-results:" + str(client.pk), key=envelope["message_id"]
+    ).first()
+    if legacy:
+        if legacy.request_digest == digest(envelope):
+            if legacy.response:
+                return legacy.response
+            return conflict(client, envelope, "legacy_delivery_scope_unresolved", credential)
+        old_digest = (legacy.response or {}).get("payload_digest")
+        owner = (
+            ShowResultInbox.objects.filter(stream__client=client, payload_digest=old_digest)
+            .values_list("stream__source_show_id", flat=True)
+            .first()
+        )
+        if owner is None:
+            owner = (
+                ShowResultConflict.objects.filter(client=client, payload_digest=old_digest)
+                .values_list("source_show_id", flat=True)
+                .first()
+            )
+        if owner == source_show_id:
+            return conflict(client, envelope, "request_identity_conflict", credential)
+        if owner is None:
+            return conflict(client, envelope, "legacy_delivery_scope_unresolved", credential)
+    scope = "show-results-source:" + digest([str(client.pk), source_show_id])
     try:
         idem, created = claim_idempotency(
             scope=scope, key=envelope["message_id"], request_digest=digest(envelope)
         )
     except IdempotencyConflict:
-        return conflict(client, envelope, "request_identity_conflict")
+        return conflict(client, envelope, "request_identity_conflict", credential)
     if not created and idem.response:
         return idem.response
     stream, _ = ShowResultStream.objects.get_or_create(
@@ -295,7 +340,7 @@ def receive_show_result(client, source_show_id, envelope):
     ).first()
     if previous:
         if previous.payload_digest != payload_digest:
-            receipt = conflict(client, envelope, "source_revision_conflict")
+            receipt = conflict(client, envelope, "source_revision_conflict", credential)
         else:
             receipt = previous.receipt
         idem.status, idem.response = "completed", receipt
@@ -307,7 +352,7 @@ def receive_show_result(client, source_show_id, envelope):
         prior = ShowResultInbox.objects.get(stream=stream, source_revision=stream.current_revision)
         reason = predecessor_error(source, prior)
         if reason:
-            receipt = conflict(client, envelope, reason)
+            receipt = conflict(client, envelope, reason, credential)
             idem.status, idem.response = "completed", receipt
             idem.save(update_fields=("status", "response", "updated_at"))
             return receipt
@@ -329,6 +374,7 @@ def receive_show_result(client, source_show_id, envelope):
     }
     row = ShowResultInbox.objects.create(
         stream=stream,
+        credential=credential,
         source_revision=source["source_revision"],
         message_id=envelope["message_id"],
         payload_digest=payload_digest,
@@ -347,7 +393,7 @@ def receive_show_result(client, source_show_id, envelope):
             )
             reason = predecessor_error(next_row.payload["source"], prior)
             if reason:
-                conflict(client, next_row.payload, reason)
+                conflict(client, next_row.payload, reason, next_row.credential)
                 break
         stream.current_revision += 1
     stream.identity_state = identity_state
@@ -359,6 +405,13 @@ def receive_show_result(client, source_show_id, envelope):
         target_type="show_result",
         target_id=str(row.pk),
         payload_digest=payload_digest,
-        metadata={"source_revision": source["source_revision"], "state": state},
+        metadata={
+            "source_revision": source["source_revision"],
+            "state": state,
+            "credential_id": str(credential.pk) if credential else None,
+            "authentication_boundary": "scoped_credential"
+            if credential
+            else "trusted_local_synthetic",
+        },
     )
     return receipt

@@ -112,6 +112,9 @@ class ImmutableShowQuerySet(models.QuerySet):
 
 
 class ShowResultInbox(models.Model):
+    credential = models.ForeignKey(
+        ShowClientCredential, null=True, on_delete=models.PROTECT, related_name="accepted_attempts"
+    )
     receipt_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     stream = models.ForeignKey(ShowResultStream, on_delete=models.PROTECT, related_name="revisions")
     source_revision = models.PositiveIntegerField()
@@ -142,6 +145,11 @@ class ShowResultInbox(models.Model):
 
 
 class ShowResultConflict(models.Model):
+    credential = models.ForeignKey(
+        ShowClientCredential, null=True, on_delete=models.PROTECT, related_name="rejected_attempts"
+    )
+    payload = models.JSONField(null=True)
+    objects = ImmutableShowQuerySet.as_manager()
     # Existing unattributed conflict receipts remain private, never guessed.
     source_show_id = models.CharField(max_length=224, null=True)
     conflict_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -159,3 +167,11 @@ class ShowResultConflict(models.Model):
                 fields=("client", "payload_digest"), name="unique_show_conflict_payload"
             )
         ]
+
+    def save(self, *args, **kwargs):
+        if not self._state.adding:
+            raise PermissionDenied("show conflict evidence is immutable")
+        return super().save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        raise PermissionDenied("show conflict evidence is immutable")

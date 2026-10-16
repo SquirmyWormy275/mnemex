@@ -58,7 +58,7 @@ Run `pytest tests/test_show_result_inbox.py`, Django checks and migration drift,
 then the full synthetic suite. Missoula's `tests/test_managed_events.py` can
 launch the actual installed Django receiver in fresh SQLite storage and tests
 real HTTP outages and committed-response loss, separately from R08's simulated
-shadow peer. Migrations partners 0002–0004 are additive. Roll back application
+shadow peer. Migrations partners 0002–0005 are additive. Roll back application
 code with this receiver disabled; retain inbox/source/credential/conflict tables
 and independent backups. Do not drop received source history to roll back code.
 All provider/restore/operator activation evidence stays pending unless separately
@@ -72,3 +72,21 @@ Reordered conflicting evidence remains retained and blocks contiguous projection
 for explicit reconciliation. Status counts are scoped to the credential's show,
 including conflict counts. Additive partners migration 0004 leaves older
 unattributed conflicts null and private; it never guesses their show.
+
+Delivery identifiers are scoped to the registered source, including when one
+client operates several shows. Exact retries from the older client-only
+namespace keep their original receipt and changed-payload binding; a known old
+source cannot reserve another source's key. Legacy ownership that cannot be
+attributed remains blocked rather than guessed.
+
+Accepted inbox and rejected conflict evidence retain the authenticating
+credential ID, never its token. Overlapping key rotation does not rewrite the
+original attempt's provenance. Validated rejected envelopes are immutable private
+evidence outside the authoritative revision slots. Nullable migration 0005 fields
+leave earlier unavailable payload/credential evidence explicitly unknown. Local
+synthetic service calls remain a declared trusted-OS boundary; HTTP ingestion
+always passes and revalidates its scoped credential. Both machine endpoints
+require the enabled sandbox profile and reject inactive/revoked/expired scopes.
+Credential output files are exclusively created with private POSIX mode in the
+initial open operation, before any token bytes are written; Windows ACL and
+hosted deployment qualification remain separate.
