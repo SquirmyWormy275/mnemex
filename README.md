@@ -1,5 +1,19 @@
 # MNEMEX
 
+The owner-requested [ecosystem project memory](docs/project-memory/START_HERE.md)
+preserves the direction and approved decisions for MNEMEX, STRATHMARK, STRATHEX
+and Missoula, including rationale, domain/numerical contracts, exact delivery
+evidence, superseded plans and practical resumption steps. It is readable Git
+documentation with cited snapshots, not a person/career database or a new
+application API. A different harness/model can start there without rebuilding
+the project context. Offline retrieval needs only Python's standard library:
+
+```text
+python tools/project_memory.py verify
+python tools/project_memory.py search "Missoula merge blocked" --json
+python tools/project_memory.py context --topic resume
+```
+
 The October 15 approved modular effort adds a bounded
 [synthetic show-result inbox](docs/SHOW_RESULT_CONTRACT.md). It preserves
 unlinked source attempts and explicit receipts without enabling full profile

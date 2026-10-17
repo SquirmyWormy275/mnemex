@@ -1,0 +1,269 @@
+{
+  "schema_version": "mnemex.project-memory.manifest.v1",
+  "files": {
+    "01_VISION.md": {
+      "bytes": 7552,
+      "sha256": "6e04bf350c11c6bf031dd80c79c66602cf93e09ca2106465a2715014921a824d"
+    },
+    "02_ARCHITECTURE.md": {
+      "bytes": 11125,
+      "sha256": "8c5494c8294cce7874f635df41136b327ee0ea4329d1216786c67b305abee6c0"
+    },
+    "03_MISSOULA.md": {
+      "bytes": 11288,
+      "sha256": "df4fef3a5768c852c6bdc927569c57b4fe4069ba5ed0364dab97021ab3621ad1"
+    },
+    "04_NUMERICS.md": {
+      "bytes": 9890,
+      "sha256": "53f72d44b26707392c281b541c984c2e2f33c0836173195bb3e31b913ebbcd3f"
+    },
+    "05_MNEMEX.md": {
+      "bytes": 12162,
+      "sha256": "97b40a5bbe6b44764ffc5431761c97660c19bdf41f653c53f9500717facd0b87"
+    },
+    "06_DELIVERY.md": {
+      "bytes": 10470,
+      "sha256": "1be0fd033ac387f07543d6cef4661337368934046035fcbd2c4248d26e7c91cf"
+    },
+    "07_RUNBOOK.md": {
+      "bytes": 9987,
+      "sha256": "acf7b1b036874e81514db8fd708147db0cc77e43f1a84c158e2c2ee0131a8795"
+    },
+    "08_HISTORY.md": {
+      "bytes": 8161,
+      "sha256": "4ce79f183c90c0d5b276487af98f901a53e31f2647a6e76f66b31782df08f959"
+    },
+    "09_MEMORY_MAINTENANCE.md": {
+      "bytes": 5720,
+      "sha256": "ad18426ba73ca5b735560ad3a62915356d414f47b81e02fd6f06b1b96eab893b"
+    },
+    "DECISIONS.json": {
+      "bytes": 57907,
+      "sha256": "91b4f5837e5f24fb528c288ab7a83e917d71393d1932cd41473ccdaea5ba165c"
+    },
+    "DECISIONS.md": {
+      "bytes": 45913,
+      "sha256": "566abef379f5152b87aab7c223f56b0badf52e0cd8348007cd3ec9a7e589d09a"
+    },
+    "DELIVERY_SNAPSHOT.json": {
+      "bytes": 34769,
+      "sha256": "f847012cab3e6dcc09e6564edf88c1525c26d33ef1841a69baacccb7f7df846d"
+    },
+    "SOURCE_CATALOG.json": {
+      "bytes": 32325,
+      "sha256": "9d3730c962c0d38d10d498d0f40ebc6e3678391897a4ee948543298ffe860b46"
+    },
+    "SOURCE_INDEX.md": {
+      "bytes": 25738,
+      "sha256": "05378933051634e2fee2593bb9f830c6b92ccac048361c56654b4d299e2ec8d8"
+    },
+    "START_HERE.md": {
+      "bytes": 8221,
+      "sha256": "5a2e8ad5a0692a82734cfc6b7565e602e295116b9e4d485cde9b2f5f2221cebe"
+    },
+    "snapshots/Missoula-Pro-Am-Manager/FlightLogic.md": {
+      "bytes": 29929,
+      "sha256": "22e960705aa1add1eaa0209e7d9ff1e3548bde031218847a6139b5906dfc6308"
+    },
+    "snapshots/Missoula-Pro-Am-Manager/docs/Alex's Docs/GEAR_SHARING_DOMAIN.md": {
+      "bytes": 11983,
+      "sha256": "ae32e34b78a8cba35e0bf01b96b9d2d1d5635024c814f1df2e34a267bcabc007"
+    },
+    "snapshots/Missoula-Pro-Am-Manager/docs/Alex's Docs/ProAM requirements": {
+      "bytes": 14514,
+      "sha256": "6e56509d1b5eb22cd7b889f4510f471934cbdc478263727a1ed13f9eccdec40c"
+    },
+    "snapshots/Missoula-Pro-Am-Manager/docs/Alex's Docs/ProAmRelay.md": {
+      "bytes": 1050,
+      "sha256": "e3d3302c66ba942ce33492914195e4e6d3d9d70a00a94e2b444ed20748733f51"
+    },
+    "snapshots/Missoula-Pro-Am-Manager/docs/DOMAIN_CONTRACT.md": {
+      "bytes": 13643,
+      "sha256": "5412daa785ae3181159f96d08f53b715cef81d142b9da3e9fd8d1d6f53329a61"
+    },
+    "snapshots/Missoula-Pro-Am-Manager/docs/MANAGED_EVENTS.md": {
+      "bytes": 10782,
+      "sha256": "d54b7f872404e8b84eb29a82ee66e6b5c8176fe2b2d153b79c0febd4ce4bda75"
+    },
+    "snapshots/Missoula-Pro-Am-Manager/docs/MARK_ASSIGNMENT_WORKFLOW.md": {
+      "bytes": 6629,
+      "sha256": "26c3668ed1594b0a7f191ff9d89cf51ea9d34f171de714a02470e54712998c48"
+    },
+    "snapshots/Missoula-Pro-Am-Manager/docs/MODULAR_EXECUTION_STATUS.md": {
+      "bytes": 43531,
+      "sha256": "320482fa4ce1ac19ebad03eb1c6fcba281ec9f0906fe29cf65a7de80bcd9afe9"
+    },
+    "snapshots/Missoula-Pro-Am-Manager/docs/RECOVERY_DRILLS.md": {
+      "bytes": 14613,
+      "sha256": "7645898ab7645c704ac353ec6041d32deb07d6857b84b2f8f252d525d88d9eab"
+    },
+    "snapshots/Missoula-Pro-Am-Manager/docs/RELEASE_CHECKLIST.md": {
+      "bytes": 7833,
+      "sha256": "61adaf4c991d24ae0fbb6d3f38d1b8e9f02f83eb0e193d8816ebdd79857e34a7"
+    },
+    "snapshots/Missoula-Pro-Am-Manager/docs/ROLLBACK_SOP.md": {
+      "bytes": 12459,
+      "sha256": "79a3674be344b60c6a9f5d8eb554ca44dfed9ecbba1225587cf1118d277f7c92"
+    },
+    "snapshots/Missoula-Pro-Am-Manager/docs/STRATHMARK_SHADOW_OPERATIONS.md": {
+      "bytes": 8484,
+      "sha256": "dd24619f2821eb7c29ba74cde983056c746d443a875753a860d899d52c3b9bc9"
+    },
+    "snapshots/STRATHEX/ONBOARDING.md": {
+      "bytes": 2492,
+      "sha256": "30b75eacfab54cfe27ef07526836d8da238c1d337ba9417ce1cb89f149a43fc8"
+    },
+    "snapshots/STRATHEX/docs/ARCHITECTURE.md": {
+      "bytes": 7410,
+      "sha256": "a04115ea64aaa5f0819da98b5df447aa7b461ac0dfbcf23bd4ceec216f309130"
+    },
+    "snapshots/STRATHEX/docs/CURRENT_RUNTIME_CONTRACT.md": {
+      "bytes": 8848,
+      "sha256": "23a3f1b8f07ee56c3734f18c1aefba62df86804aa846b03bdd36e0a8eba0798c"
+    },
+    "snapshots/STRATHEX/docs/MANAGED_EVENTS.md": {
+      "bytes": 2038,
+      "sha256": "dccb25abaceeeec1a50786741f54e2739aa8a4c019e449f3d805147804c4ea67"
+    },
+    "snapshots/STRATHMARK/ONBOARDING.md": {
+      "bytes": 11136,
+      "sha256": "31a64156e5e7aff37f861d073e8276118ff5ad743ed278c300ee41f24e7047e3"
+    },
+    "snapshots/STRATHMARK/docs/ACCURACY_AND_COUNCIL.md": {
+      "bytes": 20640,
+      "sha256": "063a873f7fa23121764a18ae8d8784d2d6d60575edb3c2f3c6cc40cce80ec5b1"
+    },
+    "snapshots/STRATHMARK/docs/ARCHITECTURE.md": {
+      "bytes": 11621,
+      "sha256": "20e59483d2e3e6e53961931878a7395dc11f53c7a712a6d90c494d3c6785561c"
+    },
+    "snapshots/STRATHMARK/docs/MANAGED_EVENTS.md": {
+      "bytes": 10897,
+      "sha256": "23d43a371687acf744f591d277fa4aad8c97549906a5c700677ab59a62998d84"
+    },
+    "snapshots/STRATHMARK/docs/MODULAR_ECOSYSTEM.md": {
+      "bytes": 4694,
+      "sha256": "b1abb66a1374d1441bcc3e556bf21319db34af25524747a450767dcccf2852a3"
+    },
+    "snapshots/STRATHMARK/docs/PACKAGE_RELEASE.md": {
+      "bytes": 7445,
+      "sha256": "b46a4298e1b09d5bceb707d8a9055da63897872c509c10fd988d185f732e4431"
+    },
+    "snapshots/STRATHMARK/docs/V3_LINUX_CANDIDATE.md": {
+      "bytes": 4767,
+      "sha256": "10696601b4b11537f3f976f5fc6c362cb1e2471720d896ffe855c3e845a7529c"
+    },
+    "snapshots/STRATHMARK/docs/V3_LINUX_COMPETITION.md": {
+      "bytes": 9179,
+      "sha256": "d0b11785e34079779163926a29f949eec150d3cf5a8cb8594df65ce7becf0a52"
+    },
+    "snapshots/STRATHMARK/docs/wiki/Accuracy-Preview.md": {
+      "bytes": 1976,
+      "sha256": "1ff3812864e1fda5cb1d384b503ffb148a967f506950fcbbbdfd7f87b96543b9"
+    },
+    "snapshots/STRATHMARK/docs/wiki/Handicap-Mark-Math.md": {
+      "bytes": 6645,
+      "sha256": "9ec605b6fa48e417a69b638d6f58f4ea0907f5a9bc418b24100b57abe3c06241"
+    },
+    "snapshots/mnemex/README.md": {
+      "bytes": 12443,
+      "sha256": "ef58218c90bac79665162d72b662c34748a02cb777678a9e467a9a9a396c53d6"
+    },
+    "snapshots/mnemex/docs/SHOW_RESULT_CONTRACT.md": {
+      "bytes": 5985,
+      "sha256": "f66059e813dca7cd9703ad01effdc7b4482a0b016c2fccb175fe4dbd93850993"
+    },
+    "snapshots/mnemex/docs/plans/2026-08-14-mnemex-approved-build-decisions.md": {
+      "bytes": 7972,
+      "sha256": "4956e2c95f3e660250ba8f2078bc313401e2abe45c9d1820c0dbe325f8023821"
+    },
+    "snapshots/mnemex/docs/plans/2026-08-14-mnemex-approved-implementation-plan.md": {
+      "bytes": 23254,
+      "sha256": "7af006b6520cf5c5242bfae1d83181abe27458ccab4c985d72abbf403b75c510"
+    },
+    "snapshots/mnemex/docs/plans/2026-08-14-mnemex-universal-profile-architecture.md": {
+      "bytes": 31472,
+      "sha256": "64190ce4cd830f9dada88c509cf4f90b1f0e40dbd2d786097a752afca7f1d76c"
+    },
+    "snapshots/mnemex/docs/plans/2026-08-18-mnemex-hosted-production-activation-status.md": {
+      "bytes": 8190,
+      "sha256": "435a205c2021d8ed70b474079e281b63044df83de31a1251e31630ed8e0ddcfb"
+    },
+    "snapshots/mnemex/docs/runbooks/mnemex-backup-and-restore.md": {
+      "bytes": 9462,
+      "sha256": "933d7f19382189970572c685623b5bd7cb69be28d22eee156a34443145d0dccf"
+    },
+    "snapshots/mnemex/docs/runbooks/mnemex-railway-supabase.md": {
+      "bytes": 8852,
+      "sha256": "258208be8e9de57d1b76daa4546949e46c02fe2e62d0935b34a37e50c8377a80"
+    },
+    "snapshots/mnemex/docs/runbooks/mnemex-security-operations.md": {
+      "bytes": 11612,
+      "sha256": "75610be62137fc494c923fae75f5dcb763709000330b1d360307adfc0ecb7c68"
+    },
+    "snapshots/owner/2026-10-16-project-memory-request.json": {
+      "bytes": 792,
+      "sha256": "7ca2f3027e1f72acf4470fd93a3cd439a8061bb517294e84a085cd9dfb096ebb"
+    },
+    "snapshots/owner/CODEX_Modular_Tournament_Execution_Handover.md": {
+      "bytes": 51833,
+      "sha256": "69c75ac51d4fa42357576d3a52c8b8527f030de8867be5940c02d1a15947c23c"
+    },
+    "snapshots/synthetic-evidence/browser-workspace-9/report.json": {
+      "bytes": 1173,
+      "sha256": "bb01e10e1de0aa8d844ec6aa4482dcb5dd35c815206dc84aa2e97f77846bc87a"
+    },
+    "snapshots/synthetic-evidence/ci-exact-head-38897926622-core/report.json": {
+      "bytes": 32553,
+      "sha256": "9552e25e39ee868ff69c9349684fcc1db228fac14176c80be376c99fc4de915d"
+    },
+    "snapshots/synthetic-evidence/ci-exact-head-38897926622-managed/_temp/managed-acceptance-crashes/report.json": {
+      "bytes": 3995,
+      "sha256": "3b4af0d8384e807501f6d856b12b277d4db1947e817ccfb12787db94fd942a9a"
+    },
+    "snapshots/synthetic-evidence/ci-exact-head-38897926622-managed/_temp/managed-component-portability/report.json": {
+      "bytes": 5394,
+      "sha256": "7eced916635bb366fb74a26db339f90bfae37dbe70deadc8137b4823f0513e45"
+    },
+    "snapshots/synthetic-evidence/evaluation-published/report.json": {
+      "bytes": 16428,
+      "sha256": "41352345fcac16b07793d11cae4d5ef533ecf7192483dccf54314d1ea4444b1e"
+    },
+    "snapshots/synthetic-evidence/host-context-followup.json": {
+      "bytes": 3664,
+      "sha256": "7594bb61d4e17019dbb63ec68c033afad58024e216d8b212ccb154793f02442d"
+    },
+    "snapshots/synthetic-evidence/host-context-postgres/report.json": {
+      "bytes": 92,
+      "sha256": "354b85a81cd49f1a19507328b36bbb8f074e9239ce28aa095e0343a0f110086f"
+    },
+    "snapshots/synthetic-evidence/managed-boundary-final-postgres/report.json": {
+      "bytes": 92,
+      "sha256": "354b85a81cd49f1a19507328b36bbb8f074e9239ce28aa095e0343a0f110086f"
+    },
+    "snapshots/synthetic-evidence/mnemex-provenance-postgres-2/report.json": {
+      "bytes": 91,
+      "sha256": "6f55cb5547be1057765d130a98ea94a98dda9a097943b6a2d81ee7957f99425d"
+    },
+    "snapshots/synthetic-evidence/pypi-two-show/report.json": {
+      "bytes": 765,
+      "sha256": "862499e2e88acd5eb5a64bdc1836087115143cfe334b5056c20c24f26e0fa436"
+    },
+    "snapshots/synthetic-evidence/recovery-host-context-code-schema-rollback/report.json": {
+      "bytes": 5551,
+      "sha256": "b6ec115408855dece4042b1c37433eab8712dabd4fa20c2a6d515b1037a05bbb"
+    },
+    "snapshots/synthetic-evidence/recovery-host-context-managed-acceptance-crashes/report.json": {
+      "bytes": 3935,
+      "sha256": "671b040f26c9847a6a1f37ca7c05e51c278eb84e3996473aca27aec68ea2b5ca"
+    },
+    "snapshots/synthetic-evidence/recovery-r09-managed-boundary/report.json": {
+      "bytes": 5550,
+      "sha256": "dca94a857e19c10d9e781e1cfe753d39bb8950fbef70c6168691cce95bdc6726"
+    },
+    "snapshots/synthetic-evidence/recovery-r12-managed-boundary/report.json": {
+      "bytes": 3936,
+      "sha256": "1b850ea5f3ea726274fcc23f7a9dcf3d30be86de276f750b505833beb27b64bc"
+    }
+  }
+}

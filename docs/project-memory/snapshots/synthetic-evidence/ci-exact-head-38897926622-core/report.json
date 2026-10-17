@@ -1,0 +1,863 @@
+{
+  "run_id": "bd75c5da678c4861950db04b081e42c4",
+  "source": {
+    "commit": "bc89099c97a01c6a682b34ac8f1cd0ae3b75acee",
+    "dirty": false,
+    "patch_sha256": null
+  },
+  "utc_started": "2026-10-16T12:05:15.351113+00:00",
+  "scope": {
+    "data": "synthetic",
+    "production_access": false,
+    "evidence_kind": "local-process-and-database-drill"
+  },
+  "status": "PASS",
+  "schema_version": "mnemex.project-memory.recovery-summary.v1",
+  "original_schema_version": "proam-recovery-drill-v1",
+  "original_receipt_sha256": "bb606935c0153b518f8733b40ec0078d187f0e6f9ba550f1aa6150bdcc3e24da",
+  "scenarios": [
+    {
+      "scenario_id": "restore-fresh-postgres",
+      "requirement": "R01",
+      "scenario_status": "PASS",
+      "cleanup_status": "PASS",
+      "fault": {
+        "reached": false,
+        "observed": false
+      },
+      "timings_seconds": {
+        "provisioning": 7.067328213999986,
+        "restore_to_verified_workflow": 2.6196542179999938,
+        "total_including_cleanup": 15.45268098599999
+      },
+      "limitations": [
+        "Database recovery plus recreated synthetic configuration; uploads, browser queues and external peers are outside pg_dump. Logical restore is not PITR."
+      ],
+      "schema_revision": [
+        {
+          "version_num": "a6d6dda4e480"
+        }
+      ],
+      "checks": [
+        {
+          "name": "reject missing csrf_token",
+          "status": "PASS",
+          "expected": 400,
+          "actual": 400
+        },
+        {
+          "name": "reject missing heat_identity",
+          "status": "PASS",
+          "expected": 409,
+          "actual": 409
+        },
+        {
+          "name": "reject missing scoring_state_digest",
+          "status": "PASS",
+          "expected": 409,
+          "actual": 409
+        },
+        {
+          "name": "reject unauthorized viewer",
+          "status": "PASS",
+          "expected": 403,
+          "actual": 403
+        },
+        {
+          "name": "reject unauthorized outsider",
+          "status": "PASS",
+          "expected": 403,
+          "actual": 403
+        },
+        {
+          "name": "rejected requests preserve business state",
+          "status": "PASS",
+          "expected": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "score response is JSON acceptance",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "receipt replay disposition",
+          "status": "PASS",
+          "expected": false,
+          "actual": false
+        },
+        {
+          "name": "application backup digest",
+          "status": "PASS",
+          "expected": {
+            "type": "str",
+            "sha256": "10f717b5306399883bd10f4eb37737f92e7fa0a83979a4d0033a70faadb77baf",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "str",
+            "sha256": "10f717b5306399883bd10f4eb37737f92e7fa0a83979a4d0033a70faadb77baf",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "quiescent backup does not alter business state",
+          "status": "PASS",
+          "expected": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "score response is JSON acceptance",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "receipt replay disposition",
+          "status": "PASS",
+          "expected": false,
+          "actual": false
+        },
+        {
+          "name": "checkpoint A restored before app startup",
+          "status": "PASS",
+          "expected": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "all columns indexes constraints and triggers restored",
+          "status": "PASS",
+          "expected": {
+            "type": "dict",
+            "sha256": "c71ebae25709b9fdaafa962a4d874d7c8a258eead54c95cfff727149ac885a76",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "dict",
+            "sha256": "c71ebae25709b9fdaafa962a4d874d7c8a258eead54c95cfff727149ac885a76",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "checkpoint B receipt intentionally outside snapshot",
+          "status": "PASS",
+          "expected": {
+            "type": "list",
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "list",
+            "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "application is a normal non-superuser",
+          "status": "PASS",
+          "expected": {
+            "type": "list",
+            "sha256": "1b2008461df8f2170b3ceeeaf888c58a3c9bdcdd803c96b42cbfa16ee61801c6",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "list",
+            "sha256": "1b2008461df8f2170b3ceeeaf888c58a3c9bdcdd803c96b42cbfa16ee61801c6",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "read-only user reads restored tournament set",
+          "status": "PASS",
+          "expected": 2,
+          "actual": 2
+        },
+        {
+          "name": "read-only write denied",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "startup changes reported separately (none)",
+          "status": "PASS",
+          "expected": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "restored judge report contains correct score",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "score response is JSON acceptance",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "receipt replay disposition",
+          "status": "PASS",
+          "expected": false,
+          "actual": false
+        },
+        {
+          "name": "one-timer save retains its documented warning",
+          "status": "PASS",
+          "expected": {
+            "type": "str",
+            "sha256": "c94f9df6f3f7bc69e76a374ce4cd3e5d8766f2145a742ccb34d26e1954efd067",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "str",
+            "sha256": "c94f9df6f3f7bc69e76a374ce4cd3e5d8766f2145a742ccb34d26e1954efd067",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "partial timer saved without fabricated average",
+          "status": "PASS",
+          "expected": {
+            "type": "list",
+            "sha256": "36deced6b6082859dc05a1053f9ea22353059c6a40c72492c43f611bde9d07ef",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "list",
+            "sha256": "4c81e5ba00e2cbe0bf1668887e8d6fbb439624650a5ff520ed64dd43c7649b05",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "partial result cannot auto-finalize restored event",
+          "status": "PASS",
+          "expected": false,
+          "actual": false
+        },
+        {
+          "name": "score response is JSON acceptance",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "receipt replay disposition",
+          "status": "PASS",
+          "expected": false,
+          "actual": false
+        },
+        {
+          "name": "restored spectator output contains completed results",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "independent committed cutting durations",
+          "status": "PASS",
+          "expected": {
+            "type": "list",
+            "sha256": "3f44a98761178538159498f070fd6efbdad2c113e86aa61276af1e9165d939ee",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "list",
+            "sha256": "3f44a98761178538159498f070fd6efbdad2c113e86aa61276af1e9165d939ee",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "new score restores independently expected positions",
+          "status": "PASS",
+          "expected": {
+            "type": "list",
+            "sha256": "90a045c21a81aaf64ddc43efa7b9a7f2005ab4800de17ab2271ae774e54874b4",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "list",
+            "sha256": "90a045c21a81aaf64ddc43efa7b9a7f2005ab4800de17ab2271ae774e54874b4",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "new score restores independently expected payout accounting",
+          "status": "PASS",
+          "expected": {
+            "type": "list",
+            "sha256": "3b5545fb11ef3460d31909eb3f7da1a2cd45accb42bd72269914881f7f80209f",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "list",
+            "sha256": "3b5545fb11ef3460d31909eb3f7da1a2cd45accb42bd72269914881f7f80209f",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "score-precommit-crash",
+      "requirement": "R02",
+      "scenario_status": "PASS",
+      "cleanup_status": "PASS",
+      "fault": {
+        "point": "score-precommit",
+        "mechanism": "SIGKILL owned Gunicorn worker",
+        "reached": true,
+        "observed": true,
+        "dead_pid": 3118,
+        "recovery": "existing one-worker Gunicorn master respawn"
+      },
+      "timings_seconds": {
+        "provisioning": 6.064187234000002,
+        "fault_to_verified_workflow": 2.974170172999976,
+        "total_including_cleanup": 11.679190954999996
+      },
+      "limitations": [],
+      "schema_revision": [
+        {
+          "version_num": "a6d6dda4e480"
+        }
+      ],
+      "checks": [
+        {
+          "name": "reject missing csrf_token",
+          "status": "PASS",
+          "expected": 400,
+          "actual": 400
+        },
+        {
+          "name": "reject missing heat_identity",
+          "status": "PASS",
+          "expected": 409,
+          "actual": 409
+        },
+        {
+          "name": "reject missing scoring_state_digest",
+          "status": "PASS",
+          "expected": 409,
+          "actual": 409
+        },
+        {
+          "name": "reject unauthorized viewer",
+          "status": "PASS",
+          "expected": 403,
+          "actual": 403
+        },
+        {
+          "name": "reject unauthorized outsider",
+          "status": "PASS",
+          "expected": 403,
+          "actual": 403
+        },
+        {
+          "name": "rejected requests preserve business state",
+          "status": "PASS",
+          "expected": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "score response is JSON acceptance",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "receipt replay disposition",
+          "status": "PASS",
+          "expected": false,
+          "actual": false
+        },
+        {
+          "name": "exact requested transaction barrier reached",
+          "status": "PASS",
+          "expected": {
+            "type": "str",
+            "sha256": "2aef8a98240f2bea0874a24a11c068892c53c713284ef6e99d546dc135db4050",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "str",
+            "sha256": "2aef8a98240f2bea0874a24a11c068892c53c713284ef6e99d546dc135db4050",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "no success response exposed at barrier",
+          "status": "PASS",
+          "expected": false,
+          "actual": false
+        },
+        {
+          "name": "independent observer sees acceptance at correct boundary",
+          "status": "PASS",
+          "expected": false,
+          "actual": false
+        },
+        {
+          "name": "staged score audit receipt and finalization are invisible",
+          "status": "PASS",
+          "expected": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "client observes ambiguous loss, never acceptance",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "precommit crash rolled back whole declared transaction",
+          "status": "PASS",
+          "expected": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "score response is JSON acceptance",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "receipt replay disposition",
+          "status": "PASS",
+          "expected": false,
+          "actual": false
+        },
+        {
+          "name": "independent committed cutting durations",
+          "status": "PASS",
+          "expected": {
+            "type": "list",
+            "sha256": "4f5fb5c61b0944e591d58244b5b9c5dba17ca11caa5be0066312ff204ff0d8ef",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "list",
+            "sha256": "4f5fb5c61b0944e591d58244b5b9c5dba17ca11caa5be0066312ff204ff0d8ef",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "score response is JSON acceptance",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "receipt replay disposition",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "exact retry has no second business effect",
+          "status": "PASS",
+          "expected": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "conflicting payload identity rejected",
+          "status": "PASS",
+          "expected": 409,
+          "actual": 409
+        },
+        {
+          "name": "receipt heat/user binding rejected",
+          "status": "PASS",
+          "expected": 409,
+          "actual": 409
+        },
+        {
+          "name": "receipt heat/user binding rejected",
+          "status": "PASS",
+          "expected": 409,
+          "actual": 409
+        },
+        {
+          "name": "conflicts preserve authoritative state",
+          "status": "PASS",
+          "expected": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "post-crash report uses committed rankings",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "score response is JSON acceptance",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "receipt replay disposition",
+          "status": "PASS",
+          "expected": false,
+          "actual": false
+        },
+        {
+          "name": "score response is JSON acceptance",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "receipt replay disposition",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "old accepted outcome cannot overwrite newer correction",
+          "status": "PASS",
+          "expected": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        }
+      ]
+    },
+    {
+      "scenario_id": "score-postcommit-response-loss",
+      "requirement": "R03",
+      "scenario_status": "PASS",
+      "cleanup_status": "PASS",
+      "fault": {
+        "point": "score-postcommit",
+        "mechanism": "SIGKILL owned Gunicorn worker",
+        "reached": true,
+        "observed": true,
+        "dead_pid": 3648,
+        "recovery": "existing one-worker Gunicorn master respawn"
+      },
+      "timings_seconds": {
+        "provisioning": 6.463212715999987,
+        "fault_to_verified_workflow": 2.7883369829999936,
+        "total_including_cleanup": 11.723186822999992
+      },
+      "limitations": [],
+      "schema_revision": [
+        {
+          "version_num": "a6d6dda4e480"
+        }
+      ],
+      "checks": [
+        {
+          "name": "reject missing csrf_token",
+          "status": "PASS",
+          "expected": 400,
+          "actual": 400
+        },
+        {
+          "name": "reject missing heat_identity",
+          "status": "PASS",
+          "expected": 409,
+          "actual": 409
+        },
+        {
+          "name": "reject missing scoring_state_digest",
+          "status": "PASS",
+          "expected": 409,
+          "actual": 409
+        },
+        {
+          "name": "reject unauthorized viewer",
+          "status": "PASS",
+          "expected": 403,
+          "actual": 403
+        },
+        {
+          "name": "reject unauthorized outsider",
+          "status": "PASS",
+          "expected": 403,
+          "actual": 403
+        },
+        {
+          "name": "rejected requests preserve business state",
+          "status": "PASS",
+          "expected": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "score response is JSON acceptance",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "receipt replay disposition",
+          "status": "PASS",
+          "expected": false,
+          "actual": false
+        },
+        {
+          "name": "exact requested transaction barrier reached",
+          "status": "PASS",
+          "expected": {
+            "type": "str",
+            "sha256": "8dda0afcff3f9518e3bef6e20cee6a8884f5f769304e362636dca0e09bc937e8",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "str",
+            "sha256": "8dda0afcff3f9518e3bef6e20cee6a8884f5f769304e362636dca0e09bc937e8",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "no success response exposed at barrier",
+          "status": "PASS",
+          "expected": false,
+          "actual": false
+        },
+        {
+          "name": "independent observer sees acceptance at correct boundary",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "independent committed cutting durations",
+          "status": "PASS",
+          "expected": {
+            "type": "list",
+            "sha256": "4f5fb5c61b0944e591d58244b5b9c5dba17ca11caa5be0066312ff204ff0d8ef",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "list",
+            "sha256": "4f5fb5c61b0944e591d58244b5b9c5dba17ca11caa5be0066312ff204ff0d8ef",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "client observes ambiguous loss, never acceptance",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "score response is JSON acceptance",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "receipt replay disposition",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "independent committed cutting durations",
+          "status": "PASS",
+          "expected": {
+            "type": "list",
+            "sha256": "4f5fb5c61b0944e591d58244b5b9c5dba17ca11caa5be0066312ff204ff0d8ef",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "list",
+            "sha256": "4f5fb5c61b0944e591d58244b5b9c5dba17ca11caa5be0066312ff204ff0d8ef",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "score response is JSON acceptance",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "receipt replay disposition",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "exact retry has no second business effect",
+          "status": "PASS",
+          "expected": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "conflicting payload identity rejected",
+          "status": "PASS",
+          "expected": 409,
+          "actual": 409
+        },
+        {
+          "name": "receipt heat/user binding rejected",
+          "status": "PASS",
+          "expected": 409,
+          "actual": 409
+        },
+        {
+          "name": "receipt heat/user binding rejected",
+          "status": "PASS",
+          "expected": 409,
+          "actual": 409
+        },
+        {
+          "name": "conflicts preserve authoritative state",
+          "status": "PASS",
+          "expected": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "post-crash report uses committed rankings",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "score response is JSON acceptance",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "receipt replay disposition",
+          "status": "PASS",
+          "expected": false,
+          "actual": false
+        },
+        {
+          "name": "score response is JSON acceptance",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "receipt replay disposition",
+          "status": "PASS",
+          "expected": true,
+          "actual": true
+        },
+        {
+          "name": "old accepted outcome cannot overwrite newer correction",
+          "status": "PASS",
+          "expected": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "dict",
+            "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        }
+      ]
+    }
+  ]
+}

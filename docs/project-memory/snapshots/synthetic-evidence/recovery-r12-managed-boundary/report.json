@@ -1,0 +1,130 @@
+{
+  "run_id": "f43e005c4e8846149b0933e9f3c95abc",
+  "source": {
+    "commit": "0727e9b63cdaaeb7ac994f5729d82b8114456d7d",
+    "dirty": false,
+    "patch_sha256": null
+  },
+  "utc_started": "2026-10-16T12:02:36.590576+00:00",
+  "scope": {
+    "data": "synthetic",
+    "production_access": false,
+    "evidence_kind": "local-process-and-database-drill"
+  },
+  "status": "PASS",
+  "schema_version": "mnemex.project-memory.recovery-summary.v1",
+  "original_schema_version": "proam-recovery-drill-v1",
+  "original_receipt_sha256": "21cc1831cfa58e93d8912e4ff7d87bbdaae16bf52d37162ecf8da4de1b655838",
+  "scenarios": [
+    {
+      "scenario_id": "managed-acceptance-crashes",
+      "requirement": "R12",
+      "scenario_status": "PASS",
+      "cleanup_status": "PASS",
+      "fault": {
+        "reached": true,
+        "observed": true
+      },
+      "timings_seconds": {
+        "provisioning": 3.7601450820002356,
+        "total_including_cleanup": 23.677304204000393
+      },
+      "limitations": [
+        "Real PostgreSQL/Gunicorn acceptance faults with installed V2 component; no MNEMEX receiver/provider claim."
+      ],
+      "schema_revision": [
+        {
+          "version_num": "a6d6dda4e480"
+        }
+      ],
+      "checks": [
+        {
+          "name": "normal managed operator page loads",
+          "status": "PASS",
+          "expected": 200,
+          "actual": 200
+        },
+        {
+          "name": "precommit independent acceptance visibility",
+          "status": "PASS",
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "no partial attempt or delivery survives before commit",
+          "status": "PASS",
+          "expected": {
+            "type": "dict",
+            "sha256": "b2bac3f4b3b7632daa705d9e9d88afd8f45f84dc149039512f17e8f0665509b1",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "dict",
+            "sha256": "b2bac3f4b3b7632daa705d9e9d88afd8f45f84dc149039512f17e8f0665509b1",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "precommit exact accepted retry returns normal redirect",
+          "status": "PASS",
+          "expected": 303,
+          "actual": 303
+        },
+        {
+          "name": "precommit one acceptance per source revision",
+          "status": "PASS",
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "normal managed operator page loads",
+          "status": "PASS",
+          "expected": 200,
+          "actual": 200
+        },
+        {
+          "name": "postcommit independent acceptance visibility",
+          "status": "PASS",
+          "expected": 2,
+          "actual": 2
+        },
+        {
+          "name": "postcommit exact accepted retry returns normal redirect",
+          "status": "PASS",
+          "expected": 303,
+          "actual": 303
+        },
+        {
+          "name": "postcommit one acceptance per source revision",
+          "status": "PASS",
+          "expected": 2,
+          "actual": 2
+        },
+        {
+          "name": "all original and corrected attempts remain",
+          "status": "PASS",
+          "expected": 16,
+          "actual": 16
+        },
+        {
+          "name": "all accepted attempts have durable career intents",
+          "status": "PASS",
+          "expected": 16,
+          "actual": 16
+        },
+        {
+          "name": "acceptance does not settle money",
+          "status": "PASS",
+          "expected": 0,
+          "actual": 0
+        },
+        {
+          "name": "host summary never overwrites per-round attempts",
+          "status": "PASS",
+          "expected": 8,
+          "actual": 8
+        }
+      ]
+    }
+  ]
+}

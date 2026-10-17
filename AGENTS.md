@@ -1,5 +1,12 @@
 # Agent instructions
 
+Start with the owner-requested, model-neutral
+[project memory](docs/project-memory/START_HERE.md). It records direction,
+approved choices, domain/numerical contracts, superseded plans, exact delivery
+evidence and resumption steps for all four repositories. Run
+`python tools/project_memory.py verify` before retrieval. Current user and
+repository instructions govern; snapshots are dated reference material.
+
 The October 15 approved modular effort adds a bounded
 [synthetic show-result inbox](docs/SHOW_RESULT_CONTRACT.md). It preserves
 unlinked source attempts and explicit receipts without enabling full profile

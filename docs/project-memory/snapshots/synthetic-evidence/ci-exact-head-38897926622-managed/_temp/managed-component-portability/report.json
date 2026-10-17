@@ -1,0 +1,126 @@
+{
+  "run_id": "bf582372a9eb4b16ad4d473798a927af",
+  "source": {
+    "commit": "bc89099c97a01c6a682b34ac8f1cd0ae3b75acee",
+    "dirty": true,
+    "patch_sha256": "e16f71a453059345780a389693645fcaef474bf4a575f9b6f148b74dea29b8d5"
+  },
+  "utc_started": "2026-10-16T12:09:35.053488+00:00",
+  "scope": {
+    "data": "synthetic",
+    "production_access": false,
+    "evidence_kind": "local-process-and-database-drill"
+  },
+  "status": "PASS",
+  "schema_version": "mnemex.project-memory.recovery-summary.v1",
+  "original_schema_version": "proam-recovery-drill-v1",
+  "original_receipt_sha256": "d9ceab9d77696b597eb2c1232c0032bbce035aca00593e74319a1361a0af2b3d",
+  "scenarios": [
+    {
+      "scenario_id": "managed-component-portability",
+      "requirement": "R11",
+      "scenario_status": "PASS",
+      "cleanup_status": "PASS",
+      "fault": {
+        "reached": false,
+        "observed": false
+      },
+      "timings_seconds": {
+        "provisioning": 5.909663448999993,
+        "total_including_cleanup": 54.482997023999985
+      },
+      "limitations": [
+        "Synthetic V2 and SQLite component evidence; no V3, provider, Windows or official-use qualification."
+      ],
+      "schema_revision": [
+        {
+          "version_num": "a6d6dda4e480"
+        }
+      ],
+      "checks": [
+        {
+          "name": "identical installed component completes two isolated shows",
+          "status": "PASS",
+          "expected": 2,
+          "actual": 2
+        },
+        {
+          "name": "all round attempts and separate summaries survive CLI process restarts",
+          "status": "PASS",
+          "expected": {
+            "type": "list",
+            "sha256": "ae3c1a6226a314d6178b91f21a1d7b0dcf22847c52ad4decc051db0ac558d0ed",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "list",
+            "sha256": "ae3c1a6226a314d6178b91f21a1d7b0dcf22847c52ad4decc051db0ac558d0ed",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "same numeric component serves both configurations",
+          "status": "PASS",
+          "expected": 1,
+          "actual": 1
+        },
+        {
+          "name": "synthetic:missoula CLI correction appends two source revisions and re-finalizes separate summary",
+          "status": "PASS",
+          "expected": {
+            "type": "list",
+            "sha256": "68d0751d2c07215498808ce932f7c97ab3a0dfd68fe0ee3c230778f1c6e7c097",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "list",
+            "sha256": "68d0751d2c07215498808ce932f7c97ab3a0dfd68fe0ee3c230778f1c6e7c097",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "synthetic:missoula issued field remains unchanged by correction",
+          "status": "PASS",
+          "expected": {
+            "type": "str",
+            "sha256": "6538d2ad19ffaca44cb6bd21d5a34a9e46aeb0a40377dcdf15020141bbaa6660",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "str",
+            "sha256": "6538d2ad19ffaca44cb6bd21d5a34a9e46aeb0a40377dcdf15020141bbaa6660",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "synthetic:second-show CLI correction appends two source revisions and re-finalizes separate summary",
+          "status": "PASS",
+          "expected": {
+            "type": "list",
+            "sha256": "68d0751d2c07215498808ce932f7c97ab3a0dfd68fe0ee3c230778f1c6e7c097",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "list",
+            "sha256": "68d0751d2c07215498808ce932f7c97ab3a0dfd68fe0ee3c230778f1c6e7c097",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        },
+        {
+          "name": "synthetic:second-show issued field remains unchanged by correction",
+          "status": "PASS",
+          "expected": {
+            "type": "str",
+            "sha256": "13cdf5e260dcf6e7620c5150b01ffaa5b8777a5f66722f896c5c8df73d9bd003",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          },
+          "actual": {
+            "type": "str",
+            "sha256": "13cdf5e260dcf6e7620c5150b01ffaa5b8777a5f66722f896c5c8df73d9bd003",
+            "note": "Full witness retained in original receipt; HTTP bodies, forms and transient session material excluded from portable memory."
+          }
+        }
+      ]
+    }
+  ]
+}

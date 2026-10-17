@@ -1,0 +1,115 @@
+{
+  "schema_version": "mnemex.project-memory.host-followup.v1",
+  "captured_at_utc": "2026-10-17T00:03:12.251408+00:00",
+  "application_commit": "62216f492facd3691293bd52d0d3884fe20974c1",
+  "data": "synthetic disposable only",
+  "prior_docs_commit": "70109349dc668a73b30f1cd48fc33b201ab2375c",
+  "prior_docs_ci": {
+    "run": 38982953991,
+    "conclusion": "success",
+    "applicable_jobs_passed": 8
+  },
+  "review_finding_ids": [
+    4300329429,
+    4300329434,
+    4300329437
+  ],
+  "findings": "Awards current roster check; safe pending result shrink reconciliation; wood validation on every projected config",
+  "reproduction_evidence": [
+    {
+      "path": "host-context-red.xml",
+      "sha256": "027047e85dc318e75e8db85df2a52226b6c641994adff73a1a8b4c333aa7f187",
+      "tests": 5,
+      "failures": 5,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "host-context-red-valid.xml",
+      "sha256": "a72634e5953c1e0736c6def030624b467d24c8a6199b7c1bcb82c5f0bd779f02",
+      "tests": 3,
+      "failures": 3,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "reproduction_limit": "Initial five-failure run includes two genuine award failures plus three fixture setup errors; corrected three-case RED proves two shrink and one wood defect. Fixture errors are not bug reproductions.",
+  "passing_junit": [
+    {
+      "path": "host-context-final.xml",
+      "sha256": "076a15c90331a32bf2819d012e761c7411a65895e499b02252aea8346bc05eab",
+      "tests": 159,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "host-context-postgres/junit.xml",
+      "sha256": "e4b089c3d8b80c999c930815b593c10ac21b0115cf771475f038f76dc79de760",
+      "tests": 96,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "recovery": [
+    {
+      "path": "recovery-host-context-managed-acceptance-crashes/report.json",
+      "sha256": "cf8d29c195fd005576a4894c2b2a0b5e4f1a02cdec3937952dbcac4a12acf47e",
+      "source": {
+        "commit": "62216f492facd3691293bd52d0d3884fe20974c1",
+        "dirty": false,
+        "patch_sha256": null
+      },
+      "status": "PASS",
+      "scenarios": [
+        {
+          "id": "managed-acceptance-crashes",
+          "status": "PASS",
+          "checks": 13,
+          "cleanup": "PASS"
+        }
+      ]
+    },
+    {
+      "path": "recovery-host-context-code-schema-rollback/report.json",
+      "sha256": "99cd4f76978eb065815afd420f79d7a435d811cc4ac57a4882fd8d46388e0a46",
+      "source": {
+        "commit": "62216f492facd3691293bd52d0d3884fe20974c1",
+        "dirty": false,
+        "patch_sha256": null
+      },
+      "status": "PASS",
+      "scenarios": [
+        {
+          "id": "code-schema-rollback",
+          "status": "PASS",
+          "checks": 13,
+          "cleanup": "PASS"
+        }
+      ]
+    }
+  ],
+  "pull_request": {
+    "headRefOid": "62216f492facd3691293bd52d0d3884fe20974c1",
+    "isDraft": true,
+    "state": "OPEN",
+    "reviews": [
+      {
+        "commit_sha": "62216f492facd3691293bd52d0d3884fe20974c1",
+        "has_any_findings": null,
+        "has_unresolved_findings": null,
+        "status": "running"
+      }
+    ]
+  },
+  "application_ci": {
+    "conclusion": "",
+    "databaseId": 38984242587,
+    "headSha": "62216f492facd3691293bd52d0d3884fe20974c1",
+    "status": "in_progress",
+    "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38984242587"
+  },
+  "merge_boundary": "BLOCKED by exact-head hosted backup and independent recovery-identity restore proofs; no production action",
+  "verification_comment": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#issuecomment-6227013146"
+}

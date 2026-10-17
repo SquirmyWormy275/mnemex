@@ -1,0 +1,7 @@
+{
+  "date": "2026-10-16",
+  "authority": "owner user message in active session",
+  "request_verbatim": "Then I want you to take all of our design decisions and genreal direciotn of the project and store them in menemex. I want it so thorough that I could use another harness/model at any point and it owuld pick up without me building hours of context",
+  "interpretation": "Store a comprehensive, retrievable, model-neutral project handoff in the MNEMEX repository; existing application has no project-memory ingestion API. Preserve application/person/consent/result boundaries.",
+  "coverage_limit": "This pack preserves the supplied handover, available owner-approved repository decisions, current contracts and this session's delivery. It does not claim access to unseen chat history."
+}

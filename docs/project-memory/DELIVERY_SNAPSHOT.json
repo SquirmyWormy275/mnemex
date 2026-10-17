@@ -1,0 +1,860 @@
+{
+  "schema_version": "mnemex.project-memory.delivery.v1",
+  "evidence_captured_at_utc": "2026-10-16T12:15:11.843229+00:00",
+  "application_repositories": [
+    {
+      "repository": "SquirmyWormy275/STRATHMARK",
+      "head": "0839f640b8f1a02270a8275246e5801260458391",
+      "remote_main": "f184e9f2e110bd01d5fec2abd2ef1bfe6f22e214",
+      "source_tree_equals_remote_main": true,
+      "delivery_state": "MERGED / VERIFIED",
+      "pull_request": {
+        "headRefName": "feature/modular-events-20261015",
+        "headRefOid": "0839f640b8f1a02270a8275246e5801260458391",
+        "isDraft": false,
+        "mergeCommit": {
+          "oid": "f184e9f2e110bd01d5fec2abd2ef1bfe6f22e214"
+        },
+        "mergedAt": "2026-10-16T09:34:07Z",
+        "number": 35,
+        "state": "MERGED",
+        "statusCheckRollup": [
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116897971822",
+            "name": "Separate accuracy preview (Python 3.13)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116897972190",
+            "name": "Lint (ruff)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116897972287",
+            "name": "Test (ubuntu-latest / Python 3.10)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116897972092",
+            "name": "Test (ubuntu-latest / Python 3.11)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116897972335",
+            "name": "Test (ubuntu-latest / Python 3.12)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116897972464",
+            "name": "Test (ubuntu-latest / Python 3.13)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116897972223",
+            "name": "Test (windows-latest / Python 3.10)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116897972161",
+            "name": "Test (windows-latest / Python 3.11)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116897972228",
+            "name": "Test (windows-latest / Python 3.12)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116897972366",
+            "name": "Test (windows-latest / Python 3.13)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116897972145",
+            "name": "Disposable PostgreSQL migration rehearsal",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116898041847",
+            "name": "V3 ocean-boil rehearsal (ubuntu-latest / Python 3.13)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116898041980",
+            "name": "V3 ocean-boil rehearsal (windows-latest / Python 3.13)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116898041880",
+            "name": "API contract (oldest)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116898042164",
+            "name": "API contract (current)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116898041852",
+            "name": "Optional ML artifact and promotion gates (Ubuntu / Python 3.12)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116898053342",
+            "name": "Verify Prediction V2 release evidence (Ubuntu / Python 3.12)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116898041817",
+            "name": "Prediction V2 golden (ubuntu-latest / Python 3.12)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116898041910",
+            "name": "Prediction V2 golden (windows-latest / Python 3.12)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116898041865",
+            "name": "Optimizer capacity (Ubuntu / Python 3.12)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116905269718",
+            "name": "Installed wheel (ubuntu-latest / Python 3.12)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116905269594",
+            "name": "Installed sdist (ubuntu-latest / Python 3.12)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116905269646",
+            "name": "Installed wheel (windows-latest / Python 3.12)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116905269778",
+            "name": "Installed sdist (windows-latest / Python 3.12)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38878110636/job/116906164797",
+            "name": "Required CI",
+            "status": "COMPLETED"
+          }
+        ],
+        "url": "https://github.com/SquirmyWormy275/STRATHMARK/pull/35",
+        "automated_reviews": [
+          {
+            "commit_sha": "de878a477f1d9ecae1c5190cb04318c8e957a78f",
+            "has_any_findings": true,
+            "has_unresolved_findings": true,
+            "status": "completed"
+          }
+        ],
+        "review_threads": {
+          "total": 6,
+          "unresolved": []
+        }
+      },
+      "main_ci": {
+        "attempt": 2,
+        "conclusion": "success",
+        "databaseId": 38881349305,
+        "headSha": "f184e9f2e110bd01d5fec2abd2ef1bfe6f22e214",
+        "status": "completed",
+        "url": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38881349305"
+      }
+    },
+    {
+      "repository": "SquirmyWormy275/STRATHEX",
+      "head": "bcf7ffc19c3796ac189c6dd8c2c59d2abb472f89",
+      "remote_main": "bcfe4e50e1449b2585a037215c79f5a7e955e9da",
+      "source_tree_equals_remote_main": true,
+      "delivery_state": "MERGED / VERIFIED",
+      "pull_request": {
+        "headRefName": "feature/modular-events-20261015",
+        "headRefOid": "bcf7ffc19c3796ac189c6dd8c2c59d2abb472f89",
+        "isDraft": false,
+        "mergeCommit": {
+          "oid": "bcfe4e50e1449b2585a037215c79f5a7e955e9da"
+        },
+        "mergedAt": "2026-10-16T10:08:21Z",
+        "number": 34,
+        "state": "MERGED",
+        "statusCheckRollup": [
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHEX/actions/runs/38881592961/job/116920053415",
+            "name": "Lint (ruff)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHEX/actions/runs/38881592961/job/116920055771",
+            "name": "Test (ubuntu-latest / Python 3.13)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHEX/actions/runs/38881592961/job/116920001217",
+            "name": "Test (windows-latest / Python 3.13)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHEX/actions/runs/38881592961/job/116920000673",
+            "name": "Installed V3 pair (ubuntu-latest / Python 3.13)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHEX/actions/runs/38881592961/job/116920000242",
+            "name": "Installed V3 pair (windows-latest / Python 3.13)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHEX/actions/runs/38881592961/job/116920044547",
+            "name": "Installed Linux competition (ubuntu-latest / Python 3.13)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHEX/actions/runs/38881592961/job/116920001136",
+            "name": "Installed Linux competition (windows-latest / Python 3.13)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHEX/actions/runs/38881592961/job/116919998495",
+            "name": "Installed managed client (Python 3.13)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHEX/actions/runs/38881592961/job/116920002261",
+            "name": "Installed app (ubuntu-latest / Python 3.13)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHEX/actions/runs/38881592961/job/116920001256",
+            "name": "Installed app (windows-latest / Python 3.13)",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/STRATHEX/actions/runs/38881592961/job/116920256225",
+            "name": "Required CI",
+            "status": "COMPLETED"
+          }
+        ],
+        "url": "https://github.com/SquirmyWormy275/STRATHEX/pull/34",
+        "automated_reviews": [
+          {
+            "commit_sha": "382561b3e19e266e47581869888464866d589660",
+            "has_any_findings": true,
+            "has_unresolved_findings": true,
+            "status": "completed"
+          }
+        ],
+        "review_threads": {
+          "total": 2,
+          "unresolved": []
+        }
+      },
+      "main_ci": {
+        "attempt": 1,
+        "conclusion": "success",
+        "databaseId": 38885236056,
+        "headSha": "bcfe4e50e1449b2585a037215c79f5a7e955e9da",
+        "status": "completed",
+        "url": "https://github.com/SquirmyWormy275/STRATHEX/actions/runs/38885236056"
+      }
+    },
+    {
+      "repository": "SquirmyWormy275/mnemex",
+      "head": "83d9e6d296b990ba01884fc04c5662fea36c6eb6",
+      "remote_main": "7a315946c92e24a125fc213c7d139eef6278f12c",
+      "source_tree_equals_remote_main": true,
+      "delivery_state": "MERGED / VERIFIED",
+      "pull_request": {
+        "headRefName": "fix/show-delivery-provenance-20261016",
+        "headRefOid": "83d9e6d296b990ba01884fc04c5662fea36c6eb6",
+        "isDraft": false,
+        "mergeCommit": {
+          "oid": "7a315946c92e24a125fc213c7d139eef6278f12c"
+        },
+        "mergedAt": "2026-10-16T09:49:42Z",
+        "number": 7,
+        "state": "MERGED",
+        "statusCheckRollup": [
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/mnemex/actions/runs/38882169710/job/116911251160",
+            "name": "Django and pytest / ubuntu-24.04",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/mnemex/actions/runs/38882169710/job/116911251420",
+            "name": "Django and pytest / windows-latest",
+            "status": "COMPLETED"
+          }
+        ],
+        "url": "https://github.com/SquirmyWormy275/mnemex/pull/7",
+        "automated_reviews": [
+          {
+            "commit_sha": "83d9e6d296b990ba01884fc04c5662fea36c6eb6",
+            "has_any_findings": false,
+            "has_unresolved_findings": false,
+            "status": "completed"
+          }
+        ],
+        "review_threads": {
+          "total": 0,
+          "unresolved": []
+        }
+      },
+      "main_ci": {
+        "attempt": 1,
+        "conclusion": "success",
+        "databaseId": 38883117831,
+        "headSha": "7a315946c92e24a125fc213c7d139eef6278f12c",
+        "status": "completed",
+        "url": "https://github.com/SquirmyWormy275/mnemex/actions/runs/38883117831"
+      }
+    },
+    {
+      "repository": "SquirmyWormy275/Missoula-Pro-Am-Manager",
+      "head": "47f9bb558816e07f35d2c54f3ed4454f0c6fc21e",
+      "remote_main": "3a61ec7e519744f90f3e80f1a95eaab526b34af0",
+      "source_tree_equals_remote_main": false,
+      "delivery_state": "IMPLEMENTED / PUSHED / merge BLOCKED by operational backup gates",
+      "pull_request": {
+        "headRefName": "feature/modular-events-20261015",
+        "headRefOid": "47f9bb558816e07f35d2c54f3ed4454f0c6fc21e",
+        "isDraft": true,
+        "mergeCommit": null,
+        "mergedAt": null,
+        "number": 125,
+        "state": "OPEN",
+        "statusCheckRollup": [
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897926622/job/116963002886",
+            "name": "Synthetic PostgreSQL recovery core",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897926622/job/116963002725",
+            "name": "Installed managed events and real MNEMEX receiver",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897926622/job/116963002824",
+            "name": "test",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897926622/job/116963002806",
+            "name": "postgres-smoke",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897926622/job/116963002932",
+            "name": "unit-postgres",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897926622/job/116963002632",
+            "name": "lint",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897926622/job/116963002440",
+            "name": "migration-safety",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SUCCESS",
+            "detailsUrl": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897926622/job/116963002716",
+            "name": "pip-audit",
+            "status": "COMPLETED"
+          },
+          {
+            "conclusion": "SKIPPED",
+            "detailsUrl": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897926622/job/116966239028",
+            "name": "tournament-audit",
+            "status": "COMPLETED"
+          }
+        ],
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125",
+        "verification_record_comment": {
+          "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#issuecomment-6215277443",
+          "createdAt": "2026-10-16T12:14:36Z"
+        },
+        "automated_reviews": [
+          {
+            "commit_sha": "47f9bb558816e07f35d2c54f3ed4454f0c6fc21e",
+            "has_any_findings": false,
+            "has_unresolved_findings": false,
+            "status": "completed"
+          }
+        ],
+        "review_threads": {
+          "total": 18,
+          "unresolved": []
+        }
+      },
+      "latest_ci": {
+        "conclusion": "success",
+        "databaseId": 38897926622,
+        "headSha": "47f9bb558816e07f35d2c54f3ed4454f0c6fc21e",
+        "jobs": [
+          {
+            "name": "migration-safety",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897926622/job/116963002440"
+          },
+          {
+            "name": "lint",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897926622/job/116963002632"
+          },
+          {
+            "name": "pip-audit",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897926622/job/116963002716"
+          },
+          {
+            "name": "Installed managed events and real MNEMEX receiver",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897926622/job/116963002725"
+          },
+          {
+            "name": "postgres-smoke",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897926622/job/116963002806"
+          },
+          {
+            "name": "test",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897926622/job/116963002824"
+          },
+          {
+            "name": "Synthetic PostgreSQL recovery core",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897926622/job/116963002886"
+          },
+          {
+            "name": "unit-postgres",
+            "status": "completed",
+            "conclusion": "success",
+            "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897926622/job/116963002932"
+          },
+          {
+            "name": "tournament-audit",
+            "status": "completed",
+            "conclusion": "skipped",
+            "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897926622/job/116966239028"
+          }
+        ],
+        "status": "completed",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897926622"
+      }
+    }
+  ],
+  "host_followup": {
+    "schema_version": "mnemex.project-memory.host-followup.v1",
+    "captured_at_utc": "2026-10-17T00:03:12.251408+00:00",
+    "application_commit": "62216f492facd3691293bd52d0d3884fe20974c1",
+    "data": "synthetic disposable only",
+    "prior_docs_commit": "70109349dc668a73b30f1cd48fc33b201ab2375c",
+    "prior_docs_ci": {
+      "run": 38982953991,
+      "conclusion": "success",
+      "applicable_jobs_passed": 8
+    },
+    "review_finding_ids": [
+      4300329429,
+      4300329434,
+      4300329437
+    ],
+    "findings": "Awards current roster check; safe pending result shrink reconciliation; wood validation on every projected config",
+    "reproduction_evidence": [
+      {
+        "path": "host-context-red.xml",
+        "sha256": "027047e85dc318e75e8db85df2a52226b6c641994adff73a1a8b4c333aa7f187",
+        "tests": 5,
+        "failures": 5,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "host-context-red-valid.xml",
+        "sha256": "a72634e5953c1e0736c6def030624b467d24c8a6199b7c1bcb82c5f0bd779f02",
+        "tests": 3,
+        "failures": 3,
+        "errors": 0,
+        "skipped": 0
+      }
+    ],
+    "reproduction_limit": "Initial five-failure run includes two genuine award failures plus three fixture setup errors; corrected three-case RED proves two shrink and one wood defect. Fixture errors are not bug reproductions.",
+    "passing_junit": [
+      {
+        "path": "host-context-final.xml",
+        "sha256": "076a15c90331a32bf2819d012e761c7411a65895e499b02252aea8346bc05eab",
+        "tests": 159,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "host-context-postgres/junit.xml",
+        "sha256": "e4b089c3d8b80c999c930815b593c10ac21b0115cf771475f038f76dc79de760",
+        "tests": 96,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ],
+    "recovery": [
+      {
+        "path": "recovery-host-context-managed-acceptance-crashes/report.json",
+        "sha256": "cf8d29c195fd005576a4894c2b2a0b5e4f1a02cdec3937952dbcac4a12acf47e",
+        "source": {
+          "commit": "62216f492facd3691293bd52d0d3884fe20974c1",
+          "dirty": false,
+          "patch_sha256": null
+        },
+        "status": "PASS",
+        "scenarios": [
+          {
+            "id": "managed-acceptance-crashes",
+            "status": "PASS",
+            "checks": 13,
+            "cleanup": "PASS"
+          }
+        ]
+      },
+      {
+        "path": "recovery-host-context-code-schema-rollback/report.json",
+        "sha256": "99cd4f76978eb065815afd420f79d7a435d811cc4ac57a4882fd8d46388e0a46",
+        "source": {
+          "commit": "62216f492facd3691293bd52d0d3884fe20974c1",
+          "dirty": false,
+          "patch_sha256": null
+        },
+        "status": "PASS",
+        "scenarios": [
+          {
+            "id": "code-schema-rollback",
+            "status": "PASS",
+            "checks": 13,
+            "cleanup": "PASS"
+          }
+        ]
+      }
+    ],
+    "pull_request": {
+      "headRefOid": "62216f492facd3691293bd52d0d3884fe20974c1",
+      "isDraft": true,
+      "state": "OPEN",
+      "reviews": [
+        {
+          "commit_sha": "62216f492facd3691293bd52d0d3884fe20974c1",
+          "has_any_findings": null,
+          "has_unresolved_findings": null,
+          "status": "running"
+        }
+      ]
+    },
+    "application_ci": {
+      "conclusion": "",
+      "databaseId": 38984242587,
+      "headSha": "62216f492facd3691293bd52d0d3884fe20974c1",
+      "status": "in_progress",
+      "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38984242587"
+    },
+    "merge_boundary": "BLOCKED by exact-head hosted backup and independent recovery-identity restore proofs; no production action",
+    "verification_comment": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#issuecomment-6227013146"
+  },
+  "strathmark_release": {
+    "assets": [
+      {
+        "name": "SHA256SUMS",
+        "size": 198,
+        "digest": "sha256:b50107b734e96147bcb5bd3052421f20a274fbac41d28a3f3b945d6a7faefcf9",
+        "url": "https://github.com/SquirmyWormy275/STRATHMARK/releases/download/v3.0.0rc11/SHA256SUMS"
+      },
+      {
+        "name": "strathmark-3.0.0rc11-py3-none-any.whl",
+        "size": 1227916,
+        "digest": "sha256:7151e43e6126d704fd09b634b82c20e08cc32b74580b2feb7613e380be45fdcd",
+        "url": "https://github.com/SquirmyWormy275/STRATHMARK/releases/download/v3.0.0rc11/strathmark-3.0.0rc11-py3-none-any.whl"
+      },
+      {
+        "name": "strathmark-3.0.0rc11.tar.gz",
+        "size": 3330092,
+        "digest": "sha256:2f9fecc63c287ce0e69c88059c449bfd8fe0915a71a8fde27ee68bee209bcbfe",
+        "url": "https://github.com/SquirmyWormy275/STRATHMARK/releases/download/v3.0.0rc11/strathmark-3.0.0rc11.tar.gz"
+      }
+    ],
+    "isDraft": false,
+    "isPrerelease": true,
+    "publishedAt": "2026-10-16T10:05:09Z",
+    "tagName": "v3.0.0rc11",
+    "targetCommitish": "main",
+    "url": "https://github.com/SquirmyWormy275/STRATHMARK/releases/tag/v3.0.0rc11",
+    "publication_ci": {
+      "conclusion": "success",
+      "databaseId": 38884204894,
+      "headSha": "f184e9f2e110bd01d5fec2abd2ef1bfe6f22e214",
+      "status": "completed",
+      "url": "https://github.com/SquirmyWormy275/STRATHMARK/actions/runs/38884204894"
+    },
+    "local_artifacts": [
+      {
+        "path": "published-artifacts/strathmark-3.0.0rc11-py3-none-any.whl",
+        "sha256": "7151e43e6126d704fd09b634b82c20e08cc32b74580b2feb7613e380be45fdcd"
+      },
+      {
+        "path": "published-artifacts/strathmark-3.0.0rc11.tar.gz",
+        "sha256": "2f9fecc63c287ce0e69c88059c449bfd8fe0915a71a8fde27ee68bee209bcbfe"
+      }
+    ],
+    "tags": {
+      "v3.0.0rc11": "f184e9f2e110bd01d5fec2abd2ef1bfe6f22e214",
+      "pypi-v3.0.0rc11": "f184e9f2e110bd01d5fec2abd2ef1bfe6f22e214"
+    },
+    "remote_tag_commits": {
+      "v3.0.0rc11": "f184e9f2e110bd01d5fec2abd2ef1bfe6f22e214",
+      "pypi-v3.0.0rc11": "f184e9f2e110bd01d5fec2abd2ef1bfe6f22e214"
+    },
+    "pypi": {
+      "metadata_url": "https://pypi.org/pypi/strathmark/3.0.0rc11/json",
+      "version": "3.0.0rc11",
+      "files": [
+        {
+          "filename": "strathmark-3.0.0rc11-py3-none-any.whl",
+          "sha256": "7151e43e6126d704fd09b634b82c20e08cc32b74580b2feb7613e380be45fdcd",
+          "yanked": false,
+          "upload_time_iso_8601": "2026-10-16T10:03:52.807147Z"
+        },
+        {
+          "filename": "strathmark-3.0.0rc11.tar.gz",
+          "sha256": "2f9fecc63c287ce0e69c88059c449bfd8fe0915a71a8fde27ee68bee209bcbfe",
+          "yanked": false,
+          "upload_time_iso_8601": "2026-10-16T10:03:54.901101Z"
+        }
+      ]
+    }
+  },
+  "published_wiki_heads": {
+    "STRATHMARK": "bea618007ef72b465bfe9a8c0a487a5ed847e414",
+    "STRATHEX": "43197c198b7282fad551c3a6da2a76ece1c76dd3"
+  },
+  "qualification_boundaries": {
+    "test_data": "Synthetic disposable records only; operational databases and private corpora not used",
+    "missoula_merge": "BLOCKED: exact-head hosted backup artifact/runner restore proof and separately held approved private recovery identity decryption/restore rehearsal required by docs/RELEASE_CHECKLIST.md",
+    "hosted_backup_dispatch": "NOT_RUN: operational data use not authorized merely to qualify development",
+    "missoula_after_merge_deployment_smokes": "NOT_RUN: commit/version/Alembic, Railway logs, authenticated judge page, tournament-bound spectator checks",
+    "new_service_deployment": "NOT_RUN",
+    "new_official_use_enabled": false,
+    "mnemex_receiver": "Opt-in, sandbox synthetic sources only; full production/portable profile programs retain their gates",
+    "production_numerical_qualification": "BLOCKED: installation-specific Windows CNG/designated Formula evidence; frozen components not rebound",
+    "private_historical_replay_or_training": "NOT_RUN",
+    "prospective_evaluation": "BLOCKED: retain exact frozen rc6 components, at least 100 later unexamined results across ten new competitions"
+  },
+  "host_ci_artifacts": {
+    "run_id": 38897926622,
+    "pull_request_merge_checkout": {
+      "sha": "bc89099c97a01c6a682b34ac8f1cd0ae3b75acee",
+      "parents": [
+        "3a61ec7e519744f90f3e80f1a95eaab526b34af0",
+        "47f9bb558816e07f35d2c54f3ed4454f0c6fc21e"
+      ]
+    },
+    "junit": [
+      {
+        "path": "ci-exact-head-38897926622-managed/Missoula-Pro-Am-Manager/Missoula-Pro-Am-Manager/managed-results.xml",
+        "sha256": "1669ccb3419acfa45d4da98b1611d74157a97be476855b518a8462134d24d578",
+        "tests": 49,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ],
+    "generated_junit_patch_sha256": "e16f71a453059345780a389693645fcaef474bf4a575f9b6f148b74dea29b8d5",
+    "generated_junit_matches_all_dirty_receipts": true,
+    "provenance_note": "GitHub tests the synthetic PR merge commit whose parents are recorded here. Managed recovery receipts retain their own dirty flag: reconstructing the collector patch from the downloaded managed-results.xml filename, NUL separator and exact bytes reproduces every dirty receipt digest, proving that their sole patch is generated test output. Separate local R12/R09 receipts identify clean implementation commit 0727e9b; final 47f9bb5 changes only the execution status document.",
+    "complete_run_log": {
+      "path": "ci-exact-head-38897926622.log",
+      "sha256": "a2d96af484d6dfbaed35646383f108f68dfafc55d1518dfd0d59c8dfbe7833da"
+    }
+  },
+  "local_junit_summaries": [
+    {
+      "path": "managed-boundary-final.xml",
+      "sha256": "291435d91c285f192dd59b46a521d1c935b445f348e2d3859fb6a3d2ceeb43ad",
+      "tests": 154,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "managed-boundary-final-postgres/junit.xml",
+      "sha256": "b84bd95d95be87152e5cbdcc8e8a2612f537bbded2fde6637a656276614ed13f",
+      "tests": 91,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "managed-boundary-compat.xml",
+      "sha256": "e9af403b54f12d2cc09cb27735e1baa19fa3c1cd344e648c527a0e36c46cac9b",
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "registration-finality-final.xml",
+      "sha256": "d6e42868275d54f5408698ee28cbaf4339617a748e3d25ffc026b0a635ff84dc",
+      "tests": 136,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "registration-finality-final-postgres/junit.xml",
+      "sha256": "a62b6805a3539ecf787681528bb7f718b6a958905d8632484f8efb58e21ce918",
+      "tests": 87,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "host-owned-fence-final.xml",
+      "sha256": "1d0b49bec226134701516ca9558c6076b56fcf0b6c35a62ab6c7462e007001a6",
+      "tests": 110,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "host-owned-fence-final-postgres/junit.xml",
+      "sha256": "ec1d62d3875714e930c7084d1b889d6ea10a6ede9f414d77ed0121b2299f7190",
+      "tests": 79,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "producer-full-final/junit.xml",
+      "sha256": "981afb3700085ae8be23d19d19390c1d91c369b5b8247a0ff89e0443be2423df",
+      "tests": 3289,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 47
+    },
+    {
+      "path": "producer-reviewed-commit/junit.xml",
+      "sha256": "fe13ea58905c03598550864b806c486539043efd56cae3e9af93a619ef936fc6",
+      "tests": 29,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "producer-311-shadow.xml",
+      "sha256": "00dddc56f9aa36167a3ea95d5bafc2dde7f8358bf3bc2201858960ceac1e070b",
+      "tests": 56,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "strathex-review-final.xml",
+      "sha256": "726851fcd256b05bdb078cd491e8472dee35305eac16d6b7933a54604d738693",
+      "tests": 381,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "mnemex-provenance-full.xml",
+      "sha256": "67f051ee614b289a5c63130ae370a2dead7a79db982c4a65492f42b2481fde69",
+      "tests": 691,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 53
+    }
+  ],
+  "retained_failure": {
+    "run": {
+      "conclusion": "cancelled",
+      "databaseId": 38897053396,
+      "headSha": "d135cb07fc44362e74c7ea08ecf43ecd425a6677",
+      "status": "completed",
+      "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897053396"
+    },
+    "failed_job": "test / Run tests / test_gear_repair_respects_the_left_handed_dummy[False]",
+    "cause": "An empty additive result key changed the exact legacy gear service return shape",
+    "resolution": "0727e9b preserves the exact legacy dictionary when no managed fields are skipped; original test assertion remains intact",
+    "overall_cancellation": "Existing CI concurrency policy automatically superseded this run when the corrected head was pushed; the failed job log is preserved",
+    "job_log": {
+      "path": "ci-registration-finality-test-failure.log",
+      "sha256": "f19b0311743a8bcb673bcb6985e7d5ec370882f6c66c4af1f80859caec214694"
+    }
+  },
+  "documentation_refresh": {
+    "missoula_commit": "70109349dc668a73b30f1cd48fc33b201ab2375c",
+    "application_code_changed": false,
+    "ci_run": 38982953991,
+    "ci_url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38982953991",
+    "status_rule": "Read the linked run for this documentation head; application verification below remains explicitly bound to 47f9bb5."
+  }
+}
