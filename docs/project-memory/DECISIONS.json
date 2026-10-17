@@ -310,11 +310,12 @@
       "authority": "Owner-approved handover and/or cited maintained contract",
       "decision": "Reload under tournament/event locks, verify identity/config and move cached state/physical fields only forward in source revision.",
       "rationale": "Delayed responses retain their own receipts but must not overwrite a newer correction or fresh host facts.",
-      "consequences": "Recheck timer, wood, roster, gear and physical resources; protect scheduled/issued/started/completed fields.",
+      "consequences": "Recheck wood for every config and current roster/divisions/gear before newer physical fields. Hold underlying PostgreSQL wood/competitor locks or the real host SQLite writer through commit, including uncoordinated writers. Receipt-only no-field forecast recovery publishes no physical heat. Protect scheduled/issued/started/completed fields.",
       "sources": [
         "S17",
         "S18",
-        "E14"
+        "E14",
+        "E16"
       ],
       "tags": [
         "projection",
@@ -359,7 +360,8 @@
         "S12",
         "S17",
         "S18",
-        "E14"
+        "E14",
+        "E16"
       ],
       "tags": [
         "awards",

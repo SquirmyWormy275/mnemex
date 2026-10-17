@@ -68,14 +68,13 @@ synthetic evaluation. This is more than a design or mock receiver.
   version `7.4.3`, retro CLI/save/workbook behavior verified.
 - MNEMEX application merge: `7a315946c92e24a125fc213c7d139eef6278f12c`;
   local/sandbox contracts implemented; no provider activation.
-- Missoula's historical full-CI checkpoint is
-  `47f9bb558816e07f35d2c54f3ed4454f0c6fc21e`: eight applicable jobs,
-  49 installed integration tests and then-clean review. Documentation head
-  `70109349dc668a73b30f1cd48fc33b201ab2375c` also passed eight CI jobs, but
-  fresh review found three additional host consistency defects. Follow-up
-  application commit `62216f492facd3691293bd52d0d3884fe20974c1` fixes them:
-  159 SQLite / 96 PostgreSQL tests and clean R09/R12, 13 checks each, pass.
-  Current exact-head CI/review are separately recorded in the delivery snapshot.
+- Missoula latest application commit is
+  `1fc0897fda0d9e5567328af75640ae4d3078fa5b`; documentation head
+  `e79ac4aeec7baaaf461834b5e7ae10c84cb9a552`. Final focused verification:
+  170 SQLite / 107 PostgreSQL tests, zero skips; clean R09 and R12 each
+  pass 13 checks with cleanup. All 24 findings raised so far are fixed/resolved.
+  Final documentation-head CI/review have their own captured status in the
+  delivery snapshot; previous green checkpoints are recorded separately.
   [PR 125](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125)
   stays **draft and merge-blocked** by the hosted backup/recovery-key proofs.
 

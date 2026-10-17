@@ -508,7 +508,7 @@
   ],
   "host_followup": {
     "schema_version": "mnemex.project-memory.host-followup.v1",
-    "captured_at_utc": "2026-10-17T00:03:12.251408+00:00",
+    "captured_at_utc": "2026-10-17T00:10:39.561155+00:00",
     "application_commit": "62216f492facd3691293bd52d0d3884fe20974c1",
     "data": "synthetic disposable only",
     "prior_docs_commit": "70109349dc668a73b30f1cd48fc33b201ab2375c",
@@ -599,27 +599,152 @@
       }
     ],
     "pull_request": {
-      "headRefOid": "62216f492facd3691293bd52d0d3884fe20974c1",
+      "headRefOid": "c201c9e531bc51395bbe035b75d4700530337013",
       "isDraft": true,
       "state": "OPEN",
       "reviews": [
         {
           "commit_sha": "62216f492facd3691293bd52d0d3884fe20974c1",
+          "has_any_findings": true,
+          "has_unresolved_findings": true,
+          "status": "completed"
+        }
+      ]
+    },
+    "application_ci": {
+      "conclusion": "success",
+      "databaseId": 38984242587,
+      "headSha": "62216f492facd3691293bd52d0d3884fe20974c1",
+      "status": "completed",
+      "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38984242587"
+    },
+    "merge_boundary": "BLOCKED by exact-head hosted backup and independent recovery-identity restore proofs; no production action",
+    "verification_comment": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#issuecomment-6227013146"
+  },
+  "host_context_lock_followup": {
+    "schema_version": "mnemex.project-memory.host-context-lock.v1",
+    "captured_at_utc": "2026-10-17T00:19:53.114380+00:00",
+    "application_commit": "1fc0897fda0d9e5567328af75640ae4d3078fa5b",
+    "latest_documentation_commit": "e79ac4aeec7baaaf461834b5e7ae10c84cb9a552",
+    "data": "synthetic disposable only",
+    "review_finding_ids": [
+      4300399789,
+      4300399793,
+      4300399796
+    ],
+    "findings": "Fence uncoordinated host wood/gear writes through commit; revalidate fresh physical projections against current roster/division/gear; handle incomplete wood/gear as managed validation errors",
+    "red_junit": {
+      "path": "host-context-serialization-red.xml",
+      "sha256": "de1d9a161ad4dd65cccb300b0b50f7f5e6206e288129c5ecc25a35b721f6149e",
+      "tests": 11,
+      "failures": 9,
+      "errors": 0,
+      "skipped": 0
+    },
+    "red_scope": "Nine failing regression cases and two already-passing invalid-size cases, covering three review findings.",
+    "intermediate_failure": {
+      "sqlite": {
+        "path": "host-context-lock-final.xml",
+        "sha256": "ecd846f1f821c80cfb4a8b3c99d0ddaf4c9a9d6ac04ca97f489afadf01657267",
+        "tests": 170,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "postgres": {
+        "path": "host-context-lock-postgres/junit.xml",
+        "sha256": "6ce8fc77e758531927302e0c69c26ae8445cf3d10f06ac6390387134a04feaac",
+        "tests": 107,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "resolution": "Preserve receipt-only committed forecast recovery with no fields; translate gear safety exception into managed error. Original assertions retained."
+    },
+    "passing_junit": [
+      {
+        "path": "host-context-lock-verified.xml",
+        "sha256": "8a02d73e90a576a2aaff35a15c67981bef9976fbe1b3f7f04a352276f60096ee",
+        "tests": 170,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "host-context-lock-verified-postgres/junit.xml",
+        "sha256": "0da921a9965cadb4f7c410e4c18a9b818cdbdb3edf1b898da3aa97649c6e1242",
+        "tests": 107,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ],
+    "postgres_cleanup": {
+      "data": "synthetic",
+      "dialect": "PostgreSQL 18.6",
+      "exit": 0,
+      "cleanup": "PASS"
+    },
+    "recovery": [
+      {
+        "path": "recovery-context-lock-managed-acceptance-crashes/report.json",
+        "sha256": "9e2f9fa8c8e7850f343899b9157b0ab24d0ef5d0debf3271396c9dfed2ebe48a",
+        "source": {
+          "commit": "1fc0897fda0d9e5567328af75640ae4d3078fa5b",
+          "dirty": false,
+          "patch_sha256": null
+        },
+        "status": "PASS",
+        "scenarios": [
+          {
+            "id": "managed-acceptance-crashes",
+            "status": "PASS",
+            "checks": 13,
+            "cleanup": "PASS"
+          }
+        ]
+      },
+      {
+        "path": "recovery-context-lock-code-schema-rollback/report.json",
+        "sha256": "34c2d755a5425772f6d04ec4f8533211d0e7cb9f843d69078e63a57978bc8271",
+        "source": {
+          "commit": "1fc0897fda0d9e5567328af75640ae4d3078fa5b",
+          "dirty": false,
+          "patch_sha256": null
+        },
+        "status": "PASS",
+        "scenarios": [
+          {
+            "id": "code-schema-rollback",
+            "status": "PASS",
+            "checks": 13,
+            "cleanup": "PASS"
+          }
+        ]
+      }
+    ],
+    "pull_request": {
+      "headRefOid": "e79ac4aeec7baaaf461834b5e7ae10c84cb9a552",
+      "isDraft": true,
+      "state": "OPEN",
+      "reviews": [
+        {
+          "commit_sha": "e79ac4aeec7baaaf461834b5e7ae10c84cb9a552",
           "has_any_findings": null,
           "has_unresolved_findings": null,
           "status": "running"
         }
       ]
     },
-    "application_ci": {
+    "latest_ci": {
       "conclusion": "",
-      "databaseId": 38984242587,
-      "headSha": "62216f492facd3691293bd52d0d3884fe20974c1",
-      "status": "in_progress",
-      "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38984242587"
+      "databaseId": 38985815198,
+      "headSha": "e79ac4aeec7baaaf461834b5e7ae10c84cb9a552",
+      "status": "queued",
+      "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38985815198"
     },
     "merge_boundary": "BLOCKED by exact-head hosted backup and independent recovery-identity restore proofs; no production action",
-    "verification_comment": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#issuecomment-6227013146"
+    "verification_comment": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#issuecomment-6227242479"
   },
   "strathmark_release": {
     "assets": [
@@ -851,10 +976,18 @@
     }
   },
   "documentation_refresh": {
-    "missoula_commit": "70109349dc668a73b30f1cd48fc33b201ab2375c",
-    "application_code_changed": false,
-    "ci_run": 38982953991,
-    "ci_url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38982953991",
-    "status_rule": "Read the linked run for this documentation head; application verification below remains explicitly bound to 47f9bb5."
+    "historical_commit": "70109349dc668a73b30f1cd48fc33b201ab2375c",
+    "historical_ci_run": 38982953991,
+    "historical_ci_status": "success, eight applicable jobs",
+    "latest_documentation_commit": "e79ac4aeec7baaaf461834b5e7ae10c84cb9a552",
+    "latest_ci": {
+      "conclusion": "",
+      "databaseId": 38985815198,
+      "headSha": "e79ac4aeec7baaaf461834b5e7ae10c84cb9a552",
+      "status": "queued",
+      "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38985815198"
+    },
+    "application_checkpoint": "1fc0897fda0d9e5567328af75640ae4d3078fa5b",
+    "status_rule": "Original application inventory above is dated 12:15 UTC; follow-up objects carry later source-bound checks/reviews. Latest docs/CI never inherit older passes."
   }
 }

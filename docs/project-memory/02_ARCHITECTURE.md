@@ -118,7 +118,12 @@ It does not autonomously reorder the entire show. Projection advances monotonica
 under tournament/event locks; delayed responses keep their own valid receipts
 without regressing the latest host state. Preparation and new acceptance reload
 host registration facts. Unchanged source configuration cannot conceal added or
-removed active entries.
+removed active entries. Every newer physical field projection checks current
+entries/divisions/gear even when source roster bytes are unchanged; wood is checked
+for every projected configuration. An unissued roster shrink removes only empty
+pending result placeholders and refuses any recorded history, including a zero
+timer. Receipt-only committed forecast recovery with no fields still works after
+registration edits because it publishes no schedulable physical heat.
 
 Host acceptance atomically stores source attempt revisions, career-delivery
 intents, current summary and acceptance receipt. Exact retries are immutable;
@@ -151,6 +156,16 @@ opaque bytes under a schema/runtime adapter pinned to exact rc11. This is a loca
 coordination contract, not a claim of distributed/hosted two-phase commit. A new
 runtime/schema requires revalidation. Synthetic process-kill and competing-writer
 tests established the supported local behavior.
+
+The host context has a separate commit boundary from the source fence. Existing
+Woodboss/gear writers may omit the tournament lock. PostgreSQL therefore holds the
+underlying wood and competitor rows through commit; SQLite takes a real host
+database writer reservation before validating/projecting. The parent lock also
+protects new foreign-key insertions. The in-process schedule guard alone is not
+evidence that independent host connections are serialized. Incomplete, nonfinite
+or nonpositive wood and invalid gear declarations produce managed validation
+messages. Concurrent wood/gear writes were exercised against acceptance and awards
+on real SQLite and owned PostgreSQL.
 
 ## MNEMEX result path
 

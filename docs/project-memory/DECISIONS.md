@@ -179,9 +179,9 @@ Reload under tournament/event locks, verify identity/config and move cached stat
 
 Rationale: Delayed responses retain their own receipts but must not overwrite a newer correction or fresh host facts.
 
-Consequences: Recheck timer, wood, roster, gear and physical resources; protect scheduled/issued/started/completed fields.
+Consequences: Recheck wood for every config and current roster/divisions/gear before newer physical fields. Hold underlying PostgreSQL wood/competitor locks or the real host SQLite writer through commit, including uncoordinated writers. Receipt-only no-field forecast recovery publishes no physical heat. Protect scheduled/issued/started/completed fields.
 
-Sources: [S17](SOURCE_INDEX.md#s17), [S18](SOURCE_INDEX.md#s18), [E14](SOURCE_INDEX.md#e14).
+Sources: [S17](SOURCE_INDEX.md#s17), [S18](SOURCE_INDEX.md#s18), [E14](SOURCE_INDEX.md#e14), [E16](SOURCE_INDEX.md#e16).
 
 ## OPS-06: Accept source export atomically through actual DB commit
 
@@ -205,7 +205,7 @@ Rationale: Accepting a correction must not silently pay, repay or leave a nonfin
 
 Consequences: Reopen host finalization on a nonfinal correction, preserve old award facts until deliberate reconciliation and rebuild college/team or pro totals.
 
-Sources: [S12](SOURCE_INDEX.md#s12), [S17](SOURCE_INDEX.md#s17), [S18](SOURCE_INDEX.md#s18), [E14](SOURCE_INDEX.md#e14).
+Sources: [S12](SOURCE_INDEX.md#s12), [S17](SOURCE_INDEX.md#s17), [S18](SOURCE_INDEX.md#s18), [E14](SOURCE_INDEX.md#e14), [E16](SOURCE_INDEX.md#e16).
 
 ## OPS-08: Protect source-owned state from legacy writers
 

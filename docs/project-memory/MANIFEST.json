@@ -6,8 +6,8 @@
       "sha256": "6e04bf350c11c6bf031dd80c79c66602cf93e09ca2106465a2715014921a824d"
     },
     "02_ARCHITECTURE.md": {
-      "bytes": 11125,
-      "sha256": "8c5494c8294cce7874f635df41136b327ee0ea4329d1216786c67b305abee6c0"
+      "bytes": 12250,
+      "sha256": "4cde5c31b0d8a90504c9a5104b2ab545d53bb9d3b6aedd50bfaf98016dae3647"
     },
     "03_MISSOULA.md": {
       "bytes": 11288,
@@ -18,48 +18,48 @@
       "sha256": "53f72d44b26707392c281b541c984c2e2f33c0836173195bb3e31b913ebbcd3f"
     },
     "05_MNEMEX.md": {
-      "bytes": 12525,
-      "sha256": "7bb78cee9725fddd3d2344f72ca06222fcf2750cfbf54311d198bc03242ae7e8"
+      "bytes": 12581,
+      "sha256": "63cb5e7d35e7f9aa7315f4e036cedef1c7de8ab26020d76db73698864fea1377"
     },
     "06_DELIVERY.md": {
-      "bytes": 11858,
-      "sha256": "6e2a510d34c2a6ce02c1569fcebaf9e12bb770b751b10270f74e630b7e13a474"
+      "bytes": 14433,
+      "sha256": "369699dfa8ab958ede42597f367c7c56c0844c1206b12668c33f14de613bbc81"
     },
     "07_RUNBOOK.md": {
-      "bytes": 10499,
-      "sha256": "dadfbcb56b1b2357d7e61115a2d684a6c0264cc6126e796539983f2a2dc96af7"
+      "bytes": 10708,
+      "sha256": "dd20fbf40d69884131fb1f6f2afb56832e801dbc995245e88ae88b90544611ea"
     },
     "08_HISTORY.md": {
-      "bytes": 8161,
-      "sha256": "4ce79f183c90c0d5b276487af98f901a53e31f2647a6e76f66b31782df08f959"
+      "bytes": 8323,
+      "sha256": "b53ca5d26e3edf7a59365483d748cc18d1f864c95197576544c888e745479ea8"
     },
     "09_MEMORY_MAINTENANCE.md": {
       "bytes": 5720,
       "sha256": "ad18426ba73ca5b735560ad3a62915356d414f47b81e02fd6f06b1b96eab893b"
     },
     "DECISIONS.json": {
-      "bytes": 57907,
-      "sha256": "91b4f5837e5f24fb528c288ab7a83e917d71393d1932cd41473ccdaea5ba165c"
+      "bytes": 58170,
+      "sha256": "68872b9a35033e3b5f41d3635ca7faf395189b7e4b267f20c5e7903b62f1c01c"
     },
     "DECISIONS.md": {
-      "bytes": 45913,
-      "sha256": "566abef379f5152b87aab7c223f56b0badf52e0cd8348007cd3ec9a7e589d09a"
+      "bytes": 46202,
+      "sha256": "a3a23c6f9f03962d7b38fb09dd8d41b364b3177533cd0d2cf3ac6caaf787cf79"
     },
     "DELIVERY_SNAPSHOT.json": {
-      "bytes": 34769,
-      "sha256": "f847012cab3e6dcc09e6564edf88c1525c26d33ef1841a69baacccb7f7df846d"
+      "bytes": 39570,
+      "sha256": "5eb9c1b16d1e0ab2da48a7318091f8628fa526f8ea11b54c592395bba136d82b"
     },
     "SOURCE_CATALOG.json": {
-      "bytes": 32325,
-      "sha256": "9d3730c962c0d38d10d498d0f40ebc6e3678391897a4ee948543298ffe860b46"
+      "bytes": 34370,
+      "sha256": "03a3c51098dcdca0d1297beece3e0fad857fd03df48a649343860eb86e5479b3"
     },
     "SOURCE_INDEX.md": {
-      "bytes": 25738,
-      "sha256": "05378933051634e2fee2593bb9f830c6b92ccac048361c56654b4d299e2ec8d8"
+      "bytes": 27293,
+      "sha256": "ad47eaeb9d60e8aaeeca02893e76d7da5dc2b8b3a16d3afa8e79c9c42209b0c3"
     },
     "START_HERE.md": {
-      "bytes": 8221,
-      "sha256": "5a2e8ad5a0692a82734cfc6b7565e602e295116b9e4d485cde9b2f5f2221cebe"
+      "bytes": 8128,
+      "sha256": "014f7d8a8dadd5339727f48ee65e67c3c29fd126d5d7e9024b79a973c57d1f0d"
     },
     "snapshots/Missoula-Pro-Am-Manager/FlightLogic.md": {
       "bytes": 29929,
@@ -82,16 +82,16 @@
       "sha256": "5412daa785ae3181159f96d08f53b715cef81d142b9da3e9fd8d1d6f53329a61"
     },
     "snapshots/Missoula-Pro-Am-Manager/docs/MANAGED_EVENTS.md": {
-      "bytes": 10782,
-      "sha256": "d54b7f872404e8b84eb29a82ee66e6b5c8176fe2b2d153b79c0febd4ce4bda75"
+      "bytes": 11881,
+      "sha256": "5a7337bb39714508bbec969cf2f44a06832df8da713a9c14234262c0b6ba6808"
     },
     "snapshots/Missoula-Pro-Am-Manager/docs/MARK_ASSIGNMENT_WORKFLOW.md": {
       "bytes": 6629,
       "sha256": "26c3668ed1594b0a7f191ff9d89cf51ea9d34f171de714a02470e54712998c48"
     },
     "snapshots/Missoula-Pro-Am-Manager/docs/MODULAR_EXECUTION_STATUS.md": {
-      "bytes": 43531,
-      "sha256": "320482fa4ce1ac19ebad03eb1c6fcba281ec9f0906fe29cf65a7de80bcd9afe9"
+      "bytes": 48922,
+      "sha256": "8abfd797e79d3e4e024da9c35ef3242e036bb8bd7f69a9c46ea149024b2213db"
     },
     "snapshots/Missoula-Pro-Am-Manager/docs/RECOVERY_DRILLS.md": {
       "bytes": 14613,
@@ -230,8 +230,12 @@
       "sha256": "41352345fcac16b07793d11cae4d5ef533ecf7192483dccf54314d1ea4444b1e"
     },
     "snapshots/synthetic-evidence/host-context-followup.json": {
-      "bytes": 3664,
-      "sha256": "7594bb61d4e17019dbb63ec68c033afad58024e216d8b212ccb154793f02442d"
+      "bytes": 3671,
+      "sha256": "89ce0fcde0342cc1905a899612fd6bc7150b0eb1d856cd3241def5ce9afe588d"
+    },
+    "snapshots/synthetic-evidence/host-context-lock-followup.json": {
+      "bytes": 4114,
+      "sha256": "9dec7d2e87cdf55c8aa8dea71bcb30546471bcbd82fda828201ae8d5d992db28"
     },
     "snapshots/synthetic-evidence/host-context-postgres/report.json": {
       "bytes": 92,
@@ -240,6 +244,10 @@
     "snapshots/synthetic-evidence/managed-boundary-final-postgres/report.json": {
       "bytes": 92,
       "sha256": "354b85a81cd49f1a19507328b36bbb8f074e9239ce28aa095e0343a0f110086f"
+    },
+    "snapshots/synthetic-evidence/mnemex-memory-verification.json": {
+      "bytes": 3158,
+      "sha256": "39b005a28640d52c8d860a4f3b9c40826e54d33763e697d2b8bf76d1b2cc6239"
     },
     "snapshots/synthetic-evidence/mnemex-provenance-postgres-2/report.json": {
       "bytes": 91,
@@ -264,6 +272,10 @@
     "snapshots/synthetic-evidence/recovery-r12-managed-boundary/report.json": {
       "bytes": 3936,
       "sha256": "1b850ea5f3ea726274fcc23f7a9dcf3d30be86de276f750b505833beb27b64bc"
+    },
+    "snapshots/upstream-allauth/2026-10-16-reauthentication-change.md": {
+      "bytes": 1378,
+      "sha256": "d06ce899250125720d413c11da565ce3d354f8f3ea57c7439aec0114535014c6"
     }
   }
 }

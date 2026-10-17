@@ -2,7 +2,7 @@
 
 Sources: [S01](SOURCE_INDEX.md#s01), [S07](SOURCE_INDEX.md#s07),
 [S18](SOURCE_INDEX.md#s18), [S19](SOURCE_INDEX.md#s19),
-[E01–E10](SOURCE_INDEX.md#e01). This is a dated delivery ledger. The structured
+[E01–E16](SOURCE_INDEX.md#e01). This is a dated delivery ledger. The structured
 [delivery snapshot](DELIVERY_SNAPSHOT.json) preserves repository and artifact
 metadata. A passing source checkpoint does not confer a pass on a later commit.
 
@@ -76,8 +76,14 @@ MFA tests pass with both 65.19.7 and 65.20.0. The full local 65.20 suite passes
 659 tests with 53 existing optional skips. The memory utility's twenty tests
 include three additional reproduced review fixes: exactly one catalogue entry
 per snapshot, status/source IDs in plain search, and portability through symlinked
-ancestors while still rejecting symlinks inside the pack. Final CI/review remain
-bound to the actual PR head; the initial failed run is preserved.
+ancestors while still rejecting symlinks inside the pack. [CI 38985244416](https://github.com/SquirmyWormy275/mnemex/actions/runs/38985244416)
+at utility/test source `15cb5aa4a3a3ce64de413103d77154b4cc857431` passes both
+platforms: Linux 659 passed / 53 optional skips; Windows 658 passed / 54 skips.
+The additional Windows skip is the existing POSIX credential-file mode assertion;
+Windows ACL qualification remains separate. Review at 15cb5aa completed with no
+findings, with all three earlier threads resolved. E15 retains the exact checks;
+S38 records the primary upstream observation. Later documentation heads have
+their own CI/review; the initial failed run is preserved.
 
 ## Missoula exact checkpoints and honest review history
 
@@ -136,6 +142,36 @@ and the new review have their own exact-head status; consult the current deliver
 snapshot/PR rather than inheriting an earlier green claim. The post-review
 [verification comment](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#issuecomment-6227013146)
 records the local proof and unchanged merge hold.
+
+## Latest host-context fix and resumption checkpoint
+
+Application `1fc0897fda0d9e5567328af75640ae4d3078fa5b` and documentation
+`e79ac4aeec7baaaf461834b5e7ae10c84cb9a552` address the next three review findings.
+The tournament lock alone could not serialize existing Woodboss/gear writers.
+Managed operations now hold underlying PostgreSQL wood/competitor row locks or
+a real host SQLite writer reservation through commit. Fresh physical projections
+validate current roster/divisions/gear even if source roster bytes are unchanged.
+Missing/nonfinite/nonpositive wood and invalid gear return managed validation
+messages. Receipt-only recovery of a committed forecast with no fields remains
+available after registration edits and publishes no schedulable heat.
+
+Eleven new cases initially produced nine failing regressions for three findings
+and two already-passing invalid-size cases. An intermediate run then caught the
+retained forecast-recovery interaction and uncaught gear-exception type; both
+were fixed without weakening assertions. Final verification passes **170 SQLite
+and 107 PostgreSQL tests, zero skips**, with PostgreSQL cleanup PASS. Four races
+exercise independent wood/gear writers deliberately omitting the parent lock.
+Clean-source R09 and R12 each pass thirteen checks and cleanup at exact app source
+1fc0897. E16 preserves these receipts and source identity.
+
+All 24 findings raised so far are fixed/resolved. Historical application CI
+38984242587 and docs CI 38984919421 passed eight applicable jobs at their own
+older revisions. Final e79ac4a [CI 38985815198](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38985815198)
+and exact-head review have their own captured status in DELIVERY_SNAPSHOT/E16.
+They do not inherit older results. Refresh the live PR for later outcomes. The
+new [verification comment](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#issuecomment-6227242479)
+and S18 retain the failure/fix sequence. PR 125 remains draft and production
+main stays unchanged.
 
 ## The gate preventing Missoula merge
 

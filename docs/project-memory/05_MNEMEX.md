@@ -3,7 +3,8 @@
 Sources: [S28](SOURCE_INDEX.md#s28), [S29](SOURCE_INDEX.md#s29),
 [S30](SOURCE_INDEX.md#s30), [S31](SOURCE_INDEX.md#s31), [S32](SOURCE_INDEX.md#s32),
 [S33](SOURCE_INDEX.md#s33), [S34](SOURCE_INDEX.md#s34), [S35](SOURCE_INDEX.md#s35),
-[S36](SOURCE_INDEX.md#s36). The approved D0 selections govern even where an
+[S36](SOURCE_INDEX.md#s36), [S38](SOURCE_INDEX.md#s38),
+[E15](SOURCE_INDEX.md#e15). The approved D0 selections govern even where an
 earlier architecture paragraph still calls a selected provider a proposal.
 
 ## Mission and authority

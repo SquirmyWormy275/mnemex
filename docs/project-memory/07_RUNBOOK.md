@@ -115,7 +115,10 @@ host awards using the accepted current finalized summary and current host facts.
 Payout settlement remains a separate organizer action. A nonfinal correction
 reopens host finalization; previously recorded awards remain until deliberate
 reconciliation. Bulk awards acquire one batch source guard before host locks.
-Do not simulate distributed hosted qualification from the local SQLite fence.
+Hold the validated host facts through commit too: the implementation locks
+underlying PostgreSQL wood/competitor rows and reserves the actual host SQLite
+writer, including uncoordinated Woodboss/gear connections. Do not simulate
+distributed hosted qualification from these local fences.
 
 Deliver bounded career messages only to an explicitly configured sandbox MNEMEX
 receiver using a registered scoped credential. Outage is queued/retryable;

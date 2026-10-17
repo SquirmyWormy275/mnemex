@@ -64,7 +64,9 @@ scaffolding or say production was completed.
 
 At Missoula 47f9bb5, review was clean and all eight applicable CI jobs passed.
 A later docs-triggered review at 7010934 found additional host consistency defects.
-Keep both facts with source revisions; “clean review” is a dated observation, not
+The next review found three more context-lock/projection/validation defects,
+fixed in 1fc0897 with 170 SQLite / 107 PostgreSQL tests and clean R09/R12 evidence.
+Keep these facts with source revisions; “clean review” is a dated observation, not
 permanent proof. Failure reproductions and later fixes belong in the new delivery
 record. Do not overwrite prior reports or relabel a new revision with old hashes.
 

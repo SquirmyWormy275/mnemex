@@ -1,6 +1,6 @@
 {
   "schema_version": "mnemex.project-memory.host-followup.v1",
-  "captured_at_utc": "2026-10-17T00:03:12.251408+00:00",
+  "captured_at_utc": "2026-10-17T00:10:39.561155+00:00",
   "application_commit": "62216f492facd3691293bd52d0d3884fe20974c1",
   "data": "synthetic disposable only",
   "prior_docs_commit": "70109349dc668a73b30f1cd48fc33b201ab2375c",
@@ -91,23 +91,23 @@
     }
   ],
   "pull_request": {
-    "headRefOid": "62216f492facd3691293bd52d0d3884fe20974c1",
+    "headRefOid": "c201c9e531bc51395bbe035b75d4700530337013",
     "isDraft": true,
     "state": "OPEN",
     "reviews": [
       {
         "commit_sha": "62216f492facd3691293bd52d0d3884fe20974c1",
-        "has_any_findings": null,
-        "has_unresolved_findings": null,
-        "status": "running"
+        "has_any_findings": true,
+        "has_unresolved_findings": true,
+        "status": "completed"
       }
     ]
   },
   "application_ci": {
-    "conclusion": "",
+    "conclusion": "success",
     "databaseId": 38984242587,
     "headSha": "62216f492facd3691293bd52d0d3884fe20974c1",
-    "status": "in_progress",
+    "status": "completed",
     "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38984242587"
   },
   "merge_boundary": "BLOCKED by exact-head hosted backup and independent recovery-identity restore proofs; no production action",
