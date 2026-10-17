@@ -59,6 +59,26 @@ STRATHMARK's wiki was published at `bea618007ef72b465bfe9a8c0a487a5ed847e414`;
 STRATHEX's at `43197c198b7282fad551c3a6da2a76ece1c76dd3`. Repository documentation
 and exact profile contracts still govern eligibility.
 
+## Memory delivery and the observed dependency change
+
+Memory PR [8](https://github.com/SquirmyWormy275/mnemex/pull/8) adds the portable
+handoff and standalone retrieval utility. Initial [CI 38984576046](https://github.com/SquirmyWormy275/mnemex/actions/runs/38984576046)
+passed memory verification but failed four existing MFA enrollment tests on both
+platforms after resolving newly released `django-allauth==65.20.0`. Isolated
+application main 7a31594 reproduced the same four failures (27 passed, one skipped).
+The [upstream release](https://allauth.org/news/2026/10/django-allauth-65.20.0-released/)
+requires explicit reauthentication for protected views even after a recent login.
+
+Tests now perform the real password confirmation before enrollment; application
+security settings, privileges, encryption and assertions are unchanged. A new
+security regression proves a wrong password discloses no enrollment secret.
+MFA tests pass with both 65.19.7 and 65.20.0. The full local 65.20 suite passes
+659 tests with 53 existing optional skips. The memory utility's twenty tests
+include three additional reproduced review fixes: exactly one catalogue entry
+per snapshot, status/source IDs in plain search, and portability through symlinked
+ancestors while still rejecting symlinks inside the pack. Final CI/review remain
+bound to the actual PR head; the initial failed run is preserved.
+
 ## Missoula exact checkpoints and honest review history
 
 At source `47f9bb558816e07f35d2c54f3ed4454f0c6fc21e`, [CI 38897926622](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38897926622)

@@ -18,16 +18,16 @@
       "sha256": "53f72d44b26707392c281b541c984c2e2f33c0836173195bb3e31b913ebbcd3f"
     },
     "05_MNEMEX.md": {
-      "bytes": 12162,
-      "sha256": "97b40a5bbe6b44764ffc5431761c97660c19bdf41f653c53f9500717facd0b87"
+      "bytes": 12525,
+      "sha256": "7bb78cee9725fddd3d2344f72ca06222fcf2750cfbf54311d198bc03242ae7e8"
     },
     "06_DELIVERY.md": {
-      "bytes": 10470,
-      "sha256": "1be0fd033ac387f07543d6cef4661337368934046035fcbd2c4248d26e7c91cf"
+      "bytes": 11858,
+      "sha256": "6e2a510d34c2a6ce02c1569fcebaf9e12bb770b751b10270f74e630b7e13a474"
     },
     "07_RUNBOOK.md": {
-      "bytes": 9987,
-      "sha256": "acf7b1b036874e81514db8fd708147db0cc77e43f1a84c158e2c2ee0131a8795"
+      "bytes": 10499,
+      "sha256": "dadfbcb56b1b2357d7e61115a2d684a6c0264cc6126e796539983f2a2dc96af7"
     },
     "08_HISTORY.md": {
       "bytes": 8161,

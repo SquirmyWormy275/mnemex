@@ -26,10 +26,13 @@ def safe_file(root: Path, name: str) -> Path:
     relative = PurePosixPath(name)
     if not name or '\\' in name or relative.is_absolute() or '..' in relative.parts:
         raise ValueError(f'Unsafe memory path: {name!r}')
-    path = root.joinpath(*relative.parts)
-    if path.is_symlink() or any(p.is_symlink() for p in path.parents if p != root.parent):
-        raise ValueError(f'Symlink memory path: {name!r}')
-    if not path.resolve().is_relative_to(root.resolve()):
+    anchor = root.resolve()
+    path = anchor
+    for part in relative.parts:
+        path = path / part
+        if path.is_symlink():
+            raise ValueError(f'Symlink memory path: {name!r}')
+    if not path.resolve().is_relative_to(anchor):
         raise ValueError(f'Memory path escapes root: {name!r}')
     return path
 
@@ -93,14 +96,19 @@ def verify(root: Path):
         if read_json(root, name).get('schema_version') != f'mnemex.project-memory.{schema}.v1':
             raise ValueError(f'Unsupported memory schema: {name}')
     sources = read_json(root, 'SOURCE_CATALOG.json')['sources']
-    source_ids = set()
+    source_ids, catalog_paths = set(), set()
     for item in sources:
         if item['id'] in source_ids:
             raise ValueError(f"Duplicate source ID: {item['id']}")
         source_ids.add(item['id'])
+        if not item['snapshot'].startswith('snapshots/') or item['snapshot'] in catalog_paths:
+            raise ValueError(f"Duplicate/invalid source catalog path: {item['snapshot']}")
+        catalog_paths.add(item['snapshot'])
         body = safe_file(root, item['snapshot']).read_bytes()
         if len(body) != item['bytes'] or hashlib.sha256(body).hexdigest() != item['sha256']:
             raise ValueError(f"Source snapshot mismatch: {item['id']}")
+    if catalog_paths != {name for name in manifest['files'] if name.startswith('snapshots/')}:
+        raise ValueError('Snapshot files and source catalog must match exactly')
     decision_ids = set()
     required = {'id', 'title', 'status', 'scope', 'authority', 'decision', 'rationale', 'consequences', 'sources', 'tags'}
     for item in read_json(root, 'DECISIONS.json')['decisions']:
@@ -199,7 +207,8 @@ def main(argv=None):
                 print(json.dumps(results, indent=2, ensure_ascii=False))
             else:
                 for item in results:
-                    print(f"{item['file']} {item.get('id', '')} [score={item['score']}]\n{item['text']}\n")
+                    metadata = f"status={item['status']} sources={','.join(item['sources'])}" if 'id' in item else ''
+                    print(f"{item['file']} {item.get('id', '')} [score={item['score']}] {metadata}\n{item['text']}\n")
         else:
             verify(root)
             for name in TOPICS[args.topic]:

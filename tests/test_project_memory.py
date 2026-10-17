@@ -119,3 +119,26 @@ def test_unknown_schema_is_not_silently_interpreted(copied_memory):
     refresh(copied_memory)
     with pytest.raises(ValueError, match='Unsupported memory schema'):
         memory.verify(copied_memory)
+
+
+def test_uncatalogued_snapshot_cannot_be_approved_by_manifest_refresh(copied_memory):
+    (copied_memory / 'snapshots' / 'uncatalogued.md').write_text('unattributed evidence', encoding='utf-8')
+    refresh(copied_memory)
+    with pytest.raises(ValueError, match='catalog'):
+        memory.verify(copied_memory)
+
+
+def test_plain_search_prints_decision_status_and_source_references(capsys):
+    assert memory.main(['search', 'why no engine fallback', '--limit', '1']) == 0
+    output = capsys.readouterr().out
+    assert 'ECO-07' in output and 'current' in output
+    assert all(source in output for source in ['S01', 'S02', 'S03', 'S24'])
+
+
+def test_pack_under_symlinked_ancestor_is_portable(copied_memory, tmp_path):
+    alias = tmp_path / 'workspace-link'
+    try:
+        alias.symlink_to(copied_memory.parents[1], target_is_directory=True)
+    except OSError:
+        pytest.skip('Creating symlinks requires platform privileges')
+    assert memory.verify(alias / 'docs' / 'project-memory')['status'] == 'PASS'

@@ -137,6 +137,12 @@ five-minute privileged-POST freshness. Sensitive-action tickets bind route,
 origin, session, method, account and security version; the in-page step-up retains
 forms/files and requires deliberate confirmation rather than automatic replay.
 
+Dependency note: allauth 65.20 requires explicit reauthentication even after a
+recent initial password login for protected enrollment views. The existing
+password-confirmation route supports this; do not bypass that gate to recover
+an older test expectation. See the delivery ledger for the reproduced compatibility
+failure and tests on both supported versions.
+
 Security administrators have scoped staff invitations, two-person lost-factor
 recovery, suspension, factor/session revocation, re-enrollment and explicit
 restoration. Authentication does not itself verify legal identity or guardian

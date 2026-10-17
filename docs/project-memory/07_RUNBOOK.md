@@ -30,6 +30,14 @@ contains larger logs/JUnit/ownership records; the portable memory stores selecte
 safe receipts and source hashes. A new machine need not recreate these absolute
 paths. Missing local receipts must remain missing, not be silently fabricated.
 
+Before the blocked Missoula merge, PR 125's current
+`feature/modular-events-20261015` head contains the integration; deployed `main`
+does not. Read that feature's current contracts/tests and base a continuation
+on its current fetched head. Absence of managed code on production main is not
+evidence that the implementation was never delivered. The first three shared
+application repositories are already merged; start their new work from current
+main while preserving each exact application/release checkpoint.
+
 ## Installed component and supplied input
 
 Choose a fresh Python environment compatible with the producer package. For the
