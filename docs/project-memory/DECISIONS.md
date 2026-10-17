@@ -167,9 +167,9 @@ An uncertain source create can only be adopted through its original source actor
 
 Rationale: A later refused creation must not overwrite a successful but response-lost event or mapping.
 
-Consequences: Keep durable pending intents, source creation evidence and superseded-candidate conflicts; recovery may differ from the latest submitted candidate. Reacquire/revalidate host facts after durable intent and hold through actual source creation/projection/commit; reject invalid persisted show scopes before link allocation.
+Consequences: Keep durable pending intents, source creation evidence and superseded-candidate conflicts; recovery may differ from the latest submitted candidate. Reacquire/revalidate host facts after durable intent and hold through actual source creation/projection/commit; reject invalid persisted show scopes before link allocation. Concurrent identical request-ID inserts reload the winning intent and recover normally; changed payloads conflict. Pre-intent validation writes no result placeholders; known stale uncommitted requests fail before preparation. Host references are canonical typed strings before parsing.
 
-Sources: [S17](SOURCE_INDEX.md#s17), [S18](SOURCE_INDEX.md#s18), [E17](SOURCE_INDEX.md#e17).
+Sources: [S17](SOURCE_INDEX.md#s17), [S18](SOURCE_INDEX.md#s18), [E17](SOURCE_INDEX.md#e17), [E18](SOURCE_INDEX.md#e18).
 
 ## OPS-05: Monotonic locked host projection
 
@@ -179,9 +179,9 @@ Reload under tournament/event locks, verify identity/config and move cached stat
 
 Rationale: Delayed responses retain their own receipts but must not overwrite a newer correction or fresh host facts.
 
-Consequences: Recheck wood for every config and current roster/divisions/gear before newer physical fields. Hold underlying PostgreSQL wood/competitor locks or the real host SQLite writer through commit, including uncoordinated writers. Receipt-only no-field forecast recovery publishes no physical heat. Protect scheduled/issued/started/completed fields.
+Consequences: Recheck wood for every config and current roster/divisions/gear before newer physical fields. Hold underlying PostgreSQL wood/competitor locks or the real host SQLite writer through commit, including uncoordinated writers. Receipt-only no-field forecast recovery publishes no physical heat. Protect scheduled/issued/started/completed fields. Show wood uses canonical Woodboss block_standing/block_underhand keys and gender precedence; eight real-engine division/gender lifecycles verify both inch/mm paths.
 
-Sources: [S17](SOURCE_INDEX.md#s17), [S18](SOURCE_INDEX.md#s18), [E14](SOURCE_INDEX.md#e14), [E16](SOURCE_INDEX.md#e16).
+Sources: [S17](SOURCE_INDEX.md#s17), [S18](SOURCE_INDEX.md#s18), [E14](SOURCE_INDEX.md#e14), [E16](SOURCE_INDEX.md#e16), [E18](SOURCE_INDEX.md#e18).
 
 ## OPS-06: Accept source export atomically through actual DB commit
 
@@ -191,9 +191,9 @@ Hold the actual source fence through the host DBAPI commit; accept source attemp
 
 Rationale: A subprocess verification that ends before commit leaves a race for later source revisions.
 
-Consequences: Refuse stale exports; preserve rollback/retry; batch source guards before host locks. Local coordination is not distributed hosted qualification.
+Consequences: Refuse stale exports; preserve rollback/retry; batch source guards before host locks. Local coordination is not distributed hosted qualification. Creation and acceptance acquire a shared outer order gate before either host/source lock domain. Its empty canonical-path SQLite sidecar survives through host commit and must not be replaced while active; it is not authority/backup data.
 
-Sources: [S17](SOURCE_INDEX.md#s17), [S18](SOURCE_INDEX.md#s18), [E04](SOURCE_INDEX.md#e04), [E08](SOURCE_INDEX.md#e08).
+Sources: [S17](SOURCE_INDEX.md#s17), [S18](SOURCE_INDEX.md#s18), [E04](SOURCE_INDEX.md#e04), [E08](SOURCE_INDEX.md#e08), [E18](SOURCE_INDEX.md#e18).
 
 ## OPS-07: Explicit host awards and correction reconciliation
 

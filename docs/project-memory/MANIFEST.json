@@ -6,8 +6,8 @@
       "sha256": "6e04bf350c11c6bf031dd80c79c66602cf93e09ca2106465a2715014921a824d"
     },
     "02_ARCHITECTURE.md": {
-      "bytes": 13249,
-      "sha256": "c4047ae02c2a035e27aefaa2d72da36c1bd837608c793bfbbff31d1205e07bf0"
+      "bytes": 14647,
+      "sha256": "2d94462bb36177fe7bcb41caef2e8bafb48e71bd8f5c8d0eab27d835705ef888"
     },
     "03_MISSOULA.md": {
       "bytes": 11288,
@@ -22,44 +22,44 @@
       "sha256": "63cb5e7d35e7f9aa7315f4e036cedef1c7de8ab26020d76db73698864fea1377"
     },
     "06_DELIVERY.md": {
-      "bytes": 16804,
-      "sha256": "dda7e1f6ba4942f8e1a363cffb3c805402c1450df555611688382fcf3f09f3e8"
+      "bytes": 21137,
+      "sha256": "d2aae5587f49e853858274720898c88b93c92f3be6e8415377be5860ec0c047a"
     },
     "07_RUNBOOK.md": {
-      "bytes": 11119,
-      "sha256": "ec193f8a7472539861e428b8d95b57ce4229c739e02b0d8c1b214c4294a1388e"
+      "bytes": 11491,
+      "sha256": "4204e6e5d26c780334ed48298b2cda56aa46670b87399ded5770cf4740db38eb"
     },
     "08_HISTORY.md": {
-      "bytes": 8506,
-      "sha256": "118d5c4f58bc84537a9676ebbe8c9d8b843f6019225024b86d912ee966f3ff1c"
+      "bytes": 9114,
+      "sha256": "a0afd5310c17dc3b3133525c29767acf6283bef9f2610c774f4e71951eb7564e"
     },
     "09_MEMORY_MAINTENANCE.md": {
       "bytes": 5720,
       "sha256": "ad18426ba73ca5b735560ad3a62915356d414f47b81e02fd6f06b1b96eab893b"
     },
     "DECISIONS.json": {
-      "bytes": 58613,
-      "sha256": "03e1574ffe1987be2c432a1d6081afbd791d86f6b7827f394df179cd0331e2ee"
+      "bytes": 59347,
+      "sha256": "db7802530ffee4f9e206ad66d7c0f85e51cf0257de0a4090db2029ce49e19d62"
     },
     "DECISIONS.md": {
-      "bytes": 46684,
-      "sha256": "13efb40e002c21ad0568354bc938991818a8f6312a876174cc8d5694a971200a"
+      "bytes": 47457,
+      "sha256": "afdcce755443ec6ddb4e7127ff06594e9164636999f1890d92ba5430486583a6"
     },
     "DELIVERY_SNAPSHOT.json": {
-      "bytes": 44373,
-      "sha256": "c5e9fc3537370b70d517a96d402689c348908166c24f1d909632eeccc8b34d39"
+      "bytes": 70935,
+      "sha256": "6392850867cc8daa2f8ffbd3dc9f3b95851051006a89db56aec24ce4981aa1fa"
     },
     "SOURCE_CATALOG.json": {
-      "bytes": 35071,
-      "sha256": "5091a65c32d1a9a15d3f99410314d2ac67ce7ed2e6d373e8ecdfb9b1509d8797"
+      "bytes": 35783,
+      "sha256": "d067ff16717f3299b3cd32a4ae62b572c224a6d40a6277a96439e3690e1f43f7"
     },
     "SOURCE_INDEX.md": {
-      "bytes": 27852,
-      "sha256": "4256ec196cb16010ac110d8965dc4c626438b4dbf569b3840cdead7fd9d7d7af"
+      "bytes": 28422,
+      "sha256": "9a8bf73d7bfafb92f7ceb7d86b6f680e5ad2dbea763d3c9fff5960a830cff0b8"
     },
     "START_HERE.md": {
-      "bytes": 8128,
-      "sha256": "998d91b263999fd1c0075451699dfba37172b12639222adeb7e3cfe8bb24661d"
+      "bytes": 8173,
+      "sha256": "7740a2a93f4dd3def61fbc751096446e2957468f72ea55f72cd98ce5d4f3ed8a"
     },
     "snapshots/Missoula-Pro-Am-Manager/FlightLogic.md": {
       "bytes": 29929,
@@ -82,16 +82,16 @@
       "sha256": "5412daa785ae3181159f96d08f53b715cef81d142b9da3e9fd8d1d6f53329a61"
     },
     "snapshots/Missoula-Pro-Am-Manager/docs/MANAGED_EVENTS.md": {
-      "bytes": 12607,
-      "sha256": "48528330e49e2b49868af7758c5c0f52cb9466ee47c7f9f8677d2feaeb5acde0"
+      "bytes": 14016,
+      "sha256": "a4e6920dcaa470b210e2133cc5403ee60d2cca20c3dfd234d408724fe31d63f8"
     },
     "snapshots/Missoula-Pro-Am-Manager/docs/MARK_ASSIGNMENT_WORKFLOW.md": {
       "bytes": 6629,
       "sha256": "26c3668ed1594b0a7f191ff9d89cf51ea9d34f171de714a02470e54712998c48"
     },
     "snapshots/Missoula-Pro-Am-Manager/docs/MODULAR_EXECUTION_STATUS.md": {
-      "bytes": 51308,
-      "sha256": "d679c3b50722281c8237cf9ec4210303901bec80c9bfb3f61470a1d84a857606"
+      "bytes": 54738,
+      "sha256": "0bb16627d15dde1906d546539b7d169af5b4b05dc94e51a5608b4e57b34a93d0"
     },
     "snapshots/Missoula-Pro-Am-Manager/docs/RECOVERY_DRILLS.md": {
       "bytes": 14613,
@@ -248,6 +248,10 @@
     "snapshots/synthetic-evidence/managed-boundary-final-postgres/report.json": {
       "bytes": 92,
       "sha256": "354b85a81cd49f1a19507328b36bbb8f074e9239ce28aa095e0343a0f110086f"
+    },
+    "snapshots/synthetic-evidence/managed-coordination-final-followup.json": {
+      "bytes": 25520,
+      "sha256": "69e619a30b3b711d29ce2f1833be71c8ec1e0ac0d5a286e908633bae27757d53"
     },
     "snapshots/synthetic-evidence/mnemex-memory-verification.json": {
       "bytes": 3158,

@@ -77,3 +77,12 @@ cross-model memory in MNEMEX. There is no general project-memory ingest API in
 the implemented application, so this pack uses repository Markdown/JSON, explicit
 entry links and dependency-free retrieval. It does not impersonate an unbuilt
 MNEMEX memory service or repurpose Person/consent/career/source-result data.
+
+The subsequent 96951ed checkpoint passed all eight applicable CI jobs before
+review found typed-reference, lock-order and concurrent-intent defects. Code
+97769be fixes them; related concrete checks also fixed pre-intent placeholder
+races and canonical Standing Block wood lookup. Final focused 220 SQLite /
+157 PostgreSQL checks pass without skips, alongside 146 legacy heat regressions.
+E18 preserves failure/fix scope and clean-source recovery; earlier green runs
+remain historical evidence. These changes do not qualify hosted backup/key
+recovery, production activation or a different numerical runtime.

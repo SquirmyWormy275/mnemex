@@ -140,145 +140,145 @@ Stored bytes: 1976; SHA-256: `1ff3812864e1fda5cb1d384b503ffb148a967f506950fcbbbd
 
 [Missoula-Pro-Am-Manager: docs/DOMAIN_CONTRACT.md](snapshots/Missoula-Pro-Am-Manager/docs/DOMAIN_CONTRACT.md)
 
-Revision: `96951ed262d1f61d59c6d50182a64cafd6530130`.
+Revision: `4db54074485d11dcfe183a9fcf368061b8e23d99`.
 
 canonical authority for existing show behavior
 
 Stored bytes: 13643; SHA-256: `5412daa785ae3181159f96d08f53b715cef81d142b9da3e9fd8d1d6f53329a61`.
 
-[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/96951ed262d1f61d59c6d50182a64cafd6530130/docs/DOMAIN_CONTRACT.md)
+[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/4db54074485d11dcfe183a9fcf368061b8e23d99/docs/DOMAIN_CONTRACT.md)
 
 ## S13
 
 [Missoula-Pro-Am-Manager: FlightLogic.md](snapshots/Missoula-Pro-Am-Manager/FlightLogic.md)
 
-Revision: `96951ed262d1f61d59c6d50182a64cafd6530130`.
+Revision: `4db54074485d11dcfe183a9fcf368061b8e23d99`.
 
 lower-priority algorithm reference; contains known stale statements identified in history guide
 
 Stored bytes: 29929; SHA-256: `22e960705aa1add1eaa0209e7d9ff1e3548bde031218847a6139b5906dfc6308`.
 
-[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/96951ed262d1f61d59c6d50182a64cafd6530130/FlightLogic.md)
+[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/4db54074485d11dcfe183a9fcf368061b8e23d99/FlightLogic.md)
 
 ## S14
 
 [Missoula-Pro-Am-Manager: docs/Alex's Docs/ProAM requirements](snapshots/Missoula-Pro-Am-Manager/docs/Alex%27s%20Docs/ProAM%20requirements)
 
-Revision: `96951ed262d1f61d59c6d50182a64cafd6530130`.
+Revision: `4db54074485d11dcfe183a9fcf368061b8e23d99`.
 
 owner requirements; later explicit canonical corrections override dated details
 
 Stored bytes: 14514; SHA-256: `6e56509d1b5eb22cd7b889f4510f471934cbdc478263727a1ed13f9eccdec40c`.
 
-[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/96951ed262d1f61d59c6d50182a64cafd6530130/docs/Alex%27s%20Docs/ProAM%20requirements)
+[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/4db54074485d11dcfe183a9fcf368061b8e23d99/docs/Alex%27s%20Docs/ProAM%20requirements)
 
 ## S15
 
 [Missoula-Pro-Am-Manager: docs/Alex's Docs/GEAR_SHARING_DOMAIN.md](snapshots/Missoula-Pro-Am-Manager/docs/Alex%27s%20Docs/GEAR_SHARING_DOMAIN.md)
 
-Revision: `96951ed262d1f61d59c6d50182a64cafd6530130`.
+Revision: `4db54074485d11dcfe183a9fcf368061b8e23d99`.
 
 owner gear-sharing concepts and constraints
 
 Stored bytes: 11983; SHA-256: `ae32e34b78a8cba35e0bf01b96b9d2d1d5635024c814f1df2e34a267bcabc007`.
 
-[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/96951ed262d1f61d59c6d50182a64cafd6530130/docs/Alex%27s%20Docs/GEAR_SHARING_DOMAIN.md)
+[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/4db54074485d11dcfe183a9fcf368061b8e23d99/docs/Alex%27s%20Docs/GEAR_SHARING_DOMAIN.md)
 
 ## S16
 
 [Missoula-Pro-Am-Manager: docs/Alex's Docs/ProAmRelay.md](snapshots/Missoula-Pro-Am-Manager/docs/Alex%27s%20Docs/ProAmRelay.md)
 
-Revision: `96951ed262d1f61d59c6d50182a64cafd6530130`.
+Revision: `4db54074485d11dcfe183a9fcf368061b8e23d99`.
 
 owner relay requirements; canonical current implementation governs storage
 
 Stored bytes: 1050; SHA-256: `e3d3302c66ba942ce33492914195e4e6d3d9d70a00a94e2b444ed20748733f51`.
 
-[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/96951ed262d1f61d59c6d50182a64cafd6530130/docs/Alex%27s%20Docs/ProAmRelay.md)
+[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/4db54074485d11dcfe183a9fcf368061b8e23d99/docs/Alex%27s%20Docs/ProAmRelay.md)
 
 ## S17
 
 [Missoula-Pro-Am-Manager: docs/MANAGED_EVENTS.md](snapshots/Missoula-Pro-Am-Manager/docs/MANAGED_EVENTS.md)
 
-Revision: `96951ed262d1f61d59c6d50182a64cafd6530130`.
+Revision: `4db54074485d11dcfe183a9fcf368061b8e23d99`.
 
 host adapter operations and boundaries
 
-Stored bytes: 12607; SHA-256: `48528330e49e2b49868af7758c5c0f52cb9466ee47c7f9f8677d2feaeb5acde0`.
+Stored bytes: 14016; SHA-256: `a4e6920dcaa470b210e2133cc5403ee60d2cca20c3dfd234d408724fe31d63f8`.
 
-[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/96951ed262d1f61d59c6d50182a64cafd6530130/docs/MANAGED_EVENTS.md)
+[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/4db54074485d11dcfe183a9fcf368061b8e23d99/docs/MANAGED_EVENTS.md)
 
 ## S18
 
 [Missoula-Pro-Am-Manager: docs/MODULAR_EXECUTION_STATUS.md](snapshots/Missoula-Pro-Am-Manager/docs/MODULAR_EXECUTION_STATUS.md)
 
-Revision: `96951ed262d1f61d59c6d50182a64cafd6530130`.
+Revision: `4db54074485d11dcfe183a9fcf368061b8e23d99`.
 
 implementation, delivery, retained failures and qualification ledger
 
-Stored bytes: 51308; SHA-256: `d679c3b50722281c8237cf9ec4210303901bec80c9bfb3f61470a1d84a857606`.
+Stored bytes: 54738; SHA-256: `0bb16627d15dde1906d546539b7d169af5b4b05dc94e51a5608b4e57b34a93d0`.
 
-[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/96951ed262d1f61d59c6d50182a64cafd6530130/docs/MODULAR_EXECUTION_STATUS.md)
+[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/4db54074485d11dcfe183a9fcf368061b8e23d99/docs/MODULAR_EXECUTION_STATUS.md)
 
 ## S19
 
 [Missoula-Pro-Am-Manager: docs/RELEASE_CHECKLIST.md](snapshots/Missoula-Pro-Am-Manager/docs/RELEASE_CHECKLIST.md)
 
-Revision: `96951ed262d1f61d59c6d50182a64cafd6530130`.
+Revision: `4db54074485d11dcfe183a9fcf368061b8e23d99`.
 
 binding hosted backup and deployment release gates
 
 Stored bytes: 7833; SHA-256: `61adaf4c991d24ae0fbb6d3f38d1b8e9f02f83eb0e193d8816ebdd79857e34a7`.
 
-[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/96951ed262d1f61d59c6d50182a64cafd6530130/docs/RELEASE_CHECKLIST.md)
+[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/4db54074485d11dcfe183a9fcf368061b8e23d99/docs/RELEASE_CHECKLIST.md)
 
 ## S20
 
 [Missoula-Pro-Am-Manager: docs/ROLLBACK_SOP.md](snapshots/Missoula-Pro-Am-Manager/docs/ROLLBACK_SOP.md)
 
-Revision: `96951ed262d1f61d59c6d50182a64cafd6530130`.
+Revision: `4db54074485d11dcfe183a9fcf368061b8e23d99`.
 
 recovery operator procedure; not permission to run operational data tests
 
 Stored bytes: 12459; SHA-256: `79a3674be344b60c6a9f5d8eb554ca44dfed9ecbba1225587cf1118d277f7c92`.
 
-[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/96951ed262d1f61d59c6d50182a64cafd6530130/docs/ROLLBACK_SOP.md)
+[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/4db54074485d11dcfe183a9fcf368061b8e23d99/docs/ROLLBACK_SOP.md)
 
 ## S21
 
 [Missoula-Pro-Am-Manager: docs/RECOVERY_DRILLS.md](snapshots/Missoula-Pro-Am-Manager/docs/RECOVERY_DRILLS.md)
 
-Revision: `96951ed262d1f61d59c6d50182a64cafd6530130`.
+Revision: `4db54074485d11dcfe183a9fcf368061b8e23d99`.
 
 owned synthetic recovery scenarios and evidence limits
 
 Stored bytes: 14613; SHA-256: `7645898ab7645c704ac353ec6041d32deb07d6857b84b2f8f252d525d88d9eab`.
 
-[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/96951ed262d1f61d59c6d50182a64cafd6530130/docs/RECOVERY_DRILLS.md)
+[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/4db54074485d11dcfe183a9fcf368061b8e23d99/docs/RECOVERY_DRILLS.md)
 
 ## S22
 
 [Missoula-Pro-Am-Manager: docs/MARK_ASSIGNMENT_WORKFLOW.md](snapshots/Missoula-Pro-Am-Manager/docs/MARK_ASSIGNMENT_WORKFLOW.md)
 
-Revision: `96951ed262d1f61d59c6d50182a64cafd6530130`.
+Revision: `4db54074485d11dcfe183a9fcf368061b8e23d99`.
 
 retained official marks versus explicit delegated events
 
 Stored bytes: 6629; SHA-256: `26c3668ed1594b0a7f191ff9d89cf51ea9d34f171de714a02470e54712998c48`.
 
-[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/96951ed262d1f61d59c6d50182a64cafd6530130/docs/MARK_ASSIGNMENT_WORKFLOW.md)
+[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/4db54074485d11dcfe183a9fcf368061b8e23d99/docs/MARK_ASSIGNMENT_WORKFLOW.md)
 
 ## S23
 
 [Missoula-Pro-Am-Manager: docs/STRATHMARK_SHADOW_OPERATIONS.md](snapshots/Missoula-Pro-Am-Manager/docs/STRATHMARK_SHADOW_OPERATIONS.md)
 
-Revision: `96951ed262d1f61d59c6d50182a64cafd6530130`.
+Revision: `4db54074485d11dcfe183a9fcf368061b8e23d99`.
 
 scoring-inert shadow boundary
 
 Stored bytes: 8484; SHA-256: `dd24619f2821eb7c29ba74cde983056c746d443a875753a860d899d52c3b9bc9`.
 
-[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/96951ed262d1f61d59c6d50182a64cafd6530130/docs/STRATHMARK_SHADOW_OPERATIONS.md)
+[Pinned original](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/blob/4db54074485d11dcfe183a9fcf368061b8e23d99/docs/STRATHMARK_SHADOW_OPERATIONS.md)
 
 ## S24
 
@@ -661,3 +661,15 @@ synthetic evidence; recovery records are normalized summaries excluding HTTP/ses
 Stored bytes: 4504; SHA-256: `ad3b149ed24defc26bf788a8d28db50ef05d4a9a0bb8175633ccf69a19a6e359`.
 
 Capture: verbatim_synthetic_receipt; original receipt SHA-256: `ad3b149ed24defc26bf788a8d28db50ef05d4a9a0bb8175633ccf69a19a6e359`.
+
+## E18
+
+[synthetic-evidence: managed-coordination-final-followup.json](snapshots/synthetic-evidence/managed-coordination-final-followup.json)
+
+Revision: `owner/session or evidence record`.
+
+synthetic evidence; recovery records are normalized summaries excluding HTTP/session material; original digest and source/cleanup retain provenance
+
+Stored bytes: 25520; SHA-256: `69e619a30b3b711d29ce2f1833be71c8ec1e0ac0d5a286e908633bae27757d53`.
+
+Capture: verbatim_synthetic_receipt; original receipt SHA-256: `69e619a30b3b711d29ce2f1833be71c8ec1e0ac0d5a286e908633bae27757d53`.

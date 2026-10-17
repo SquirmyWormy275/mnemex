@@ -2,7 +2,7 @@
 
 Sources: [S01](SOURCE_INDEX.md#s01), [S07](SOURCE_INDEX.md#s07),
 [S18](SOURCE_INDEX.md#s18), [S19](SOURCE_INDEX.md#s19),
-[E01–E17](SOURCE_INDEX.md#e01). This is a dated delivery ledger. The structured
+[E01–E18](SOURCE_INDEX.md#e01). This is a dated delivery ledger. The structured
 [delivery snapshot](DELIVERY_SNAPSHOT.json) preserves repository and artifact
 metadata. A passing source checkpoint does not confer a pass on a later commit.
 
@@ -173,7 +173,7 @@ new [verification comment](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Ma
 and S18 retain the failure/fix sequence. PR 125 remains draft and production
 main stays unchanged.
 
-## Latest binding/transport checkpoint
+## Historical binding/transport checkpoint
 
 Application `e8bbc42f4250e2e79e3be4ed3aef3614aa4edae0` and documentation
 `96951ed262d1f61d59c6d50182a64cafd6530130` fix four further findings raised by
@@ -193,7 +193,8 @@ tests, zero skips**, with PostgreSQL cleanup PASS. Fresh R09 and R12 at clean
 committed source e8bbc42 each pass thirteen checks and cleanup. E17 preserves
 these exact source/test/recovery receipts and earlier failures.
 
-All 28 raised findings are fixed/resolved. The prior e79ac4a CI passed all eight
+All 28 findings at that checkpoint were fixed/resolved; the next review raised
+three more, addressed by the following checkpoint. The prior e79ac4a CI passed all eight
 applicable jobs, then its review found these four issues; that green run is
 historical, not a claim those issues were absent. Latest docs-head
 [CI 38987534485](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38987534485)
@@ -243,3 +244,66 @@ remains blocked pending real observations; rc11 results cannot be rebound to it.
 Linux/source acceptance and owned PostgreSQL cleanup do not establish Windows
 CNG/full V3 factory qualification, shared-database distributed fencing, another
 real show's adapter, full MNEMEX profile portability or provider activation.
+
+## Final host command/lock/show-profile checkpoint
+
+Application `97769be6c1adc323d511ed2fa5dd6d851c8b6539` and documentation
+`4db54074485d11dcfe183a9fcf368061b8e23d99` fix the three findings raised at
+96951ed. The host validates canonical typed entry references before parsing,
+recovers concurrent request-intent inserts through exact digest/audit checks,
+and acquires a shared outer order gate before host/source lock domains.
+Identical commands recover; changed payloads conflict. The empty gate sidecar
+is coordination only, retained through host commit/rollback (02_ARCHITECTURE).
+
+Related concrete regressions fixed stale uncommitted retries and two pre-intent
+configuration races: validation no longer creates competing EventResult rows.
+Projection creates placeholders under the host lock. Malformed held-export
+packets fail within the managed boundary and release resources. Eight real-engine
+SB/UH × pro/college × M/F lifecycles exposed the Standing Block key mismatch
+with real Woodboss data; both disciplines now use the existing canonical key
+helper, gender precedence and retained general fallback. The matrix exercises
+actual inch/mm configuration, source review/issue/outcomes/acceptance/finalization
+and host college points/team totals or pro earnings. No numerical policy, schema
+or production setting changed.
+
+Retained RED receipts record six failed/three already-refused review cases, the
+real lock-domain interleave failure, one stale retry, two preparation races and
+four Standing Block lifecycle failures (four Underhand cases already passed).
+An intermediate broad run exposed a bulk test fixture using the same wrong key;
+only that key changed and all assertions remained. Final focused verification:
+**220 SQLite / 157 PostgreSQL tests, zero skips**, PostgreSQL cleanup PASS, plus
+**146 legacy heat regressions**, four concurrent exact/conflicting handover/
+configure cases, eight profile lifecycles and ruff/diff checks. Clean-source
+R09/R12 each pass thirteen checks and cleanup at 97769be. E18 records exact
+source, receipt hashes and source-bound current CI/review status. All 31 raised
+findings are fixed/resolved. The latest scoped automated review completed and
+[reported no major issues](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#issuecomment-6227900458).
+Its summary finding booleans remain null; E18 preserves those nulls and the
+primary receipt separately rather than converting them into a verdict.
+
+Prior 96951ed [CI 38987534485](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38987534485)
+passed all eight applicable jobs before those three findings. Final-head
+[CI 38990406209](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38990406209)
+passed all eight applicable jobs, with production audit skipped. Downloaded
+installed evidence passes **115 tests with zero skips**; core recovery passes
+90 checks, R11 seven and R12 thirteen, all cleanup PASS. The
+[final verification comment](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#issuecomment-6228001618)
+records exact source and artifact provenance. E18/DELIVERY_SNAPSHOT preserve
+the completed result; no older pass is inherited. PR 125
+remains draft under the unchanged hosted backup/key gate.
+
+The earlier memory follow-up merged in MNEMEX PR 9 at
+`6e657d8f7505ffb61768c238b3f1b3ea25a5a550`; PR CI 38987703689 and main CI
+38988029901 passed Linux/Windows, and a fresh merged checkout verified all
+70 then-inventoried files, 55 sources and 67 decisions with no site packages.
+This final follow-up adds E18 and updates current host source snapshots; its
+PR/CI state is separate. It changes technical memory only. Application code
+remains the reviewed 7a31594 checkpoint.
+
+Final CI tested synthetic PR merge `7e5584e9cd5d70c3a61c38ccab2620bee0315dd5`.
+Both managed recovery dirty receipts match only generated `managed-results.xml`
+(filename, NUL and exact bytes):
+`e0c9705fca876219e33fcb5a90adbecaad04257257826e624fce1c5d4b221a1e`.
+The original local/CI receipts and complete run log remain in the workstation
+evidence directory; E18 carries safe normalized summaries without HTTP/session
+witnesses. This does not qualify hosted production recovery.

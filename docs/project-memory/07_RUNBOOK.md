@@ -120,6 +120,11 @@ host awards using the accepted current finalized summary and current host facts.
 Payout settlement remains a separate organizer action. A nonfinal correction
 reopens host finalization; previously recorded awards remain until deliberate
 reconciliation. Bulk awards acquire one batch source guard before host locks.
+Creation and acceptance first acquire their shared outer host/source order gate.
+All host processes must use the same canonical authority path; never replace the
+active `.host-order.sqlite3` mutex. It contains no business data and can be
+recreated only after host processes stop. Preserve the actual source database
+and independent head reference for recovery (S17, E18).
 Hold the validated host facts through commit too: the implementation locks
 underlying PostgreSQL wood/competitor rows and reserves the actual host SQLite
 writer, including uncoordinated Woodboss/gear connections. Do not simulate
