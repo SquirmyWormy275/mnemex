@@ -1,0 +1,503 @@
+{
+  "schema_version": "mnemex.project-memory.coordination-boundary.v1",
+  "captured_at_utc": "2026-10-17T01:33:37.801702+00:00",
+  "application_commit": "97769be6c1adc323d511ed2fa5dd6d851c8b6539",
+  "latest_documentation_commit": "4db54074485d11dcfe183a9fcf368061b8e23d99",
+  "data": "synthetic disposable only",
+  "review_finding_ids": [
+    4300570681,
+    4300570683,
+    4300570684
+  ],
+  "findings": "Typed canonical host references; shared outer gate before host/source domains; durable concurrent request-intent recovery with payload conflicts preserved",
+  "related_audit": "Read-only pre-intent registration validation; known stale uncommitted retries; malformed held-export packet/gate cleanup; canonical Woodboss SB/UH keys and eight installed-engine division/gender lifecycles",
+  "red_junit": [
+    {
+      "path": "managed-order-idempotency-red.xml",
+      "sha256": "6c4b6e407dd4104b2d31b644cec7d84d0813705db4553c6a2283818750fd344b",
+      "tests": 9,
+      "failures": 6,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "managed-lock-order-red.xml",
+      "sha256": "96d0d2ffb3695a5c6e5bcb0e7ef06725f1dd487daf7bb8eab8e730deceecd75e",
+      "tests": 1,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "managed-stale-retry-red.xml",
+      "sha256": "7869f055ee223ce6937346a747c17e2a4ae3a7fba0347b259e0689149fba3a53",
+      "tests": 1,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "managed-preparation-race-red.xml",
+      "sha256": "a57b1fb4cd3480b7e391fcdbb7f65f4108564aff9f9adc4824e12bdd9d35284e",
+      "tests": 2,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "managed-profile-matrix-red.xml",
+      "sha256": "64b44ffc101a3d6af656891907a000133b5fb205736971f6c6a143a0032ea918",
+      "tests": 8,
+      "failures": 4,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "red_scope": "Review reproductions: six failed and three already-refused cases, plus the real domain-lock interleave failure. Related checks reproduced stale retry, two pre-intent preparation races and four Standing Block key failures; four Underhand lifecycles already passed. Intermediate broad runs caught one old bulk fixture using the same wrong Standing Block key; only that fixture key changed, assertions retained.",
+  "passing_junit": [
+    {
+      "path": "managed-final-complete.xml",
+      "sha256": "131833856cb5116a15f14c33364ddd0e2ec0f960d96cc3726498f82d57a75058",
+      "tests": 220,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "managed-final-complete-postgres/junit.xml",
+      "sha256": "3a4c9ea99538df39d89e04b3b9261ca669e4c2e31613f9c6e5734a9e6e13647a",
+      "tests": 157,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "managed-legacy-heat-regression.xml",
+      "sha256": "cfea0ca5e6f48d6d44520fbdb01d6b827151e103fd76e83236a0e65e1efbecd7",
+      "tests": 146,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "managed-command-races-final.xml",
+      "sha256": "7d928b6e060cac8f3d4cf5b1801d2345acf1fadfa9dbc02794b2f197e45e27c9",
+      "tests": 4,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    {
+      "path": "managed-real-profiles-final.xml",
+      "sha256": "6e6a79200c6e7d0786d16eb6277eed33a57b2940b119649ebb8cec80c0413c21",
+      "tests": 9,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "postgres_cleanup": {
+    "data": "synthetic",
+    "dialect": "PostgreSQL 18.6",
+    "exit": 0,
+    "cleanup": "PASS"
+  },
+  "recovery": [
+    {
+      "path": "recovery-coordination-final-managed-acceptance-crashes/report.json",
+      "sha256": "13647f40d6bcd826102c5a4ca5c07b356268937a65ca517343229e955920fc45",
+      "source": {
+        "commit": "97769be6c1adc323d511ed2fa5dd6d851c8b6539",
+        "dirty": false,
+        "patch_sha256": null
+      },
+      "status": "PASS",
+      "scenarios": [
+        {
+          "id": "managed-acceptance-crashes",
+          "status": "PASS",
+          "checks": 13,
+          "cleanup": "PASS"
+        }
+      ]
+    },
+    {
+      "path": "recovery-coordination-final-code-schema-rollback/report.json",
+      "sha256": "add82e2eb6dbd26ae703e4c59728c2591a9e7b4e6781a0e1b956e62afba3a155",
+      "source": {
+        "commit": "97769be6c1adc323d511ed2fa5dd6d851c8b6539",
+        "dirty": false,
+        "patch_sha256": null
+      },
+      "status": "PASS",
+      "scenarios": [
+        {
+          "id": "code-schema-rollback",
+          "status": "PASS",
+          "checks": 13,
+          "cleanup": "PASS"
+        }
+      ]
+    }
+  ],
+  "pull_request": {
+    "headRefOid": "4db54074485d11dcfe183a9fcf368061b8e23d99",
+    "isDraft": true,
+    "state": "OPEN",
+    "review_receipts": [
+      {
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#issuecomment-6215198930",
+        "body": "<!-- codex-review-receipt:v1 -->\n\nCodex Review: Didn't find any major issues. Chef's kiss.\n\n**Reviewed commit:** `47f9bb5588`\n\n<details> <summary>\u2139\ufe0f About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\".\n\nIf Codex has suggestions, it will comment; otherwise it will react with \ud83d\udc4d.\n\n\n\n\nCodex can also answer questions or update the PR. Try commenting \"@codex address that feedback\".\n            \n</details>"
+      },
+      {
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#issuecomment-6227900458",
+        "body": "<!-- codex-review-receipt:v1 -->\n\nCodex Review: Didn't find any major issues. Bravo.\n\n**Reviewed commit:** `4db5407448`\n\n<details> <summary>\u2139\ufe0f About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\".\n\nIf Codex has suggestions, it will comment; otherwise it will react with \ud83d\udc4d.\n\n\n\n\nCodex can also answer questions or update the PR. Try commenting \"@codex address that feedback\".\n            \n</details>"
+      }
+    ],
+    "reviews": [
+      {
+        "commit_sha": "4db54074485d11dcfe183a9fcf368061b8e23d99",
+        "has_any_findings": null,
+        "has_unresolved_findings": null,
+        "status": "completed"
+      }
+    ],
+    "submitted_reviews": [
+      {
+        "id": 5546148881,
+        "author": "chatgpt-codex-connector[bot]",
+        "state": "COMMENTED",
+        "commit": "976dd43269e58bf4b6a932f86c734ed3f4e6d56d",
+        "submitted_at": "2026-10-16T10:01:45Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5546148881",
+        "body": "<!-- codex-review-receipt:v1 -->\n\n\n### \ud83d\udca1 Codex Review\n\nHere are some automated review suggestions for this pull request.\n\n**Reviewed commit:** `976dd43269`\n    \n\n<details> <summary>\u2139\ufe0f About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\".\n\nIf Codex has suggestions, it will comment; otherwise it will react with \ud83d\udc4d.\n\n\n\n\nCodex can also answer questions or update the PR. Try commenting \"@codex address that feedback\".\n            \n</details>"
+      },
+      {
+        "id": 5546511095,
+        "author": "SquirmyWormy275",
+        "state": "COMMENTED",
+        "commit": "68ec6444b5cd8fe6b0ecacacdebbb1668191a6f2",
+        "submitted_at": "2026-10-16T10:33:06Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5546511095",
+        "body": ""
+      },
+      {
+        "id": 5546511561,
+        "author": "SquirmyWormy275",
+        "state": "COMMENTED",
+        "commit": "68ec6444b5cd8fe6b0ecacacdebbb1668191a6f2",
+        "submitted_at": "2026-10-16T10:33:08Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5546511561",
+        "body": ""
+      },
+      {
+        "id": 5546512026,
+        "author": "SquirmyWormy275",
+        "state": "COMMENTED",
+        "commit": "68ec6444b5cd8fe6b0ecacacdebbb1668191a6f2",
+        "submitted_at": "2026-10-16T10:33:10Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5546512026",
+        "body": ""
+      },
+      {
+        "id": 5546512604,
+        "author": "SquirmyWormy275",
+        "state": "COMMENTED",
+        "commit": "68ec6444b5cd8fe6b0ecacacdebbb1668191a6f2",
+        "submitted_at": "2026-10-16T10:33:12Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5546512604",
+        "body": ""
+      },
+      {
+        "id": 5546513030,
+        "author": "SquirmyWormy275",
+        "state": "COMMENTED",
+        "commit": "68ec6444b5cd8fe6b0ecacacdebbb1668191a6f2",
+        "submitted_at": "2026-10-16T10:33:14Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5546513030",
+        "body": ""
+      },
+      {
+        "id": 5546513519,
+        "author": "SquirmyWormy275",
+        "state": "COMMENTED",
+        "commit": "68ec6444b5cd8fe6b0ecacacdebbb1668191a6f2",
+        "submitted_at": "2026-10-16T10:33:16Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5546513519",
+        "body": ""
+      },
+      {
+        "id": 5546513940,
+        "author": "SquirmyWormy275",
+        "state": "COMMENTED",
+        "commit": "68ec6444b5cd8fe6b0ecacacdebbb1668191a6f2",
+        "submitted_at": "2026-10-16T10:33:18Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5546513940",
+        "body": ""
+      },
+      {
+        "id": 5546514392,
+        "author": "SquirmyWormy275",
+        "state": "COMMENTED",
+        "commit": "68ec6444b5cd8fe6b0ecacacdebbb1668191a6f2",
+        "submitted_at": "2026-10-16T10:33:20Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5546514392",
+        "body": ""
+      },
+      {
+        "id": 5546647020,
+        "author": "chatgpt-codex-connector[bot]",
+        "state": "COMMENTED",
+        "commit": "68ec6444b5cd8fe6b0ecacacdebbb1668191a6f2",
+        "submitted_at": "2026-10-16T10:42:50Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5546647020",
+        "body": "<!-- codex-review-receipt:v1 -->\n\n\n### \ud83d\udca1 Codex Review\n\nHere are some automated review suggestions for this pull request.\n\n**Reviewed commit:** `68ec6444b5`\n    \n\n<details> <summary>\u2139\ufe0f About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\".\n\nIf Codex has suggestions, it will comment; otherwise it will react with \ud83d\udc4d.\n\n\n\n\nCodex can also answer questions or update the PR. Try commenting \"@codex address that feedback\".\n            \n</details>"
+      },
+      {
+        "id": 5546979067,
+        "author": "SquirmyWormy275",
+        "state": "COMMENTED",
+        "commit": "853c2444b3b611e3d624d40a091666e458737773",
+        "submitted_at": "2026-10-16T11:10:21Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5546979067",
+        "body": ""
+      },
+      {
+        "id": 5546979456,
+        "author": "SquirmyWormy275",
+        "state": "COMMENTED",
+        "commit": "853c2444b3b611e3d624d40a091666e458737773",
+        "submitted_at": "2026-10-16T11:10:23Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5546979456",
+        "body": ""
+      },
+      {
+        "id": 5546979904,
+        "author": "SquirmyWormy275",
+        "state": "COMMENTED",
+        "commit": "853c2444b3b611e3d624d40a091666e458737773",
+        "submitted_at": "2026-10-16T11:10:25Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5546979904",
+        "body": ""
+      },
+      {
+        "id": 5546980236,
+        "author": "SquirmyWormy275",
+        "state": "COMMENTED",
+        "commit": "853c2444b3b611e3d624d40a091666e458737773",
+        "submitted_at": "2026-10-16T11:10:26Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5546980236",
+        "body": ""
+      },
+      {
+        "id": 5546980730,
+        "author": "SquirmyWormy275",
+        "state": "COMMENTED",
+        "commit": "853c2444b3b611e3d624d40a091666e458737773",
+        "submitted_at": "2026-10-16T11:10:29Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5546980730",
+        "body": ""
+      },
+      {
+        "id": 5547073731,
+        "author": "chatgpt-codex-connector[bot]",
+        "state": "COMMENTED",
+        "commit": "853c2444b3b611e3d624d40a091666e458737773",
+        "submitted_at": "2026-10-16T11:19:21Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5547073731",
+        "body": "<!-- codex-review-receipt:v1 -->\n\n\n### \ud83d\udca1 Codex Review\n\nHere are some automated review suggestions for this pull request.\n\n**Reviewed commit:** `853c2444b3`\n    \n\n<details> <summary>\u2139\ufe0f About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\".\n\nIf Codex has suggestions, it will comment; otherwise it will react with \ud83d\udc4d.\n\n\n\n\nCodex can also answer questions or update the PR. Try commenting \"@codex address that feedback\".\n            \n</details>"
+      },
+      {
+        "id": 5547259274,
+        "author": "SquirmyWormy275",
+        "state": "COMMENTED",
+        "commit": "0b38a431d1123fe309020a1c4ac02317c34e3cc5",
+        "submitted_at": "2026-10-16T11:39:01Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5547259274",
+        "body": ""
+      },
+      {
+        "id": 5547259646,
+        "author": "SquirmyWormy275",
+        "state": "COMMENTED",
+        "commit": "0b38a431d1123fe309020a1c4ac02317c34e3cc5",
+        "submitted_at": "2026-10-16T11:39:03Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5547259646",
+        "body": ""
+      },
+      {
+        "id": 5547336725,
+        "author": "chatgpt-codex-connector[bot]",
+        "state": "COMMENTED",
+        "commit": "0b38a431d1123fe309020a1c4ac02317c34e3cc5",
+        "submitted_at": "2026-10-16T11:46:33Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5547336725",
+        "body": "<!-- codex-review-receipt:v1 -->\n\n\n### \ud83d\udca1 Codex Review\n\nHere are some automated review suggestions for this pull request.\n\n**Reviewed commit:** `0b38a431d1`\n    \n\n<details> <summary>\u2139\ufe0f About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\".\n\nIf Codex has suggestions, it will comment; otherwise it will react with \ud83d\udc4d.\n\n\n\n\nCodex can also answer questions or update the PR. Try commenting \"@codex address that feedback\".\n            \n</details>"
+      },
+      {
+        "id": 5547436052,
+        "author": "SquirmyWormy275",
+        "state": "COMMENTED",
+        "commit": "d135cb07fc44362e74c7ea08ecf43ecd425a6677",
+        "submitted_at": "2026-10-16T11:56:06Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5547436052",
+        "body": ""
+      },
+      {
+        "id": 5547436355,
+        "author": "SquirmyWormy275",
+        "state": "COMMENTED",
+        "commit": "d135cb07fc44362e74c7ea08ecf43ecd425a6677",
+        "submitted_at": "2026-10-16T11:56:08Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5547436355",
+        "body": ""
+      },
+      {
+        "id": 5547436630,
+        "author": "SquirmyWormy275",
+        "state": "COMMENTED",
+        "commit": "d135cb07fc44362e74c7ea08ecf43ecd425a6677",
+        "submitted_at": "2026-10-16T11:56:10Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5547436630",
+        "body": ""
+      },
+      {
+        "id": 5554840111,
+        "author": "chatgpt-codex-connector[bot]",
+        "state": "COMMENTED",
+        "commit": "70109349dc668a73b30f1cd48fc33b201ab2375c",
+        "submitted_at": "2026-10-16T23:49:53Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5554840111",
+        "body": "<!-- codex-review-receipt:v1 -->\n\n\n### \ud83d\udca1 Codex Review\n\nHere are some automated review suggestions for this pull request.\n\n**Reviewed commit:** `70109349dc`\n    \n\n<details> <summary>\u2139\ufe0f About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\".\n\nIf Codex has suggestions, it will comment; otherwise it will react with \ud83d\udc4d.\n\n\n\n\nCodex can also answer questions or update the PR. Try commenting \"@codex address that feedback\".\n            \n</details>"
+      },
+      {
+        "id": 5554958249,
+        "author": "chatgpt-codex-connector[bot]",
+        "state": "COMMENTED",
+        "commit": "62216f492facd3691293bd52d0d3884fe20974c1",
+        "submitted_at": "2026-10-17T00:06:34Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5554958249",
+        "body": "<!-- codex-review-receipt:v1 -->\n\n\n### \ud83d\udca1 Codex Review\n\nHere are some automated review suggestions for this pull request.\n\n**Reviewed commit:** `62216f492f`\n    \n\n<details> <summary>\u2139\ufe0f About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\".\n\nIf Codex has suggestions, it will comment; otherwise it will react with \ud83d\udc4d.\n\n\n\n\nCodex can also answer questions or update the PR. Try commenting \"@codex address that feedback\".\n            \n</details>"
+      },
+      {
+        "id": 5555058267,
+        "author": "chatgpt-codex-connector[bot]",
+        "state": "COMMENTED",
+        "commit": "e79ac4aeec7baaaf461834b5e7ae10c84cb9a552",
+        "submitted_at": "2026-10-17T00:26:35Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5555058267",
+        "body": "<!-- codex-review-receipt:v1 -->\n\n\n### \ud83d\udca1 Codex Review\n\nHere are some automated review suggestions for this pull request.\n\n**Reviewed commit:** `e79ac4aeec`\n    \n\n<details> <summary>\u2139\ufe0f About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\".\n\nIf Codex has suggestions, it will comment; otherwise it will react with \ud83d\udc4d.\n\n\n\n\nCodex can also answer questions or update the PR. Try commenting \"@codex address that feedback\".\n            \n</details>"
+      },
+      {
+        "id": 5555169629,
+        "author": "chatgpt-codex-connector[bot]",
+        "state": "COMMENTED",
+        "commit": "96951ed262d1f61d59c6d50182a64cafd6530130",
+        "submitted_at": "2026-10-17T00:50:18Z",
+        "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#pullrequestreview-5555169629",
+        "body": "<!-- codex-review-receipt:v1 -->\n\n\n### \ud83d\udca1 Codex Review\n\nHere are some automated review suggestions for this pull request.\n\n**Reviewed commit:** `96951ed262`\n    \n\n<details> <summary>\u2139\ufe0f About Codex in GitHub</summary>\n<br/>\n\n[Your team has set up Codex to review pull requests in this repo](https://chatgpt.com/codex/cloud/settings/general). Reviews are triggered when you\n- Open a pull request for review\n- Mark a draft as ready\n- Comment \"@codex review\".\n\nIf Codex has suggestions, it will comment; otherwise it will react with \ud83d\udc4d.\n\n\n\n\nCodex can also answer questions or update the PR. Try commenting \"@codex address that feedback\".\n            \n</details>"
+      }
+    ],
+    "review_threads": {
+      "total": 31,
+      "unresolved": []
+    }
+  },
+  "latest_ci": {
+    "conclusion": "success",
+    "databaseId": 38990406209,
+    "headSha": "4db54074485d11dcfe183a9fcf368061b8e23d99",
+    "status": "completed",
+    "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38990406209"
+  },
+  "historical_969_ci": {
+    "conclusion": "success",
+    "databaseId": 38987534485,
+    "headSha": "96951ed262d1f61d59c6d50182a64cafd6530130",
+    "status": "completed",
+    "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38987534485"
+  },
+  "review_scope": "Prior full and scoped automated reviews retained; all latest findings tracked individually. Final review and CI are captured source-bound, never inherited from an older head.",
+  "merge_boundary": "BLOCKED by exact-head hosted backup and independent recovery-identity restore proofs; no production action",
+  "verification_comment": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#issuecomment-6228001618",
+  "final_ci_evidence": {
+    "junit": {
+      "path": "ci-exact-head-38990406209-managed/Missoula-Pro-Am-Manager/Missoula-Pro-Am-Manager/managed-results.xml",
+      "sha256": "734142c344d723400119973dff07690606dc74f753140d75313f591b6feb94d0",
+      "tests": 115,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "reports": [
+      {
+        "path": "ci-exact-head-38990406209-core/report.json",
+        "sha256": "ae17af663784a6abf87109a5e29b5cf0c1596a3a2da689a7bd34f3ccd82dbec3",
+        "status": "PASS",
+        "source": {
+          "commit": "7e5584e9cd5d70c3a61c38ccab2620bee0315dd5",
+          "dirty": false,
+          "patch_sha256": null
+        },
+        "scenarios": [
+          {
+            "id": "restore-fresh-postgres",
+            "status": "PASS",
+            "checks": 31,
+            "cleanup": "PASS"
+          },
+          {
+            "id": "score-precommit-crash",
+            "status": "PASS",
+            "checks": 30,
+            "cleanup": "PASS"
+          },
+          {
+            "id": "score-postcommit-response-loss",
+            "status": "PASS",
+            "checks": 29,
+            "cleanup": "PASS"
+          }
+        ]
+      },
+      {
+        "path": "ci-exact-head-38990406209-managed/_temp/managed-acceptance-crashes/report.json",
+        "sha256": "bfbd268ddb05b6c1de1db7775fd8989df3177a280b4b2376621e3bdd7091bbaf",
+        "status": "PASS",
+        "source": {
+          "commit": "7e5584e9cd5d70c3a61c38ccab2620bee0315dd5",
+          "dirty": true,
+          "patch_sha256": "e0c9705fca876219e33fcb5a90adbecaad04257257826e624fce1c5d4b221a1e"
+        },
+        "scenarios": [
+          {
+            "id": "managed-acceptance-crashes",
+            "status": "PASS",
+            "checks": 13,
+            "cleanup": "PASS"
+          }
+        ]
+      },
+      {
+        "path": "ci-exact-head-38990406209-managed/_temp/managed-component-portability/report.json",
+        "sha256": "e21dea34d8442550450fbebb716967b78334ccc15a31767909b6365508b7c512",
+        "status": "PASS",
+        "source": {
+          "commit": "7e5584e9cd5d70c3a61c38ccab2620bee0315dd5",
+          "dirty": true,
+          "patch_sha256": "e0c9705fca876219e33fcb5a90adbecaad04257257826e624fce1c5d4b221a1e"
+        },
+        "scenarios": [
+          {
+            "id": "managed-component-portability",
+            "status": "PASS",
+            "checks": 7,
+            "cleanup": "PASS"
+          }
+        ]
+      }
+    ],
+    "generated_junit_patch_sha256": "e0c9705fca876219e33fcb5a90adbecaad04257257826e624fce1c5d4b221a1e",
+    "provenance": "GitHub synthetic PR merge; dirty managed receipts match only the generated JUnit collector bytes. HTTP/session witnesses excluded."
+  }
+}

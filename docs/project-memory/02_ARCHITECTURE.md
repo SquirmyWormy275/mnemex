@@ -102,8 +102,11 @@ accepted, including corrected earlier rounds.
 Binding is allowed only for a fresh supported individual handicap event. It
 validates complete active host entries, divisions, configured wood, gear and
 canonical physical stands. A 275 mm synthetic example does not override show
-WoodConfig. Existing host heats prevent binding. A pending creation keeps legacy
-scoring fenced until its source outcome is recovered; it is not deleted to guess
+WoodConfig. Standing Block uses the existing Woodboss `block_standing_*` keys,
+Underhand `block_underhand_*`; gender-specific rows take precedence over the
+retained general-key fallback. Inch/mm conversion and every pro/college, male/
+female SB/UH lifecycle are exercised with the real installed engine. Existing
+host heats prevent binding. A pending creation keeps legacy scoring fenced until its source outcome is recovered; it is not deleted to guess
 that a remote create failed.
 
 Initial binding accepts only empty pending result placeholders, reconciles stale
@@ -111,6 +114,13 @@ unentered/inactive placeholders and refuses recorded history. Both stored and
 supplied wood diameters must be finite/positive. The component's existing stable
 show-ID grammar is checked before link allocation, avoiding an invalid persisted
 scope that cannot be corrected. Display names remain separate from stable IDs.
+
+Host references are canonical typed `pro:<id>`/`college:<id>` values and entry
+IDs are unique before parsing. Pre-intent registration validation creates no
+result placeholders; projection creates missing rows under host locks.
+Concurrent request-ID inserts reload the winning durable intent: identical
+payloads recover through normal source audit, while changed payloads conflict.
+Known stale uncommitted retries are refused before host preparation.
 
 The host commits durable command intent before RPC. Because that commit releases
 earlier locks, new source creation reacquires the parent/event/host-context fence
@@ -160,6 +170,16 @@ intervening source write fails the handoff. That host-owned mutex survives helpe
 exit through actual host DBAPI commit/rollback/close. Savepoints do not release
 the outer fence. Bulk award operations acquire all selected source events before
 host schedule/event locks.
+
+Creation and acceptance take the same outer host/source order gate **before**
+either inner lock domain. The empty SQLite sidecar at
+`<canonical authority path>.host-order.sqlite3` contains no business tables or
+authority state. Host-owned connections retain it through commit/rollback, so
+creation cannot hold host locks while acceptance holds the source writer and
+each waits for the other. Every host process uses the same canonical path.
+Never delete/replace an active mutex. After all host processes stop it may be
+recreated empty; it does not replace the actual source database, independent
+head reference or recovery proof. Sources: S17, S18, E18.
 
 The Python 3.10 host interprets no numerical or progression rules here; it compares
 opaque bytes under a schema/runtime adapter pinned to exact rc11. This is a local
