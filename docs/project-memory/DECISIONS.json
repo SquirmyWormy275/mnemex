@@ -290,10 +290,11 @@
       "authority": "Owner-approved handover and/or cited maintained contract",
       "decision": "An uncertain source create can only be adopted through its original source actor/request/config receipt; another candidate cannot replace it.",
       "rationale": "A later refused creation must not overwrite a successful but response-lost event or mapping.",
-      "consequences": "Keep durable pending intents, source creation evidence and superseded-candidate conflicts; recovery may differ from the latest submitted candidate.",
+      "consequences": "Keep durable pending intents, source creation evidence and superseded-candidate conflicts; recovery may differ from the latest submitted candidate. Reacquire/revalidate host facts after durable intent and hold through actual source creation/projection/commit; reject invalid persisted show scopes before link allocation.",
       "sources": [
         "S17",
-        "S18"
+        "S18",
+        "E17"
       ],
       "tags": [
         "create",
@@ -396,13 +397,14 @@
       "status": "current",
       "scope": "Missoula unissued revision",
       "authority": "Owner-approved handover and/or cited maintained contract",
-      "decision": "When adopting an unissued smaller roster, reconcile removed host placeholders only if they are empty pending results; any score/mark/award/settlement/reason history blocks deletion.",
+      "decision": "When adopting an unissued smaller roster, reconcile removed host placeholders only if they are empty pending results; any score/mark/award/settlement/reason history blocks deletion. Apply the same empty-placeholder reconciliation to initial binding; recorded history refuses the fresh opt-in.",
       "rationale": "Ghost pending rows corrupt finalization, while deleting recorded zero timers or reviewed marks destroys history.",
       "consequences": "Verify and reconcile under host locks; a refused projection retains source intent for recovery instead of erasing facts.",
       "sources": [
         "S17",
         "S18",
-        "E14"
+        "E14",
+        "E17"
       ],
       "tags": [
         "roster",
@@ -419,11 +421,12 @@
       "authority": "Owner-approved handover and/or cited maintained contract",
       "decision": "Deliver accepted source attempts/corrections through a durable bounded outbox to the explicit authenticated sandbox inbox, outside scoring/finalization.",
       "rationale": "MNEMEX downtime or committed-response loss must not block the show or duplicate career records.",
-      "consequences": "Retain source/digest/receipt provenance, retry exact messages, reconcile conflicts and leave people unresolved without authorization.",
+      "consequences": "Retain source/digest/receipt provenance, retry exact messages, reconcile conflicts and leave people unresolved without authorization. Non-object acknowledgement JSON remains pending for retry; malformed local RPC responses are controlled failures.",
       "sources": [
         "S17",
         "S31",
-        "E04"
+        "E04",
+        "E17"
       ],
       "tags": [
         "outbox",

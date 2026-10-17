@@ -95,7 +95,12 @@ existing heats/results, partnered/dual/triple modes, shadow authority or live
 configuration refuse binding. Configure actual show wood, all active entrants,
 valid gear declarations and physical stands first.
 
-Host creates durable command intent before sending to the source. If creation is
+Before creating a link, use the component's valid stable show scope and complete
+wood diameter; malformed identities cannot allocate a pending scope. Initial
+binding removes only empty stale result placeholders and refuses recorded history.
+Host creates durable command intent before sending to the source. After that
+commit it must reacquire/revalidate the host-context fence through actual source
+creation and projection/commit; an earlier validation does not span this gap. If creation is
 uncertain, recover its original actor/request/config receipt. A second candidate
 must not replace a successful source create. Read latest source state and recover
 host projection after transport failure. Projection advances monotonically under

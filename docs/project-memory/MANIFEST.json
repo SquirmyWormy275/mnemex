@@ -6,8 +6,8 @@
       "sha256": "6e04bf350c11c6bf031dd80c79c66602cf93e09ca2106465a2715014921a824d"
     },
     "02_ARCHITECTURE.md": {
-      "bytes": 12250,
-      "sha256": "4cde5c31b0d8a90504c9a5104b2ab545d53bb9d3b6aedd50bfaf98016dae3647"
+      "bytes": 13249,
+      "sha256": "c4047ae02c2a035e27aefaa2d72da36c1bd837608c793bfbbff31d1205e07bf0"
     },
     "03_MISSOULA.md": {
       "bytes": 11288,
@@ -22,44 +22,44 @@
       "sha256": "63cb5e7d35e7f9aa7315f4e036cedef1c7de8ab26020d76db73698864fea1377"
     },
     "06_DELIVERY.md": {
-      "bytes": 14433,
-      "sha256": "369699dfa8ab958ede42597f367c7c56c0844c1206b12668c33f14de613bbc81"
+      "bytes": 16804,
+      "sha256": "dda7e1f6ba4942f8e1a363cffb3c805402c1450df555611688382fcf3f09f3e8"
     },
     "07_RUNBOOK.md": {
-      "bytes": 10708,
-      "sha256": "dd20fbf40d69884131fb1f6f2afb56832e801dbc995245e88ae88b90544611ea"
+      "bytes": 11119,
+      "sha256": "ec193f8a7472539861e428b8d95b57ce4229c739e02b0d8c1b214c4294a1388e"
     },
     "08_HISTORY.md": {
-      "bytes": 8323,
-      "sha256": "b53ca5d26e3edf7a59365483d748cc18d1f864c95197576544c888e745479ea8"
+      "bytes": 8506,
+      "sha256": "118d5c4f58bc84537a9676ebbe8c9d8b843f6019225024b86d912ee966f3ff1c"
     },
     "09_MEMORY_MAINTENANCE.md": {
       "bytes": 5720,
       "sha256": "ad18426ba73ca5b735560ad3a62915356d414f47b81e02fd6f06b1b96eab893b"
     },
     "DECISIONS.json": {
-      "bytes": 58170,
-      "sha256": "68872b9a35033e3b5f41d3635ca7faf395189b7e4b267f20c5e7903b62f1c01c"
+      "bytes": 58613,
+      "sha256": "03e1574ffe1987be2c432a1d6081afbd791d86f6b7827f394df179cd0331e2ee"
     },
     "DECISIONS.md": {
-      "bytes": 46202,
-      "sha256": "a3a23c6f9f03962d7b38fb09dd8d41b364b3177533cd0d2cf3ac6caaf787cf79"
+      "bytes": 46684,
+      "sha256": "13efb40e002c21ad0568354bc938991818a8f6312a876174cc8d5694a971200a"
     },
     "DELIVERY_SNAPSHOT.json": {
-      "bytes": 39570,
-      "sha256": "5eb9c1b16d1e0ab2da48a7318091f8628fa526f8ea11b54c592395bba136d82b"
+      "bytes": 44373,
+      "sha256": "c5e9fc3537370b70d517a96d402689c348908166c24f1d909632eeccc8b34d39"
     },
     "SOURCE_CATALOG.json": {
-      "bytes": 34370,
-      "sha256": "03a3c51098dcdca0d1297beece3e0fad857fd03df48a649343860eb86e5479b3"
+      "bytes": 35071,
+      "sha256": "5091a65c32d1a9a15d3f99410314d2ac67ce7ed2e6d373e8ecdfb9b1509d8797"
     },
     "SOURCE_INDEX.md": {
-      "bytes": 27293,
-      "sha256": "ad47eaeb9d60e8aaeeca02893e76d7da5dc2b8b3a16d3afa8e79c9c42209b0c3"
+      "bytes": 27852,
+      "sha256": "4256ec196cb16010ac110d8965dc4c626438b4dbf569b3840cdead7fd9d7d7af"
     },
     "START_HERE.md": {
       "bytes": 8128,
-      "sha256": "014f7d8a8dadd5339727f48ee65e67c3c29fd126d5d7e9024b79a973c57d1f0d"
+      "sha256": "998d91b263999fd1c0075451699dfba37172b12639222adeb7e3cfe8bb24661d"
     },
     "snapshots/Missoula-Pro-Am-Manager/FlightLogic.md": {
       "bytes": 29929,
@@ -82,16 +82,16 @@
       "sha256": "5412daa785ae3181159f96d08f53b715cef81d142b9da3e9fd8d1d6f53329a61"
     },
     "snapshots/Missoula-Pro-Am-Manager/docs/MANAGED_EVENTS.md": {
-      "bytes": 11881,
-      "sha256": "5a7337bb39714508bbec969cf2f44a06832df8da713a9c14234262c0b6ba6808"
+      "bytes": 12607,
+      "sha256": "48528330e49e2b49868af7758c5c0f52cb9466ee47c7f9f8677d2feaeb5acde0"
     },
     "snapshots/Missoula-Pro-Am-Manager/docs/MARK_ASSIGNMENT_WORKFLOW.md": {
       "bytes": 6629,
       "sha256": "26c3668ed1594b0a7f191ff9d89cf51ea9d34f171de714a02470e54712998c48"
     },
     "snapshots/Missoula-Pro-Am-Manager/docs/MODULAR_EXECUTION_STATUS.md": {
-      "bytes": 48922,
-      "sha256": "8abfd797e79d3e4e024da9c35ef3242e036bb8bd7f69a9c46ea149024b2213db"
+      "bytes": 51308,
+      "sha256": "d679c3b50722281c8237cf9ec4210303901bec80c9bfb3f61470a1d84a857606"
     },
     "snapshots/Missoula-Pro-Am-Manager/docs/RECOVERY_DRILLS.md": {
       "bytes": 14613,
@@ -240,6 +240,10 @@
     "snapshots/synthetic-evidence/host-context-postgres/report.json": {
       "bytes": 92,
       "sha256": "354b85a81cd49f1a19507328b36bbb8f074e9239ce28aa095e0343a0f110086f"
+    },
+    "snapshots/synthetic-evidence/managed-binding-final-followup.json": {
+      "bytes": 4504,
+      "sha256": "ad3b149ed24defc26bf788a8d28db50ef05d4a9a0bb8175633ccf69a19a6e359"
     },
     "snapshots/synthetic-evidence/managed-boundary-final-postgres/report.json": {
       "bytes": 92,

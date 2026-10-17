@@ -69,10 +69,10 @@ synthetic evaluation. This is more than a design or mock receiver.
 - MNEMEX application merge: `7a315946c92e24a125fc213c7d139eef6278f12c`;
   local/sandbox contracts implemented; no provider activation.
 - Missoula latest application commit is
-  `1fc0897fda0d9e5567328af75640ae4d3078fa5b`; documentation head
-  `e79ac4aeec7baaaf461834b5e7ae10c84cb9a552`. Final focused verification:
-  170 SQLite / 107 PostgreSQL tests, zero skips; clean R09 and R12 each
-  pass 13 checks with cleanup. All 24 findings raised so far are fixed/resolved.
+  `e8bbc42f4250e2e79e3be4ed3aef3614aa4edae0`; documentation head
+  `96951ed262d1f61d59c6d50182a64cafd6530130`. Final focused verification:
+  195 SQLite / 132 PostgreSQL tests, zero skips; clean R09 and R12 each
+  pass 13 checks with cleanup. All 28 findings raised so far are fixed/resolved.
   Final documentation-head CI/review have their own captured status in the
   delivery snapshot; previous green checkpoints are recorded separately.
   [PR 125](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125)
