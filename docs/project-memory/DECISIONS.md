@@ -167,9 +167,9 @@ An uncertain source create can only be adopted through its original source actor
 
 Rationale: A later refused creation must not overwrite a successful but response-lost event or mapping.
 
-Consequences: Keep durable pending intents, source creation evidence and superseded-candidate conflicts; recovery may differ from the latest submitted candidate.
+Consequences: Keep durable pending intents, source creation evidence and superseded-candidate conflicts; recovery may differ from the latest submitted candidate. Reacquire/revalidate host facts after durable intent and hold through actual source creation/projection/commit; reject invalid persisted show scopes before link allocation.
 
-Sources: [S17](SOURCE_INDEX.md#s17), [S18](SOURCE_INDEX.md#s18).
+Sources: [S17](SOURCE_INDEX.md#s17), [S18](SOURCE_INDEX.md#s18), [E17](SOURCE_INDEX.md#e17).
 
 ## OPS-05: Monotonic locked host projection
 
@@ -223,13 +223,13 @@ Sources: [S17](SOURCE_INDEX.md#s17), [S18](SOURCE_INDEX.md#s18).
 
 Status: **current**. Scope: Missoula unissued revision. Authority: Owner-approved handover and/or cited maintained contract.
 
-When adopting an unissued smaller roster, reconcile removed host placeholders only if they are empty pending results; any score/mark/award/settlement/reason history blocks deletion.
+When adopting an unissued smaller roster, reconcile removed host placeholders only if they are empty pending results; any score/mark/award/settlement/reason history blocks deletion. Apply the same empty-placeholder reconciliation to initial binding; recorded history refuses the fresh opt-in.
 
 Rationale: Ghost pending rows corrupt finalization, while deleting recorded zero timers or reviewed marks destroys history.
 
 Consequences: Verify and reconcile under host locks; a refused projection retains source intent for recovery instead of erasing facts.
 
-Sources: [S17](SOURCE_INDEX.md#s17), [S18](SOURCE_INDEX.md#s18), [E14](SOURCE_INDEX.md#e14).
+Sources: [S17](SOURCE_INDEX.md#s17), [S18](SOURCE_INDEX.md#s18), [E14](SOURCE_INDEX.md#e14), [E17](SOURCE_INDEX.md#e17).
 
 ## OPS-10: Bounded supervised career delivery
 
@@ -239,9 +239,9 @@ Deliver accepted source attempts/corrections through a durable bounded outbox to
 
 Rationale: MNEMEX downtime or committed-response loss must not block the show or duplicate career records.
 
-Consequences: Retain source/digest/receipt provenance, retry exact messages, reconcile conflicts and leave people unresolved without authorization.
+Consequences: Retain source/digest/receipt provenance, retry exact messages, reconcile conflicts and leave people unresolved without authorization. Non-object acknowledgement JSON remains pending for retry; malformed local RPC responses are controlled failures.
 
-Sources: [S17](SOURCE_INDEX.md#s17), [S31](SOURCE_INDEX.md#s31), [E04](SOURCE_INDEX.md#e04).
+Sources: [S17](SOURCE_INDEX.md#s17), [S31](SOURCE_INDEX.md#s31), [E04](SOURCE_INDEX.md#e04), [E17](SOURCE_INDEX.md#e17).
 
 ## NUM-01: Common count is start mark plus raw duration
 

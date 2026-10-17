@@ -746,6 +746,140 @@
     "merge_boundary": "BLOCKED by exact-head hosted backup and independent recovery-identity restore proofs; no production action",
     "verification_comment": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#issuecomment-6227242479"
   },
+  "host_binding_followup": {
+    "schema_version": "mnemex.project-memory.binding-boundary.v1",
+    "captured_at_utc": "2026-10-17T00:42:28.396230+00:00",
+    "application_commit": "e8bbc42f4250e2e79e3be4ed3aef3614aa4edae0",
+    "latest_documentation_commit": "96951ed262d1f61d59c6d50182a64cafd6530130",
+    "data": "synthetic disposable only",
+    "review_finding_ids": [
+      4300479079,
+      4300479085,
+      4300479092,
+      4300479095
+    ],
+    "findings": "Supplied diameter validation; safe initial stale-result reconciliation; host-context fence after durable intent through source creation; non-object receiver receipt handling",
+    "related_audit": "Non-object local RPC envelopes/results and invalid show scopes before pending link allocation",
+    "red_junit": [
+      {
+        "path": "managed-binding-input-red.xml",
+        "sha256": "dcebfff1649b8029de80d53ee2f74555c6f9280e4cd2f714b8388e66c813130f",
+        "tests": 14,
+        "failures": 13,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "managed-rpc-shape-red.xml",
+        "sha256": "1a06e192e72463992c0ddc93ab8c66c9a8aa79248ad3bfd35c550e92c0806c64",
+        "tests": 5,
+        "failures": 5,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "managed-show-identity-red.xml",
+        "sha256": "9fbdd5f48aaf28249f5041096f194a6931d46160f6292d69b2262a709d46fd4a",
+        "tests": 6,
+        "failures": 6,
+        "errors": 0,
+        "skipped": 0
+      }
+    ],
+    "red_scope": "The four review findings produced thirteen failing cases plus one already-refused NaN case. The related audit reproduced eleven further failures. Twenty-five new cases now pass.",
+    "passing_junit": [
+      {
+        "path": "managed-binding-current-sqlite.xml",
+        "sha256": "b14fcd4054ef7244c401463ec9ab528c4e65dcac19907c2efeeab6583e00ec44",
+        "tests": 195,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      {
+        "path": "managed-binding-current-postgres/junit.xml",
+        "sha256": "78e4ec57dd61b2279125df8679539a3288b79a38c7d7939f860a70b82cb5d3f5",
+        "tests": 132,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    ],
+    "postgres_cleanup": {
+      "data": "synthetic",
+      "dialect": "PostgreSQL 18.6",
+      "exit": 0,
+      "cleanup": "PASS"
+    },
+    "recovery": [
+      {
+        "path": "recovery-binding-final-managed-acceptance-crashes/report.json",
+        "sha256": "cf1a99c97d1648d0f5aa06f0b6ec3df535543b0ce562709a71492d954f024b55",
+        "source": {
+          "commit": "e8bbc42f4250e2e79e3be4ed3aef3614aa4edae0",
+          "dirty": false,
+          "patch_sha256": null
+        },
+        "status": "PASS",
+        "scenarios": [
+          {
+            "id": "managed-acceptance-crashes",
+            "status": "PASS",
+            "checks": 13,
+            "cleanup": "PASS"
+          }
+        ]
+      },
+      {
+        "path": "recovery-binding-final-code-schema-rollback/report.json",
+        "sha256": "d30a9f6cfd96d0fff4d06aa0b60a8ddfd8da0b298d76127c83eaef77830fef76",
+        "source": {
+          "commit": "e8bbc42f4250e2e79e3be4ed3aef3614aa4edae0",
+          "dirty": false,
+          "patch_sha256": null
+        },
+        "status": "PASS",
+        "scenarios": [
+          {
+            "id": "code-schema-rollback",
+            "status": "PASS",
+            "checks": 13,
+            "cleanup": "PASS"
+          }
+        ]
+      }
+    ],
+    "pull_request": {
+      "headRefOid": "96951ed262d1f61d59c6d50182a64cafd6530130",
+      "isDraft": true,
+      "state": "OPEN",
+      "reviews": [
+        {
+          "commit_sha": "96951ed262d1f61d59c6d50182a64cafd6530130",
+          "has_any_findings": null,
+          "has_unresolved_findings": null,
+          "status": "running"
+        }
+      ]
+    },
+    "latest_ci": {
+      "conclusion": "",
+      "databaseId": 38987534485,
+      "headSha": "96951ed262d1f61d59c6d50182a64cafd6530130",
+      "status": "in_progress",
+      "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38987534485"
+    },
+    "historical_e79_ci": {
+      "conclusion": "success",
+      "databaseId": 38985815198,
+      "headSha": "e79ac4aeec7baaaf461834b5e7ae10c84cb9a552",
+      "status": "completed",
+      "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38985815198"
+    },
+    "review_scope": "Follow-up requested on changes since e79ac4a after earlier full PR reviews; current captured status remains explicit.",
+    "merge_boundary": "BLOCKED by exact-head hosted backup and independent recovery-identity restore proofs; no production action",
+    "verification_comment": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#issuecomment-6227475583"
+  },
   "strathmark_release": {
     "assets": [
       {
@@ -979,15 +1113,15 @@
     "historical_commit": "70109349dc668a73b30f1cd48fc33b201ab2375c",
     "historical_ci_run": 38982953991,
     "historical_ci_status": "success, eight applicable jobs",
-    "latest_documentation_commit": "e79ac4aeec7baaaf461834b5e7ae10c84cb9a552",
+    "latest_documentation_commit": "96951ed262d1f61d59c6d50182a64cafd6530130",
     "latest_ci": {
       "conclusion": "",
-      "databaseId": 38985815198,
-      "headSha": "e79ac4aeec7baaaf461834b5e7ae10c84cb9a552",
-      "status": "queued",
-      "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38985815198"
+      "databaseId": 38987534485,
+      "headSha": "96951ed262d1f61d59c6d50182a64cafd6530130",
+      "status": "in_progress",
+      "url": "https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38987534485"
     },
-    "application_checkpoint": "1fc0897fda0d9e5567328af75640ae4d3078fa5b",
+    "application_checkpoint": "e8bbc42f4250e2e79e3be4ed3aef3614aa4edae0",
     "status_rule": "Original application inventory above is dated 12:15 UTC; follow-up objects carry later source-bound checks/reviews. Latest docs/CI never inherit older passes."
   }
 }

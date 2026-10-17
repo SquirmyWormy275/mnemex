@@ -106,7 +106,17 @@ WoodConfig. Existing host heats prevent binding. A pending creation keeps legacy
 scoring fenced until its source outcome is recovered; it is not deleted to guess
 that a remote create failed.
 
-The host commits durable command intent before RPC. Insert-only source creation
+Initial binding accepts only empty pending result placeholders, reconciles stale
+unentered/inactive placeholders and refuses recorded history. Both stored and
+supplied wood diameters must be finite/positive. The component's existing stable
+show-ID grammar is checked before link allocation, avoiding an invalid persisted
+scope that cannot be corrected. Display names remain separate from stable IDs.
+
+The host commits durable command intent before RPC. Because that commit releases
+earlier locks, new source creation reacquires the parent/event/host-context fence
+and revalidates the exact saved configuration after the last commit. The fence
+then survives actual source creation, projection and host commit; wood/gear edits
+in the durable-intent gap cannot create stale source authority. Insert-only source creation
 and source actor/request/config provenance identify the accepted initial mapping.
 A refused configuration can receive a new durable corrected request; an earlier
 ambiguous source success cannot be overwritten. Pending original retries first
@@ -178,7 +188,10 @@ wood, round/heat/entry/issue/field identity, explicit clocks, status, position a
 correction evidence. The host wraps it in the narrow `mnemex.show-result.v1`
 envelope using scoped references. A bounded supervised batch records pending,
 conflicting or acknowledged delivery and verifies receiver receipt bindings.
-MNEMEX downtime never undoes accepted event results.
+MNEMEX downtime never undoes accepted event results. Non-object acknowledgement
+JSON is a retryable invalid receipt, not a 500 or an accepted delivery. Malformed
+local RPC envelopes/results also produce handled errors with retained request
+identity rather than falling through an AttributeError or another runtime.
 
 The implemented registered-source sandbox HTTP receiver preserves immutable
 source revisions and rejected valid conflict envelopes, authenticating credential

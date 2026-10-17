@@ -2,7 +2,7 @@
 
 Sources: [S01](SOURCE_INDEX.md#s01), [S07](SOURCE_INDEX.md#s07),
 [S18](SOURCE_INDEX.md#s18), [S19](SOURCE_INDEX.md#s19),
-[E01–E16](SOURCE_INDEX.md#e01). This is a dated delivery ledger. The structured
+[E01–E17](SOURCE_INDEX.md#e01). This is a dated delivery ledger. The structured
 [delivery snapshot](DELIVERY_SNAPSHOT.json) preserves repository and artifact
 metadata. A passing source checkpoint does not confer a pass on a later commit.
 
@@ -143,7 +143,7 @@ snapshot/PR rather than inheriting an earlier green claim. The post-review
 [verification comment](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#issuecomment-6227013146)
 records the local proof and unchanged merge hold.
 
-## Latest host-context fix and resumption checkpoint
+## Host-context fix at 1fc0897
 
 Application `1fc0897fda0d9e5567328af75640ae4d3078fa5b` and documentation
 `e79ac4aeec7baaaf461834b5e7ae10c84cb9a552` address the next three review findings.
@@ -172,6 +172,42 @@ They do not inherit older results. Refresh the live PR for later outcomes. The
 new [verification comment](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#issuecomment-6227242479)
 and S18 retain the failure/fix sequence. PR 125 remains draft and production
 main stays unchanged.
+
+## Latest binding/transport checkpoint
+
+Application `e8bbc42f4250e2e79e3be4ed3aef3614aa4edae0` and documentation
+`96951ed262d1f61d59c6d50182a64cafd6530130` fix four further findings raised by
+the e79ac4a review. Initial binding now locks/revalidates host facts after its
+last durable-intent commit and holds them through source creation/projection/
+commit. It reconciles only empty stale pending results and refuses recorded
+history. Both supplied and stored diameters stay within the finite-positive
+validation boundary. Non-object receiver receipts retain pending retry state.
+
+A related boundary audit also rejects malformed local RPC envelopes/results and
+invalid show scopes before allocating a link. The component identity grammar,
+numerical engine/policy, schema and production settings are unchanged. The four
+review findings produced thirteen failing cases plus one already-refused NaN
+case; the related audit reproduced eleven further failures. All twenty-five new
+cases now pass. Consolidated final suites pass **195 SQLite and 132 PostgreSQL
+tests, zero skips**, with PostgreSQL cleanup PASS. Fresh R09 and R12 at clean
+committed source e8bbc42 each pass thirteen checks and cleanup. E17 preserves
+these exact source/test/recovery receipts and earlier failures.
+
+All 28 raised findings are fixed/resolved. The prior e79ac4a CI passed all eight
+applicable jobs, then its review found these four issues; that green run is
+historical, not a claim those issues were absent. Latest docs-head
+[CI 38987534485](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/actions/runs/38987534485)
+and follow-up review have their own captured state in E17/DELIVERY_SNAPSHOT.
+The review request targets changes since e79ac4a following the prior full PR
+reviews. [The verification comment](https://github.com/SquirmyWormy275/Missoula-Pro-Am-Manager/pull/125#issuecomment-6227475583)
+records scope and proof. Production main is unchanged and PR 125 remains draft.
+
+The original memory pack merged in MNEMEX PR 8 at
+`22c243cc8af9ac1e39a0ec2b743c3a79a5367789`; final PR CI 38985927830 and
+main CI 38986163246 passed Linux/Windows. A fresh merged-main checkout verified
+all 69 then-inventoried files, 54 sources and 67 decisions without site packages.
+This follow-up extends the source pack with E17 and the latest host ledger; its
+Git/PR/CI state is separate. It changes technical memory only.
 
 ## The gate preventing Missoula merge
 
