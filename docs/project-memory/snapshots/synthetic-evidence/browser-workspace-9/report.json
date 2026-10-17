@@ -1,0 +1,53 @@
+{
+  "browser": "system Chromium via Playwright",
+  "data": "synthetic",
+  "official_use": false,
+  "checks": [
+    {
+      "name": "CLI ownership is visibly read-only",
+      "passed": true
+    },
+    {
+      "name": "native field/stand form accepted",
+      "passed": true
+    },
+    {
+      "name": "real engine issued sheet",
+      "passed": true
+    },
+    {
+      "name": "accepted dual-timer results shown with both clocks",
+      "passed": true
+    },
+    {
+      "name": "stale browser edit refused",
+      "passed": true
+    },
+    {
+      "name": "narrow viewport contains tables without page overflow",
+      "passed": true
+    },
+    {
+      "name": "mobile result columns remain readable and scroll within tables",
+      "passed": true
+    },
+    {
+      "name": "independent issued print sheet retains identity",
+      "passed": true
+    },
+    {
+      "name": "normal browser CSRF remains enforced",
+      "passed": true
+    },
+    {
+      "name": "authenticated wrong-show access refused",
+      "passed": true
+    },
+    {
+      "name": "no browser script errors",
+      "passed": true
+    }
+  ],
+  "chromium_version": "152.0.7977.82",
+  "status": "PASS"
+}

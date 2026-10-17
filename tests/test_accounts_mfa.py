@@ -82,6 +82,15 @@ def _password_step(client: Client, account: Account):
     )
 
 
+def _begin_totp_enrollment(client: Client):
+    # allauth 65.20 requires explicit reauthentication even after fresh login.
+    # Use the real password ceremony on both supported dependency versions.
+    target = reverse("mfa_activate_totp")
+    confirmed = client.post(reverse("account_reauthenticate"), {"password": _PASSWORD, "next": target})
+    assert confirmed.status_code == 302 and confirmed.url == target
+    return client.get(target)
+
+
 def _complete_mfa_login(
     client: Client,
     account: Account,
@@ -173,7 +182,7 @@ def test_security_center_and_enrollment_are_operator_facing() -> None:
     first = _password_step(client, account)
     assert first.url == reverse("mfa_activate_totp")
 
-    enrollment = client.get(reverse("mfa_activate_totp"))
+    enrollment = _begin_totp_enrollment(client)
     enrollment_body = enrollment.content.decode()
     assert "Scan the QR code" in enrollment_body
     assert "Save this setup key" in enrollment_body
@@ -399,7 +408,7 @@ def test_confirmed_enrollment_encrypts_secret_and_emits_safe_audit() -> None:
     response = _password_step(client, account)
     assert response.url == reverse("mfa_activate_totp")
 
-    enrollment = client.get(reverse("mfa_activate_totp"))
+    enrollment = _begin_totp_enrollment(client)
     secret = client.session["mfa.totp.secret"]
     activated = client.post(reverse("mfa_activate_totp"), {"code": _current_code(secret)})
 
@@ -428,7 +437,7 @@ def test_invalid_enrollment_code_creates_no_authenticator_or_audit() -> None:
     account = _account("bad-enrollment")
     client = Client()
     _password_step(client, account)
-    client.get(reverse("mfa_activate_totp"))
+    _begin_totp_enrollment(client)
 
     response = client.post(reverse("mfa_activate_totp"), {"code": "000000"})
 
@@ -654,7 +663,7 @@ def test_security_notification_failure_does_not_split_totp_enrollment() -> None:
     client = Client()
     response = _password_step(client, account)
     assert response.url == reverse("mfa_activate_totp")
-    client.get(reverse("mfa_activate_totp"))
+    _begin_totp_enrollment(client)
     secret = client.session["mfa.totp.secret"]
 
     with patch(
@@ -776,3 +785,26 @@ def test_email_addition_revokes_other_sessions_and_current_mfa_proof() -> None:
     assert current.url.startswith(reverse("mfa_reauthenticate"))
     assert other.status_code == 302
     assert other.url.startswith(reverse("account_login"))
+
+
+def test_enrollment_reauthentication_refuses_wrong_password_before_disclosing_secret() -> None:
+    account = _account("enrollment-reauthentication")
+    client = Client()
+    assert _password_step(client, account).url == reverse("mfa_activate_totp")
+    # Expire all collected assurance so this gate is exercised on 65.19 and
+    # 65.20, which deliberately differ about a recent initial login.
+    session = client.session
+    session.pop(AUTHENTICATION_METHODS_SESSION_KEY, None)
+    session.save()
+    enrollment = client.get(reverse("mfa_activate_totp"))
+    assert enrollment.status_code == 302
+    assert enrollment.url.startswith(reverse("account_reauthenticate"))
+    assert "mfa.totp.secret" not in client.session
+    refused = client.post(reverse("account_reauthenticate"), {
+        "password": "synthetic wrong password", "next": reverse("mfa_activate_totp")})
+    assert refused.status_code == 200
+    assert "mfa.totp.secret" not in client.session
+    assert not Authenticator.objects.filter(user=account).exists()
+    assert _begin_totp_enrollment(client).status_code == 200
+    assert client.session["mfa.totp.secret"]
+    assert not Authenticator.objects.filter(user=account).exists()

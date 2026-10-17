@@ -1,0 +1,529 @@
+{
+  "schema_version": "strathmark.synthetic-evaluation.v1",
+  "mode": "synthetic_verification",
+  "claim": "Plumbing and deterministic numerical verification only; no real-world accuracy or handicap-fairness claim.",
+  "counts": {
+    "total": 8,
+    "eligible": 8,
+    "excluded": 0,
+    "exclusions_by_reason": {},
+    "prediction_available": 8,
+    "abstentions": 0,
+    "degraded": 0,
+    "baseline_available": 4,
+    "baseline_unavailable_reason": {
+      "no_exact_material_diameter_prior": 4
+    }
+  },
+  "overall": {
+    "sample_count": 8,
+    "mae_seconds": 8.629931971923355,
+    "median_absolute_error_seconds": 8.324808280160504,
+    "p90_error_seconds": 10.974257144436557,
+    "p99_error_seconds": 10.974257144436557,
+    "max_error_seconds": 10.974257144436557,
+    "interval_count": 8,
+    "interval_coverage": 1.0,
+    "mean_interval_width_seconds": 69.16589173825926
+  },
+  "matched_baseline": {
+    "count": 4,
+    "engine": {
+      "sample_count": 4,
+      "mae_seconds": 7.695823562906062,
+      "median_absolute_error_seconds": 7.560262812947727,
+      "p90_error_seconds": 10.019323502115114,
+      "p99_error_seconds": 10.019323502115114,
+      "max_error_seconds": 10.019323502115114,
+      "interval_count": 4,
+      "interval_coverage": 1.0,
+      "mean_interval_width_seconds": 55.26932844741723
+    },
+    "last_exact_context_cut": {
+      "sample_count": 4,
+      "mae_seconds": 1.0,
+      "median_absolute_error_seconds": 1.0,
+      "p90_error_seconds": 1.0,
+      "p99_error_seconds": 1.0,
+      "max_error_seconds": 1.0,
+      "interval_count": 0,
+      "interval_coverage": null,
+      "mean_interval_width_seconds": null
+    }
+  },
+  "slices": {
+    "event": {
+      "UH": {
+        "sample_count": 8,
+        "mae_seconds": 8.629931971923355,
+        "median_absolute_error_seconds": 8.324808280160504,
+        "p90_error_seconds": 10.974257144436557,
+        "p99_error_seconds": 10.974257144436557,
+        "max_error_seconds": 10.974257144436557,
+        "interval_count": 8,
+        "interval_coverage": 1.0,
+        "mean_interval_width_seconds": 69.16589173825926
+      }
+    },
+    "material": {
+      "S01": {
+        "sample_count": 4,
+        "mae_seconds": 7.695823562906062,
+        "median_absolute_error_seconds": 7.560262812947727,
+        "p90_error_seconds": 10.019323502115114,
+        "p99_error_seconds": 10.019323502115114,
+        "max_error_seconds": 10.019323502115114,
+        "interval_count": 4,
+        "interval_coverage": 1.0,
+        "mean_interval_width_seconds": 55.26932844741723
+      },
+      "SYNTHETIC-UNKNOWN": {
+        "sample_count": 4,
+        "mae_seconds": 9.564040380940646,
+        "median_absolute_error_seconds": 9.70073447801592,
+        "p90_error_seconds": 10.974257144436557,
+        "p99_error_seconds": 10.974257144436557,
+        "max_error_seconds": 10.974257144436557,
+        "interval_count": 4,
+        "interval_coverage": 1.0,
+        "mean_interval_width_seconds": 83.0624550291013
+      }
+    },
+    "diameter_mm": {
+      "275": {
+        "sample_count": 4,
+        "mae_seconds": 7.695823562906062,
+        "median_absolute_error_seconds": 7.560262812947727,
+        "p90_error_seconds": 10.019323502115114,
+        "p99_error_seconds": 10.019323502115114,
+        "max_error_seconds": 10.019323502115114,
+        "interval_count": 4,
+        "interval_coverage": 1.0,
+        "mean_interval_width_seconds": 55.26932844741723
+      },
+      "300": {
+        "sample_count": 4,
+        "mae_seconds": 9.564040380940646,
+        "median_absolute_error_seconds": 9.70073447801592,
+        "p90_error_seconds": 10.974257144436557,
+        "p99_error_seconds": 10.974257144436557,
+        "max_error_seconds": 10.974257144436557,
+        "interval_count": 4,
+        "interval_coverage": 1.0,
+        "mean_interval_width_seconds": 83.0624550291013
+      }
+    },
+    "history_depth": {
+      "3": {
+        "sample_count": 8,
+        "mae_seconds": 8.629931971923355,
+        "median_absolute_error_seconds": 8.324808280160504,
+        "p90_error_seconds": 10.974257144436557,
+        "p99_error_seconds": 10.974257144436557,
+        "max_error_seconds": 10.974257144436557,
+        "interval_count": 8,
+        "interval_coverage": 1.0,
+        "mean_interval_width_seconds": 69.16589173825926
+      }
+    }
+  },
+  "numeric_identity": "4f41bbeb7d70617320643bd199d8c42af298e2f0adde24476aeedf422b2bd3f6",
+  "rows": [
+    {
+      "entry_id": "e0",
+      "engine_id": "synthetic:missoula:engine:0",
+      "predicted_raw_seconds": "39.19194468324164",
+      "engine_version": "2.0.0",
+      "model_version": "prediction-v2-core-20260207",
+      "calibration_version": "prediction-v2-calibration-2025h1",
+      "interval": {
+        "lower": 18.37786609486609,
+        "upper": 83.57926432402077,
+        "nominal_coverage": 0.9,
+        "calibration_state": "calibrated",
+        "scope": "event"
+      },
+      "warnings": [],
+      "degraded": false,
+      "ignored_factors": [
+        "division",
+        "round_or_heat",
+        "venue",
+        "lane_or_stand",
+        "run_order",
+        "log_block_batch_identity",
+        "wood_quality_or_moisture",
+        "weather",
+        "equipment",
+        "rest_or_fatigue",
+        "penalty_or_dnf",
+        "same_tournament_result",
+        "field_strength"
+      ],
+      "provenance": {
+        "engine": "prediction_v2",
+        "provider_source": "package",
+        "prediction_source": "hierarchical_dynamic_core",
+        "core_checksum": "61344dda5a5aa84f99a9936f3710b3532f0faf3c373082314be1b1c6bf84c330",
+        "residual_version": null,
+        "identity_scope": "stable"
+      },
+      "row_id": "synthetic:0",
+      "event": "UH",
+      "material": "S01",
+      "diameter_mm": 275,
+      "history_depth": 3,
+      "actual_raw_seconds": 31.0,
+      "baseline_seconds": 32.0
+    },
+    {
+      "entry_id": "e1",
+      "engine_id": "synthetic:missoula:engine:1",
+      "predicted_raw_seconds": "26.071419057346183",
+      "engine_version": "2.0.0",
+      "model_version": "prediction-v2-core-20260207",
+      "calibration_version": "prediction-v2-calibration-2025h1",
+      "interval": {
+        "lower": 12.225396116766966,
+        "upper": 55.5989258075269,
+        "nominal_coverage": 0.9,
+        "calibration_state": "calibrated",
+        "scope": "event"
+      },
+      "warnings": [],
+      "degraded": false,
+      "ignored_factors": [
+        "division",
+        "round_or_heat",
+        "venue",
+        "lane_or_stand",
+        "run_order",
+        "log_block_batch_identity",
+        "wood_quality_or_moisture",
+        "weather",
+        "equipment",
+        "rest_or_fatigue",
+        "penalty_or_dnf",
+        "same_tournament_result",
+        "field_strength"
+      ],
+      "provenance": {
+        "engine": "prediction_v2",
+        "provider_source": "package",
+        "prediction_source": "hierarchical_dynamic_core",
+        "core_checksum": "61344dda5a5aa84f99a9936f3710b3532f0faf3c373082314be1b1c6bf84c330",
+        "residual_version": null,
+        "identity_scope": "stable"
+      },
+      "row_id": "synthetic:1",
+      "event": "UH",
+      "material": "S01",
+      "diameter_mm": 275,
+      "history_depth": 3,
+      "actual_raw_seconds": 33.0,
+      "baseline_seconds": 34.0
+    },
+    {
+      "entry_id": "e2",
+      "engine_id": "synthetic:missoula:engine:2",
+      "predicted_raw_seconds": "40.64344512361368",
+      "engine_version": "2.0.0",
+      "model_version": "prediction-v2-core-20260207",
+      "calibration_version": "prediction-v2-calibration-2025h1",
+      "interval": {
+        "lower": 19.058502918208077,
+        "upper": 86.67467946488163,
+        "nominal_coverage": 0.9,
+        "calibration_state": "calibrated",
+        "scope": "event"
+      },
+      "warnings": [],
+      "degraded": false,
+      "ignored_factors": [
+        "division",
+        "round_or_heat",
+        "venue",
+        "lane_or_stand",
+        "run_order",
+        "log_block_batch_identity",
+        "wood_quality_or_moisture",
+        "weather",
+        "equipment",
+        "rest_or_fatigue",
+        "penalty_or_dnf",
+        "same_tournament_result",
+        "field_strength"
+      ],
+      "provenance": {
+        "engine": "prediction_v2",
+        "provider_source": "package",
+        "prediction_source": "hierarchical_dynamic_core",
+        "core_checksum": "61344dda5a5aa84f99a9936f3710b3532f0faf3c373082314be1b1c6bf84c330",
+        "residual_version": null,
+        "identity_scope": "stable"
+      },
+      "row_id": "synthetic:2",
+      "event": "UH",
+      "material": "S01",
+      "diameter_mm": 275,
+      "history_depth": 3,
+      "actual_raw_seconds": 35.0,
+      "baseline_seconds": 36.0
+    },
+    {
+      "entry_id": "e3",
+      "engine_id": "synthetic:missoula:engine:3",
+      "predicted_raw_seconds": "26.980676497884886",
+      "engine_version": "2.0.0",
+      "model_version": "prediction-v2-core-20260207",
+      "calibration_version": "prediction-v2-calibration-2025h1",
+      "interval": {
+        "lower": 12.651764637722911,
+        "upper": 57.53797396080367,
+        "nominal_coverage": 0.9,
+        "calibration_state": "calibrated",
+        "scope": "event"
+      },
+      "warnings": [],
+      "degraded": false,
+      "ignored_factors": [
+        "division",
+        "round_or_heat",
+        "venue",
+        "lane_or_stand",
+        "run_order",
+        "log_block_batch_identity",
+        "wood_quality_or_moisture",
+        "weather",
+        "equipment",
+        "rest_or_fatigue",
+        "penalty_or_dnf",
+        "same_tournament_result",
+        "field_strength"
+      ],
+      "provenance": {
+        "engine": "prediction_v2",
+        "provider_source": "package",
+        "prediction_source": "hierarchical_dynamic_core",
+        "core_checksum": "61344dda5a5aa84f99a9936f3710b3532f0faf3c373082314be1b1c6bf84c330",
+        "residual_version": null,
+        "identity_scope": "stable"
+      },
+      "row_id": "synthetic:3",
+      "event": "UH",
+      "material": "S01",
+      "diameter_mm": 275,
+      "history_depth": 3,
+      "actual_raw_seconds": 37.0,
+      "baseline_seconds": 38.0
+    },
+    {
+      "entry_id": "e4",
+      "engine_id": "synthetic:missoula:engine:4",
+      "predicted_raw_seconds": "49.97425714443656",
+      "engine_version": "2.0.0",
+      "model_version": "prediction-v2-core-20260207",
+      "calibration_version": "prediction-v2-calibration-2025h1",
+      "interval": {
+        "lower": 20.91747973564207,
+        "upper": 119.3942295487353,
+        "nominal_coverage": 0.9,
+        "calibration_state": "calibrated",
+        "scope": "event"
+      },
+      "warnings": [
+        "unknown_species"
+      ],
+      "degraded": false,
+      "ignored_factors": [
+        "division",
+        "round_or_heat",
+        "venue",
+        "lane_or_stand",
+        "run_order",
+        "log_block_batch_identity",
+        "wood_quality_or_moisture",
+        "weather",
+        "equipment",
+        "rest_or_fatigue",
+        "penalty_or_dnf",
+        "same_tournament_result",
+        "field_strength"
+      ],
+      "provenance": {
+        "engine": "prediction_v2",
+        "provider_source": "package",
+        "prediction_source": "hierarchical_dynamic_core",
+        "core_checksum": "61344dda5a5aa84f99a9936f3710b3532f0faf3c373082314be1b1c6bf84c330",
+        "residual_version": null,
+        "identity_scope": "stable"
+      },
+      "row_id": "synthetic:4",
+      "event": "UH",
+      "material": "SYNTHETIC-UNKNOWN",
+      "diameter_mm": 300,
+      "history_depth": 3,
+      "actual_raw_seconds": 39.0,
+      "baseline_seconds": null
+    },
+    {
+      "entry_id": "e5",
+      "engine_id": "synthetic:missoula:engine:5",
+      "predicted_raw_seconds": "33.11956457670581",
+      "engine_version": "2.0.0",
+      "model_version": "prediction-v2-core-20260207",
+      "calibration_version": "prediction-v2-calibration-2025h1",
+      "interval": {
+        "lower": 13.862693724175891,
+        "upper": 79.12643672114274,
+        "nominal_coverage": 0.9,
+        "calibration_state": "calibrated",
+        "scope": "event"
+      },
+      "warnings": [
+        "unknown_species"
+      ],
+      "degraded": false,
+      "ignored_factors": [
+        "division",
+        "round_or_heat",
+        "venue",
+        "lane_or_stand",
+        "run_order",
+        "log_block_batch_identity",
+        "wood_quality_or_moisture",
+        "weather",
+        "equipment",
+        "rest_or_fatigue",
+        "penalty_or_dnf",
+        "same_tournament_result",
+        "field_strength"
+      ],
+      "provenance": {
+        "engine": "prediction_v2",
+        "provider_source": "package",
+        "prediction_source": "hierarchical_dynamic_core",
+        "core_checksum": "61344dda5a5aa84f99a9936f3710b3532f0faf3c373082314be1b1c6bf84c330",
+        "residual_version": null,
+        "identity_scope": "stable"
+      },
+      "row_id": "synthetic:5",
+      "event": "UH",
+      "material": "SYNTHETIC-UNKNOWN",
+      "diameter_mm": 300,
+      "history_depth": 3,
+      "actual_raw_seconds": 41.0,
+      "baseline_seconds": null
+    },
+    {
+      "entry_id": "e6",
+      "engine_id": "synthetic:missoula:engine:6",
+      "predicted_raw_seconds": "51.45767187707937",
+      "engine_version": "2.0.0",
+      "model_version": "prediction-v2-core-20260207",
+      "calibration_version": "prediction-v2-calibration-2025h1",
+      "interval": {
+        "lower": 21.538385365513214,
+        "upper": 122.93827740908146,
+        "nominal_coverage": 0.9,
+        "calibration_state": "calibrated",
+        "scope": "event"
+      },
+      "warnings": [
+        "unknown_species"
+      ],
+      "degraded": false,
+      "ignored_factors": [
+        "division",
+        "round_or_heat",
+        "venue",
+        "lane_or_stand",
+        "run_order",
+        "log_block_batch_identity",
+        "wood_quality_or_moisture",
+        "weather",
+        "equipment",
+        "rest_or_fatigue",
+        "penalty_or_dnf",
+        "same_tournament_result",
+        "field_strength"
+      ],
+      "provenance": {
+        "engine": "prediction_v2",
+        "provider_source": "package",
+        "prediction_source": "hierarchical_dynamic_core",
+        "core_checksum": "61344dda5a5aa84f99a9936f3710b3532f0faf3c373082314be1b1c6bf84c330",
+        "residual_version": null,
+        "identity_scope": "stable"
+      },
+      "row_id": "synthetic:6",
+      "event": "UH",
+      "material": "SYNTHETIC-UNKNOWN",
+      "diameter_mm": 300,
+      "history_depth": 3,
+      "actual_raw_seconds": 43.0,
+      "baseline_seconds": null
+    },
+    {
+      "entry_id": "e7",
+      "engine_id": "synthetic:missoula:engine:7",
+      "predicted_raw_seconds": "34.05620292104753",
+      "engine_version": "2.0.0",
+      "model_version": "prediction-v2-core-20260207",
+      "calibration_version": "prediction-v2-calibration-2025h1",
+      "interval": {
+        "lower": 14.254737842626069,
+        "upper": 81.36417310540295,
+        "nominal_coverage": 0.9,
+        "calibration_state": "calibrated",
+        "scope": "event"
+      },
+      "warnings": [
+        "unknown_species"
+      ],
+      "degraded": false,
+      "ignored_factors": [
+        "division",
+        "round_or_heat",
+        "venue",
+        "lane_or_stand",
+        "run_order",
+        "log_block_batch_identity",
+        "wood_quality_or_moisture",
+        "weather",
+        "equipment",
+        "rest_or_fatigue",
+        "penalty_or_dnf",
+        "same_tournament_result",
+        "field_strength"
+      ],
+      "provenance": {
+        "engine": "prediction_v2",
+        "provider_source": "package",
+        "prediction_source": "hierarchical_dynamic_core",
+        "core_checksum": "61344dda5a5aa84f99a9936f3710b3532f0faf3c373082314be1b1c6bf84c330",
+        "residual_version": null,
+        "identity_scope": "stable"
+      },
+      "row_id": "synthetic:7",
+      "event": "UH",
+      "material": "SYNTHETIC-UNKNOWN",
+      "diameter_mm": 300,
+      "history_depth": 3,
+      "actual_raw_seconds": 45.0,
+      "baseline_seconds": null
+    }
+  ],
+  "historical_replay": {
+    "status": "NOT_RUN",
+    "reason": "No new private-data run is authorized by this implementation."
+  },
+  "prospective": {
+    "status": "BLOCKED",
+    "minimum_later_results": 100,
+    "minimum_new_competitions": 10,
+    "reason": "Genuinely later unexamined observations and exact frozen components are required."
+  },
+  "numeric_promotion": false,
+  "official_use": false
+}

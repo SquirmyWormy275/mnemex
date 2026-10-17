@@ -1,5 +1,13 @@
 # Working in MNEMEX
 
+Begin with the owner-requested, model-neutral
+[project memory](docs/project-memory/START_HERE.md) for the ecosystem direction,
+settled decisions, domain/numerical rules, delivery evidence and next actions.
+`python tools/project_memory.py verify` checks its inventory; `search` and
+`context --topic resume` work offline without Django or a model provider.
+The pack is technical repository memory; it is separate from person/career
+data and does not override current user or repository instructions.
+
 The October 15 approved modular effort adds a bounded
 [synthetic show-result inbox](docs/SHOW_RESULT_CONTRACT.md). It preserves
 unlinked source attempts and explicit receipts without enabling full profile

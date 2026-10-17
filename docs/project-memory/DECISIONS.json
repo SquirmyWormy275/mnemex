@@ -1,0 +1,1445 @@
+{
+  "schema_version": "mnemex.project-memory.decisions.v1",
+  "authority_note": "Selections and maintained contracts are cited; rationale marked as synthesis in guides is not an invented owner quotation. Delivery/activation is separately qualified.",
+  "decisions": [
+    {
+      "id": "ECO-01",
+      "title": "Incremental reusable ecosystem; Missoula first",
+      "status": "current",
+      "scope": "all four repositories",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Build modular tournament capabilities with Missoula as the integration testbed from the outset, preserving the live show and STRATHEX retro CLI.",
+      "rationale": "The owner explicitly approved reuse and implementation through a working host rather than another planning/decision-list exercise.",
+      "consequences": "Implement/test real vertical workflows; preserve existing behavior and prove a second synthetic show before claiming real multi-show adapters.",
+      "sources": [
+        "S01",
+        "S02",
+        "S12",
+        "S24"
+      ],
+      "tags": [
+        "vision",
+        "reuse",
+        "integration",
+        "Missoula"
+      ]
+    },
+    {
+      "id": "ECO-02",
+      "title": "Component ownership",
+      "status": "current",
+      "scope": "architecture",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "MNEMEX owns person identity/consent/cross-show provenance; STRATHMARK owns predictions and delegated single-event operations; hosts own registration, whole-show scheduling, points and payouts.",
+      "rationale": "The approved boundaries keep source authority and presentation separate while making components reusable.",
+      "consequences": "No show DB writes from MNEMEX, no payout logic in shared calculations and no duplicate advancement algorithms in UI adapters.",
+      "sources": [
+        "S01",
+        "S02",
+        "S28",
+        "S31"
+      ],
+      "tags": [
+        "ownership",
+        "components",
+        "responsibilities"
+      ]
+    },
+    {
+      "id": "ECO-03",
+      "title": "Two explicit integration modes",
+      "status": "current",
+      "scope": "host/component boundary",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Support calculation-only and explicitly delegated operations. A calculation-only host retains event workflow authority; delegated events use STRATHMARK operational state.",
+      "rationale": "Getting a prediction is a different act from delegating review, issue and advancement.",
+      "consequences": "Never infer authority transfer from a calculation response or silently opt an existing event into managed mode.",
+      "sources": [
+        "S01",
+        "S02",
+        "S06",
+        "S17"
+      ],
+      "tags": [
+        "calculation",
+        "delegation",
+        "authority"
+      ]
+    },
+    {
+      "id": "ECO-04",
+      "title": "One shared operational core",
+      "status": "current",
+      "scope": "CLI GUI host",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "CLI, optional shared GUI, Missoula adapter and STRATHEX managed presentation call the same event operations.",
+      "rationale": "The owner wants interchangeable presentation without rebuilding domain algorithms or context.",
+      "consequences": "Keep fields, review, issue, correction, progression, source receipts and invariants in shared operations, not wrappers.",
+      "sources": [
+        "S01",
+        "S02",
+        "S06"
+      ],
+      "tags": [
+        "GUI",
+        "CLI",
+        "operations"
+      ]
+    },
+    {
+      "id": "ECO-05",
+      "title": "Real standalone operator-supplied-data CLI",
+      "status": "current",
+      "scope": "STRATHMARK",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Provide a standalone installed CLI accepting user event configuration and numeric requests, not only generated demos or a Missoula wrapper.",
+      "rationale": "Independent installed use proves the modular component is reusable beyond one host.",
+      "consequences": "Core install imports neither host nor MNEMEX; examples are optional labeled synthetic inputs.",
+      "sources": [
+        "S01",
+        "S06",
+        "E01"
+      ],
+      "tags": [
+        "standalone",
+        "CLI",
+        "portability"
+      ]
+    },
+    {
+      "id": "ECO-06",
+      "title": "Optional shared GUI",
+      "status": "current",
+      "scope": "presentation",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "The shared GUI is optional, authenticated and backed by the same operations/history as CLI, with explicit editor handover.",
+      "rationale": "Operators can change interface without creating a second authority or numerical implementation.",
+      "consequences": "Protect accounts/sessions/CSRF, default to loopback, review exact sheet digests and never treat GUI availability as engine qualification.",
+      "sources": [
+        "S01",
+        "S06",
+        "E03"
+      ],
+      "tags": [
+        "GUI",
+        "workspace",
+        "browser",
+        "handover"
+      ]
+    },
+    {
+      "id": "ECO-07",
+      "title": "Explicit immutable root selection; no engine fallback",
+      "status": "current",
+      "scope": "numerical/operational roots",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Choose engine/runtime and mark policy explicitly at the competition root; children inherit. Failure never triggers another engine or policy.",
+      "rationale": "Fallback would change numerical authority and destroy reproducible evidence.",
+      "consequences": "Refuse unavailable/ineligible selections; retain identity/version/digest and require new authorized roots for different policy.",
+      "sources": [
+        "S01",
+        "S02",
+        "S03",
+        "S24"
+      ],
+      "tags": [
+        "engine",
+        "fallback",
+        "root",
+        "immutable",
+        "policy"
+      ]
+    },
+    {
+      "id": "ECO-08",
+      "title": "Offline race-day operation",
+      "status": "current",
+      "scope": "MNEMEX and hosts",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "MNEMEX supports pre-event validation and post-event reconciliation; pinned local show operation must not need MNEMEX availability during competition.",
+      "rationale": "An identity service outage must not decide the show or make locked registrations unusable.",
+      "consequences": "Validate online before import/roster lock, then use authorized local snapshots; queue results for later delivery.",
+      "sources": [
+        "S01",
+        "S28",
+        "S29",
+        "S31"
+      ],
+      "tags": [
+        "offline",
+        "outage",
+        "snapshot",
+        "roster"
+      ]
+    },
+    {
+      "id": "ECO-09",
+      "title": "Retain STRATHEX retro behavior",
+      "status": "current",
+      "scope": "STRATHEX terminal",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Keep the existing retro CLI, Excel judge artifact, saves and existing V2/V3 pins working; managed mode is explicitly selected before legacy startup.",
+      "rationale": "The owner expressly required preservation, and legacy startup has operator workbook/database side effects.",
+      "consequences": "Use a separate selected interpreter for managed delegation and isolated storage for tests; do not rewrite normal startup into a different product.",
+      "sources": [
+        "S01",
+        "S24",
+        "S25",
+        "S26",
+        "S27"
+      ],
+      "tags": [
+        "retro",
+        "workbook",
+        "Excel",
+        "compatibility"
+      ]
+    },
+    {
+      "id": "ECO-10",
+      "title": "Synthetic first bounded managed profile",
+      "status": "current",
+      "scope": "managed v1",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Qualify fresh synthetic single-run individual handicap SB/UH using the real packaged V2 predictor, configured wood, explicit Mark-3 policy and dual timers in Missoula.",
+      "rationale": "A narrow real engine workflow is reviewable without claiming broader official eligibility.",
+      "consequences": "Refuse existing history, partnered/dual/triple/shadow/live binding; production managed activation remains disabled.",
+      "sources": [
+        "S01",
+        "S02",
+        "S06",
+        "S17"
+      ],
+      "tags": [
+        "SB",
+        "UH",
+        "synthetic",
+        "V2",
+        "eligibility"
+      ]
+    },
+    {
+      "id": "OPS-01",
+      "title": "Durable exact request retries and controlled editor handover",
+      "status": "current",
+      "scope": "managed operations",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Retain stable request ID, actor, exact payload/digest, expected revision and editor. Exact retries recover receipts; changed payloads conflict.",
+      "rationale": "Response loss is ambiguous success, not permission to issue a second operation.",
+      "consequences": "Recover original requests, refuse stale mutation and use explicit handover rather than concurrent independent editors.",
+      "sources": [
+        "S06",
+        "S17",
+        "E01",
+        "E04"
+      ],
+      "tags": [
+        "idempotency",
+        "retry",
+        "recovery",
+        "handover"
+      ]
+    },
+    {
+      "id": "OPS-02",
+      "title": "Review and issue are separate commitments",
+      "status": "current",
+      "scope": "managed field lifecycle",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Forecast/proposed sheet, review, explicit issue, outcomes, judge acceptance and finalization are separate durable actions bound to exact field/sheet identity.",
+      "rationale": "A number or reviewed draft is not authority to start or a final official result.",
+      "consequences": "Changed preparation invalidates dependent unissued artifacts; preserve issued identity/history, use explicit correction revisions.",
+      "sources": [
+        "S01",
+        "S06",
+        "S17"
+      ],
+      "tags": [
+        "review",
+        "issue",
+        "sheet",
+        "digest"
+      ]
+    },
+    {
+      "id": "OPS-03",
+      "title": "Progression recomputes field-relative marks",
+      "status": "current",
+      "scope": "qualifying semifinals finals",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Qualify entrants by configured rules and resolve boundary ties explicitly; each new field recalculates its own marks.",
+      "rationale": "Start offsets depend on the exact competing field, not a portable athlete mark.",
+      "consequences": "Never copy qualifying marks into a final or silently resolve judge ties by UI ordering.",
+      "sources": [
+        "S03",
+        "S06",
+        "E01"
+      ],
+      "tags": [
+        "progression",
+        "finals",
+        "ties",
+        "marks"
+      ]
+    },
+    {
+      "id": "OPS-04",
+      "title": "Insert-only source creation ownership",
+      "status": "current",
+      "scope": "Missoula initial binding",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "An uncertain source create can only be adopted through its original source actor/request/config receipt; another candidate cannot replace it.",
+      "rationale": "A later refused creation must not overwrite a successful but response-lost event or mapping.",
+      "consequences": "Keep durable pending intents, source creation evidence and superseded-candidate conflicts; recovery may differ from the latest submitted candidate.",
+      "sources": [
+        "S17",
+        "S18"
+      ],
+      "tags": [
+        "create",
+        "ambiguity",
+        "mapping",
+        "provenance"
+      ]
+    },
+    {
+      "id": "OPS-05",
+      "title": "Monotonic locked host projection",
+      "status": "current",
+      "scope": "Missoula adapter",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Reload under tournament/event locks, verify identity/config and move cached state/physical fields only forward in source revision.",
+      "rationale": "Delayed responses retain their own receipts but must not overwrite a newer correction or fresh host facts.",
+      "consequences": "Recheck wood for every config and current roster/divisions/gear before newer physical fields. Hold underlying PostgreSQL wood/competitor locks or the real host SQLite writer through commit, including uncoordinated writers. Receipt-only no-field forecast recovery publishes no physical heat. Protect scheduled/issued/started/completed fields.",
+      "sources": [
+        "S17",
+        "S18",
+        "E14",
+        "E16"
+      ],
+      "tags": [
+        "projection",
+        "locks",
+        "monotonic",
+        "concurrency"
+      ]
+    },
+    {
+      "id": "OPS-06",
+      "title": "Accept source export atomically through actual DB commit",
+      "status": "current",
+      "scope": "Missoula result acceptance",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Hold the actual source fence through the host DBAPI commit; accept source attempts, career outbox, summary and receipt in one host transaction.",
+      "rationale": "A subprocess verification that ends before commit leaves a race for later source revisions.",
+      "consequences": "Refuse stale exports; preserve rollback/retry; batch source guards before host locks. Local coordination is not distributed hosted qualification.",
+      "sources": [
+        "S17",
+        "S18",
+        "E04",
+        "E08"
+      ],
+      "tags": [
+        "fence",
+        "transaction",
+        "commit",
+        "acceptance",
+        "crash"
+      ]
+    },
+    {
+      "id": "OPS-07",
+      "title": "Explicit host awards and correction reconciliation",
+      "status": "current",
+      "scope": "Missoula scoring",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Host points/payouts use accepted current finalized source positions, current host registration and explicit award application; settlement is separate.",
+      "rationale": "Accepting a correction must not silently pay, repay or leave a nonfinal event eligible for final awards.",
+      "consequences": "Reopen host finalization on a nonfinal correction, preserve old award facts until deliberate reconciliation and rebuild college/team or pro totals.",
+      "sources": [
+        "S12",
+        "S17",
+        "S18",
+        "E14",
+        "E16"
+      ],
+      "tags": [
+        "awards",
+        "payouts",
+        "correction",
+        "registration"
+      ]
+    },
+    {
+      "id": "OPS-08",
+      "title": "Protect source-owned state from legacy writers",
+      "status": "current",
+      "scope": "Missoula legacy routes",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Legacy score writes, scratch/deletion and gear repair must not mutate delegated fields/results; host-owned events continue to work.",
+      "rationale": "Managed ownership would be meaningless if unrelated legacy writers could alter accepted source facts.",
+      "consequences": "Guard global routes, college/team deletion, repairs and schedule writes; explicitly unschedule safe pending fields with digest binding before replacement.",
+      "sources": [
+        "S17",
+        "S18"
+      ],
+      "tags": [
+        "gear",
+        "scratch",
+        "deletion",
+        "scheduling"
+      ]
+    },
+    {
+      "id": "OPS-09",
+      "title": "Safe roster shrink preserves history",
+      "status": "current",
+      "scope": "Missoula unissued revision",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "When adopting an unissued smaller roster, reconcile removed host placeholders only if they are empty pending results; any score/mark/award/settlement/reason history blocks deletion.",
+      "rationale": "Ghost pending rows corrupt finalization, while deleting recorded zero timers or reviewed marks destroys history.",
+      "consequences": "Verify and reconcile under host locks; a refused projection retains source intent for recovery instead of erasing facts.",
+      "sources": [
+        "S17",
+        "S18",
+        "E14"
+      ],
+      "tags": [
+        "roster",
+        "shrink",
+        "pending",
+        "history"
+      ]
+    },
+    {
+      "id": "OPS-10",
+      "title": "Bounded supervised career delivery",
+      "status": "current",
+      "scope": "host to MNEMEX",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Deliver accepted source attempts/corrections through a durable bounded outbox to the explicit authenticated sandbox inbox, outside scoring/finalization.",
+      "rationale": "MNEMEX downtime or committed-response loss must not block the show or duplicate career records.",
+      "consequences": "Retain source/digest/receipt provenance, retry exact messages, reconcile conflicts and leave people unresolved without authorization.",
+      "sources": [
+        "S17",
+        "S31",
+        "E04"
+      ],
+      "tags": [
+        "outbox",
+        "delivery",
+        "outage",
+        "receipt"
+      ]
+    },
+    {
+      "id": "NUM-01",
+      "title": "Common count is start mark plus raw duration",
+      "status": "current",
+      "scope": "all handicap semantics",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "common_count_completion = start_mark + raw_cutting_duration. Larger marks start later; raw duration remains raw evidence.",
+      "rationale": "Owner reaffirmed the common-count start semantics; subtraction ranks the same performance incorrectly.",
+      "consequences": "Sort common-count completion in handicap time scoring. Keep DNS/DNF/DQ, timer average, raw result and issue provenance separate.",
+      "sources": [
+        "S01",
+        "S03",
+        "S12",
+        "S22",
+        "S24"
+      ],
+      "tags": [
+        "math",
+        "addition",
+        "subtraction",
+        "common",
+        "count",
+        "clock"
+      ]
+    },
+    {
+      "id": "NUM-02",
+      "title": "Mark-3 is an explicit new policy",
+      "status": "current",
+      "scope": "managed mark3-ceil180.v1",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Use integer mark = 3 + ceil(max_field_prediction - entrant_prediction), with allowed marks 3 through 180. Block out-of-range fields.",
+      "rationale": "The approved Mark-3 conversion is deliberately distinct from retained optimizer behavior.",
+      "consequences": "Do not compress/clamp to fit, substitute zero or alter the legacy optimizer policy. Marks are recalculated per field.",
+      "sources": [
+        "S01",
+        "S02",
+        "S03",
+        "S06"
+      ],
+      "tags": [
+        "Mark-3",
+        "ceil180",
+        "3",
+        "180",
+        "policy"
+      ]
+    },
+    {
+      "id": "NUM-03",
+      "title": "Retain legacy optimizer policy separately",
+      "status": "current",
+      "scope": "v2-optimizer.v1",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Retained V2 joint-optimizer/clipped historical behavior remains versioned separately; its historical maximum can be 183.",
+      "rationale": "Compatibility and historical evidence cannot be silently rewritten to match the new Mark-3 policy.",
+      "consequences": "Root policy identity must be visible in receipts; never treat a retained 183 ceiling as permission for managed marks above 180.",
+      "sources": [
+        "S01",
+        "S03",
+        "S24"
+      ],
+      "tags": [
+        "optimizer",
+        "legacy",
+        "183",
+        "policy"
+      ]
+    },
+    {
+      "id": "NUM-04",
+      "title": "V2 predictor is real and numerical LLM workflow is retired",
+      "status": "current",
+      "scope": "V2",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Use the packaged V2 predictor and its supported evidence contract. Numeric LLM/council calculation is retired for V2.",
+      "rationale": "The handover requires real reproducible numerical behavior, not mock values or speculative LLM adjustments.",
+      "consequences": "Do not confuse V3 council/family architecture with permission to alter V2 or introduce an unavailable fallback.",
+      "sources": [
+        "S01",
+        "S10",
+        "S24"
+      ],
+      "tags": [
+        "V2",
+        "LLM",
+        "council",
+        "predictor"
+      ]
+    },
+    {
+      "id": "NUM-05",
+      "title": "Wood quality record-only for V2",
+      "status": "current",
+      "scope": "V2 evidence and managed config",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Accept supported known quality on 0–10 or null; record it but V2 does not change predictions for it. quality_sensitive is unsupported.",
+      "rationale": "Evidence may retain context without claiming an unqualified numerical feature.",
+      "consequences": "Never invent quality from a photo, coerce unknown to a meaningful zero or silently activate quality-sensitive calculations.",
+      "sources": [
+        "S01",
+        "S02",
+        "S03",
+        "S10"
+      ],
+      "tags": [
+        "quality",
+        "null",
+        "record-only",
+        "wood"
+      ]
+    },
+    {
+      "id": "NUM-06",
+      "title": "Prior-only reviewed evidence; no leakage",
+      "status": "current",
+      "scope": "numeric evidence export",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Use only eligible reviewed SB/UH prior results at the declared cutoff; same-day, future and undated rows are not V2 prior evidence.",
+      "rationale": "Prediction evaluation must not learn from the outcome it is predicting or broaden trust just because an archive contains a row.",
+      "consequences": "Retain source dates/review/provenance; distinguish source outcomes from model training eligibility.",
+      "sources": [
+        "S01",
+        "S10",
+        "S11",
+        "S28",
+        "S31"
+      ],
+      "tags": [
+        "prior",
+        "cutoff",
+        "leakage",
+        "evidence"
+      ]
+    },
+    {
+      "id": "NUM-07",
+      "title": "Distinct V3 runtime profiles",
+      "status": "current",
+      "scope": "retained V3",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Full Linux competition, unissued Linux preview and Windows full-factory/CNG are distinct exact contracts. Do not label all Linux V3 preview-only.",
+      "rationale": "Runtime/engine eligibility is profile-specific and bound to source/digest/qualification.",
+      "consequences": "Inspect CURRENT_RUNTIME_CONTRACT and producer V3 docs; managed v1 stays V2, Linux tests do not establish Windows CNG eligibility.",
+      "sources": [
+        "S05",
+        "S08",
+        "S09",
+        "S24"
+      ],
+      "tags": [
+        "V3",
+        "Linux",
+        "Windows",
+        "CNG",
+        "preview",
+        "competition"
+      ]
+    },
+    {
+      "id": "NUM-08",
+      "title": "Retained zero is not managed minimum",
+      "status": "current",
+      "scope": "legacy official vs managed marks",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "An explicitly reviewed legacy zero start mark is valid and needs review evidence. Managed Mark-3 has minimum three.",
+      "rationale": "Zero must not also mean no review; different policy roots have different domains.",
+      "consequences": "Preserve mark_assigned_at/review state and never use default 0.0 as proof a late entrant was reviewed.",
+      "sources": [
+        "S03",
+        "S12",
+        "S22"
+      ],
+      "tags": [
+        "zero",
+        "scratch",
+        "mark",
+        "review"
+      ]
+    },
+    {
+      "id": "EVAL-01",
+      "title": "Synthetic evaluation proves only declared synthetic scope",
+      "status": "current",
+      "scope": "carried-forward evaluation",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Keep the actual packaged-predictor synthetic evaluation: eight cases and four matched outcome sets, with runtime/source/data scope explicit.",
+      "rationale": "Synthetic execution is useful portability/regression evidence, not real-world accuracy qualification.",
+      "consequences": "Report metrics and unresolved limitations honestly; no private-history execution or training is implied.",
+      "sources": [
+        "S01",
+        "S10",
+        "S11",
+        "E02"
+      ],
+      "tags": [
+        "evaluation",
+        "synthetic",
+        "accuracy"
+      ]
+    },
+    {
+      "id": "EVAL-02",
+      "title": "Frozen prospective qualification remains blocked",
+      "status": "blocked",
+      "scope": "original rc6 prospective program",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Require at least 100 genuinely later previously unexamined results from ten new competitions under the original frozen components.",
+      "rationale": "Prospective evidence cannot be manufactured from examined old data or transferred to a different candidate by changing hashes.",
+      "consequences": "Wait for real future observations; keep rc6 freeze and rc11 delivery separate; do not rehash artifacts to mark qualification passed.",
+      "sources": [
+        "S01",
+        "S10",
+        "S11"
+      ],
+      "tags": [
+        "prospective",
+        "100",
+        "10",
+        "frozen",
+        "rc6",
+        "qualification"
+      ]
+    },
+    {
+      "id": "SHOW-01",
+      "title": "Missoula canonical show contract wins",
+      "status": "current",
+      "scope": "Missoula",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Follow docs/DOMAIN_CONTRACT.md, then tests, FlightLogic, reconnaissance and historical requirements. Preserve the documented show behavior.",
+      "rationale": "Older requirements/algorithm notes contain known contradictions and are not a new owner decision.",
+      "consequences": "Record conflicts and governing corrections; never simplify sporting rules to fit shared operations.",
+      "sources": [
+        "S01",
+        "S12",
+        "S13",
+        "S14"
+      ],
+      "tags": [
+        "domain",
+        "precedence",
+        "rules"
+      ]
+    },
+    {
+      "id": "SHOW-02",
+      "title": "Atomic whole-show scheduling",
+      "status": "current",
+      "scope": "Missoula scheduling",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Plan/validate complete show schedules using fresh inputs and publish atomically; invalid constraints reject without destroying the prior schedule.",
+      "rationale": "Partial schedule mutation can strand competitors and invalidate issued/started state.",
+      "consequences": "Preserve host show ordering, partner/run spacing, gear and capacity constraints; shared event operations do not reorder whole flights.",
+      "sources": [
+        "S12",
+        "S13",
+        "S17"
+      ],
+      "tags": [
+        "atomic",
+        "flights",
+        "schedule",
+        "preflight"
+      ]
+    },
+    {
+      "id": "SHOW-03",
+      "title": "Physical stands and left-hand constraints",
+      "status": "current",
+      "scope": "Missoula resources",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Stock Saw uses stands 7/8 for both pro and college. Left-handed springboard uses its configured left-handed dummy (conventionally stand 4), at most once per heat; expand or reject invalid generation.",
+      "rationale": "Later canonical corrections supersede older Stock Saw 1/2 and same-heat left-handed springboard overflow descriptions. This is a springboard-specific resource rule.",
+      "consequences": "No same-heat invalid overflow or arbitrary resource expansion; validate source fields against actual configured stands.",
+      "sources": [
+        "S12",
+        "S13",
+        "S14",
+        "S17"
+      ],
+      "tags": [
+        "Stock",
+        "Saw",
+        "stands",
+        "left-handed",
+        "4",
+        "7",
+        "8"
+      ]
+    },
+    {
+      "id": "SHOW-04",
+      "title": "Gear sharing is a hard scheduling constraint",
+      "status": "current",
+      "scope": "Missoula gear",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Normalize declarations/groups, respect valid event-specific sharing and physical concurrent limits, and reject impossible assignments before mutation.",
+      "rationale": "Ignoring gear when everyone shares it does not make the schedule runnable.",
+      "consequences": "Use canonical gear services and tests; managed fields are protected from legacy repair. Saw constraints remain per documented group/capacity.",
+      "sources": [
+        "S12",
+        "S15",
+        "S17"
+      ],
+      "tags": [
+        "gear",
+        "groups",
+        "sharing",
+        "conflicts"
+      ]
+    },
+    {
+      "id": "SHOW-05",
+      "title": "College teams and points",
+      "status": "current",
+      "scope": "Missoula college",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Teams have at most eight members with at least two of each gender; closed-event entry cap six, configurable open events, placement points 10/7/5/3/2/1.",
+      "rationale": "These are the owner/canonical competition rules, not generic defaults to replace.",
+      "consequences": "Split tied placement points as documented; rebuild individual/team aggregates after accepted changes; preserve pro vs college distinctions.",
+      "sources": [
+        "S12",
+        "S14"
+      ],
+      "tags": [
+        "college",
+        "teams",
+        "points",
+        "ties"
+      ]
+    },
+    {
+      "id": "SHOW-06",
+      "title": "Pro shared-position purse",
+      "status": "current",
+      "scope": "Missoula payouts",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Pro entrants sharing a position receive that position's configured amount each; do not split a single prize pool among them.",
+      "rationale": "Host purse semantics differ from collegiate tie-point averaging.",
+      "consequences": "Source positions drive explicit host awards; payout templates and settlement remain host-owned.",
+      "sources": [
+        "S12",
+        "S17"
+      ],
+      "tags": [
+        "pro",
+        "tie",
+        "payout",
+        "purse"
+      ]
+    },
+    {
+      "id": "SHOW-07",
+      "title": "Dual stopwatches and raw facts",
+      "status": "current",
+      "scope": "Missoula timed events",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Preserve two judge stopwatches per physical timed run and average per the documented policy; retain individual readings and raw duration.",
+      "rationale": "Timing evidence and common-count placement are different facts.",
+      "consequences": "Do not count absent/DNS/DNF/DQ as numeric zero; corrections retain issued/source identity and reviewer.",
+      "sources": [
+        "S12",
+        "S17"
+      ],
+      "tags": [
+        "timers",
+        "dual",
+        "mean",
+        "raw"
+      ]
+    },
+    {
+      "id": "SHOW-08",
+      "title": "Partnered axe and normalized state",
+      "status": "current",
+      "scope": "Missoula storage",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Partnered Axe Throw keeps its documented prelim/final Event.event_state state machine; HeatAssignment and normalized relay/Birling tables are canonical for their domains.",
+      "rationale": "Historical JSON roster/stand/Birling/relay stores have been removed or superseded by migrations.",
+      "consequences": "Use Heat.set_roster and actual relationships; never recreate parallel stale JSON authority.",
+      "sources": [
+        "S12",
+        "S13",
+        "S14",
+        "S16"
+      ],
+      "tags": [
+        "partnered",
+        "axe",
+        "HeatAssignment",
+        "relay",
+        "Birling"
+      ]
+    },
+    {
+      "id": "SHOW-09",
+      "title": "Pro-Am Relay lottery and program",
+      "status": "current",
+      "scope": "Missoula relay",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Relay teams have eight members: two each pro men/pro women/college men/college women; $5 lottery entry does not guarantee selection. Preserve four-event order and closing placement.",
+      "rationale": "Relay mixes groups and has separate participation, money and show-program semantics.",
+      "consequences": "Saw, Standing Butcher, Underhand Butcher, Team Axe Balloon; no college points, documented college prize-money exception; preserve Chokerman run-two closer.",
+      "sources": [
+        "S12",
+        "S14",
+        "S16"
+      ],
+      "tags": [
+        "relay",
+        "lottery",
+        "8",
+        "members",
+        "five",
+        "dollars",
+        "Chokerman"
+      ]
+    },
+    {
+      "id": "SHOW-10",
+      "title": "Offline score submissions retain identity",
+      "status": "current",
+      "scope": "Missoula offline operations",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Offline score queues and replay use signed/context-bound receipts and explicit conflict handling, not an unauthenticated alternate scoring channel.",
+      "rationale": "Offline operation must preserve the same authority, event/field context and duplicate protections as online entry.",
+      "consequences": "Keep HMAC/session/event boundaries, replay receipts and judge confirmation; do not treat cached browser state as final authority.",
+      "sources": [
+        "S12",
+        "S18",
+        "S20"
+      ],
+      "tags": [
+        "offline",
+        "HMAC",
+        "score",
+        "receipt"
+      ]
+    },
+    {
+      "id": "D0-1",
+      "title": "Minors in the first pilot (owner option C)",
+      "status": "planned",
+      "scope": "MNEMEX approved August 14 design",
+      "authority": "Explicit owner-approved D0 selection in S29; delivery scope separately tracked",
+      "decision": "Support minors from the first pilot, with guardian and age-aware controls.",
+      "rationale": "This is the owner's recorded selection, including choices that differ from the document's recommendation. Do not restart the options round.",
+      "consequences": "Guardian authority, consent/revocation/retention and transition at adulthood are required; authentication alone does not verify guardianship.",
+      "sources": [
+        "S28",
+        "S29",
+        "S30"
+      ],
+      "tags": [
+        "MNEMEX",
+        "D0-1",
+        "option-C"
+      ]
+    },
+    {
+      "id": "D0-2",
+      "title": "Expanded legal identity (owner option B)",
+      "status": "planned",
+      "scope": "MNEMEX approved August 14 design",
+      "authority": "Explicit owner-approved D0 selection in S29; delivery scope separately tracked",
+      "decision": "Build the expanded legal-identity profile, separated from display/competitive identity.",
+      "rationale": "This is the owner's recorded selection, including choices that differ from the document's recommendation. Do not restart the options round.",
+      "consequences": "Encrypt private claims; do not expose legal/contact values to logs, public pages or ordinary show/numerical projections.",
+      "sources": [
+        "S28",
+        "S29",
+        "S30"
+      ],
+      "tags": [
+        "MNEMEX",
+        "D0-2",
+        "option-B"
+      ]
+    },
+    {
+      "id": "D0-3",
+      "title": "Opt-in public pages in the pilot (owner option B)",
+      "status": "planned",
+      "scope": "MNEMEX approved August 14 design",
+      "authority": "Explicit owner-approved D0 selection in S29; delivery scope separately tracked",
+      "decision": "Include per-person opt-in public profile pages in the intended pilot.",
+      "rationale": "This is the owner's recorded selection, including choices that differ from the document's recommendation. Do not restart the options round.",
+      "consequences": "Private is the default. Archive publication and a successful login do not make a person public.",
+      "sources": [
+        "S28",
+        "S29",
+        "S30"
+      ],
+      "tags": [
+        "MNEMEX",
+        "D0-3",
+        "option-B"
+      ]
+    },
+    {
+      "id": "D0-4",
+      "title": "MNEMEX-owned authentication (owner option C)",
+      "status": "current",
+      "scope": "MNEMEX approved August 14 design",
+      "authority": "Explicit owner-approved D0 selection in S29; delivery scope separately tracked",
+      "decision": "Use MNEMEX's own account/UX boundary with maintained framework auth/crypto primitives.",
+      "rationale": "This is the owner's recorded selection, including choices that differ from the document's recommendation. Do not restart the options round.",
+      "consequences": "Account auth, person identity verification, guardian authority and partner grants remain independent.",
+      "sources": [
+        "S28",
+        "S29",
+        "S30"
+      ],
+      "tags": [
+        "MNEMEX",
+        "D0-4",
+        "option-C"
+      ]
+    },
+    {
+      "id": "D0-5",
+      "title": "Multiple shows from the start (owner option B)",
+      "status": "current",
+      "scope": "MNEMEX approved August 14 design",
+      "authority": "Explicit owner-approved D0 selection in S29; delivery scope separately tracked",
+      "decision": "Support multiple shows from the first schema/tenancy design.",
+      "rationale": "This is the owner's recorded selection, including choices that differ from the document's recommendation. Do not restart the options round.",
+      "consequences": "Register tenant/client ownership, pairwise references, scoped credentials and revocation; do not retrofit global public correlation IDs.",
+      "sources": [
+        "S28",
+        "S29",
+        "S30"
+      ],
+      "tags": [
+        "MNEMEX",
+        "D0-5",
+        "option-B"
+      ]
+    },
+    {
+      "id": "D0-6",
+      "title": "Online validation before lock; offline afterward (owner option B)",
+      "status": "planned",
+      "scope": "MNEMEX approved August 14 design",
+      "authority": "Explicit owner-approved D0 selection in S29; delivery scope separately tracked",
+      "decision": "Use online-only package validation before import/roster lock, then a pinned local snapshot during the event.",
+      "rationale": "This is the owner's recorded selection, including choices that differ from the document's recommendation. Do not restart the options round.",
+      "consequences": "No race-day MNEMEX dependency or silent refresh of a locked roster; manual registration remains available.",
+      "sources": [
+        "S28",
+        "S29",
+        "S30"
+      ],
+      "tags": [
+        "MNEMEX",
+        "D0-6",
+        "option-B"
+      ]
+    },
+    {
+      "id": "D0-7",
+      "title": "Server-side atomic transaction (owner option A)",
+      "status": "current",
+      "scope": "MNEMEX approved August 14 design",
+      "authority": "Explicit owner-approved D0 selection in S29; delivery scope separately tracked",
+      "decision": "Commit inbox/provenance/career-reconciliation/receipt/outbox effects in a server-side transaction.",
+      "rationale": "This is the owner's recorded selection, including choices that differ from the document's recommendation. Do not restart the options round.",
+      "consequences": "Do not approximate transactional authority with client-side chained writes; preserve exact retry and conflict receipts.",
+      "sources": [
+        "S28",
+        "S29",
+        "S30"
+      ],
+      "tags": [
+        "MNEMEX",
+        "D0-7",
+        "option-A"
+      ]
+    },
+    {
+      "id": "D0-8",
+      "title": "Recovery and retention before real PII (owner option A)",
+      "status": "current",
+      "scope": "MNEMEX approved August 14 design",
+      "authority": "Explicit owner-approved D0 selection in S29; delivery scope separately tracked",
+      "decision": "Approve and prove recovery/retention obligations before ingesting real personally identifying data.",
+      "rationale": "This is the owner's recorded selection, including choices that differ from the document's recommendation. Do not restart the options round.",
+      "consequences": "RPO/RTO, DB/private-object/key restores and deletion/legal-hold behavior are required; local passing tests are insufficient.",
+      "sources": [
+        "S28",
+        "S29",
+        "S30"
+      ],
+      "tags": [
+        "MNEMEX",
+        "D0-8",
+        "option-A"
+      ]
+    },
+    {
+      "id": "D0-9",
+      "title": "Legacy bulk migration first (owner option B)",
+      "status": "current",
+      "scope": "MNEMEX approved August 14 design",
+      "authority": "Explicit owner-approved D0 selection in S29; delivery scope separately tracked",
+      "decision": "Migrate legacy career sources through explicit bulk staging/quarantine/reconciliation before pilot legacy activation.",
+      "rationale": "This is the owner's recorded selection, including choices that differ from the document's recommendation. Do not restart the options round.",
+      "consequences": "Preserve originals, exact-digest approvals, review and resumable checkpoints; do not auto-link ambiguous names.",
+      "sources": [
+        "S28",
+        "S29",
+        "S30"
+      ],
+      "tags": [
+        "MNEMEX",
+        "D0-9",
+        "option-B"
+      ]
+    },
+    {
+      "id": "D0-10",
+      "title": "Integrated Django Results Desk on Railway/Supabase (owner option A)",
+      "status": "current",
+      "scope": "MNEMEX approved August 14 design",
+      "authority": "Explicit owner-approved D0 selection in S29; delivery scope separately tracked",
+      "decision": "Use a single Django modular monolith with integrated Results Desk, hosted on Railway with Supabase PostgreSQL/private objects.",
+      "rationale": "This is the owner's recorded selection, including choices that differ from the document's recommendation. Do not restart the options round.",
+      "consequences": "Shared domain/migrations for web/workers; provider configuration/recovery remain explicit activation gates.",
+      "sources": [
+        "S28",
+        "S29",
+        "S30"
+      ],
+      "tags": [
+        "MNEMEX",
+        "D0-10",
+        "option-A"
+      ]
+    },
+    {
+      "id": "D0-11",
+      "title": "Broad result capture; narrow reviewed SB/UH export (owner option A)",
+      "status": "current",
+      "scope": "MNEMEX approved August 14 design",
+      "authority": "Explicit owner-approved D0 selection in S29; delivery scope separately tracked",
+      "decision": "Archive broad results while keeping STRATHMARK 2.x evidence export restricted to reviewed eligible prior SB/UH.",
+      "rationale": "This is the owner's recorded selection, including choices that differ from the document's recommendation. Do not restart the options round.",
+      "consequences": "Archive coverage does not widen numeric eligibility, consent, trust or discipline support.",
+      "sources": [
+        "S28",
+        "S29",
+        "S30"
+      ],
+      "tags": [
+        "MNEMEX",
+        "D0-11",
+        "option-A"
+      ]
+    },
+    {
+      "id": "D0-12",
+      "title": "Automatic valid-source publication (owner option C)",
+      "status": "current",
+      "scope": "MNEMEX approved August 14 design",
+      "authority": "Explicit owner-approved D0 selection in S29; delivery scope separately tracked",
+      "decision": "Automatically publish deterministic-valid uploaded rows to the private archive.",
+      "rationale": "This is the owner's recorded selection, including choices that differ from the document's recommendation. Do not restart the options round.",
+      "consequences": "Identity reconciliation, verification/trust, public visibility, consent and STRATHMARK eligibility remain separate review states.",
+      "sources": [
+        "S28",
+        "S29",
+        "S30"
+      ],
+      "tags": [
+        "MNEMEX",
+        "D0-12",
+        "option-C"
+      ]
+    },
+    {
+      "id": "MNE-01",
+      "title": "Immutable opaque Person identity",
+      "status": "current",
+      "scope": "MNEMEX identity",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Use an opaque immutable person ID distinct from account, email, name, federation ID, pairwise show reference and numerical pseudonym.",
+      "rationale": "Names and accounts change; correlation and legal identity have different disclosure/authority boundaries.",
+      "consequences": "Never recycle IDs or silently name-link people; merge/split/redact preserves provenance and tombstones.",
+      "sources": [
+        "S28",
+        "S29",
+        "S30"
+      ],
+      "tags": [
+        "Person",
+        "identity",
+        "account",
+        "pairwise"
+      ]
+    },
+    {
+      "id": "MNE-02",
+      "title": "Purpose-scoped grants and portable projections",
+      "status": "planned",
+      "scope": "planned full portable profiles",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Portable profiles require explicit recipient/show/purpose/field scope, approval/version, expiry/revocation and retention acknowledgment; projected packages bind issuer/audience/digest/context.",
+      "rationale": "A profile is a scoped projection, not a replica of legal identity or a universal bearer credential.",
+      "consequences": "Validate before import/lock, retain exact receipt/digest/local mapping, respect revocation for future disclosure and keep manual registration.",
+      "sources": [
+        "S28",
+        "S29",
+        "S30"
+      ],
+      "tags": [
+        "portable",
+        "profile",
+        "consent",
+        "grants"
+      ]
+    },
+    {
+      "id": "MNE-03",
+      "title": "Source archive preserves extraction provenance",
+      "status": "current",
+      "scope": "Results Desk",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Preserve original artifacts/digests, selected sheet/row/cell, parser/mapping version, operator/reviewer, validation, correction and supersession.",
+      "rationale": "Extracted rows are evidence of a source, not inherently verified person facts.",
+      "consequences": "Multi-sheet XLSX requires explicit selection; LLM outputs are untrusted and cannot invent source values; conflicts quarantine.",
+      "sources": [
+        "S28",
+        "S30",
+        "S32"
+      ],
+      "tags": [
+        "Results",
+        "Desk",
+        "extraction",
+        "provenance",
+        "XLSX"
+      ]
+    },
+    {
+      "id": "MNE-04",
+      "title": "Narrow sandbox receiver is implemented; full portability is not",
+      "status": "current",
+      "scope": "October MNEMEX delivery",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "mnemex.show-result.v1 accepts registered source-attributed immutable attempts/corrections and receipts, leaving identities unresolved.",
+      "rationale": "The bounded real receiver validates integration without pretending all portable-profile features or production activation are done.",
+      "consequences": "Do not create Person/career/public links automatically or write directly to host scoring tables.",
+      "sources": [
+        "S31",
+        "S32",
+        "E10"
+      ],
+      "tags": [
+        "receiver",
+        "sandbox",
+        "implemented",
+        "portability"
+      ]
+    },
+    {
+      "id": "MNE-05",
+      "title": "Scoped machine identity and immutable correction stream",
+      "status": "current",
+      "scope": "source-result inbox",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Enforce source/client ownership, expiring revocable hashed credentials, issued-field/entry binding, immutable payload digests and contiguous correction predecessors.",
+      "rationale": "An alternate message ID must not bypass a changed source revision conflict or poison another stream.",
+      "consequences": "Exact retries recover receipts; out-of-order revisions wait; retain conflict and authenticating-credential provenance; unknown historical attribution stays null.",
+      "sources": [
+        "S31",
+        "S32",
+        "E10"
+      ],
+      "tags": [
+        "credential",
+        "provenance",
+        "correction",
+        "conflict",
+        "revision"
+      ]
+    },
+    {
+      "id": "MNE-06",
+      "title": "Maintained authentication and fresh privileged actions",
+      "status": "current",
+      "scope": "MNEMEX local security foundation",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Use Django/allauth, Argon2id, verified email, privileged TOTP/recovery, session rotation/revocation, eight-hour privileged freshness and five-minute sensitive-POST freshness.",
+      "rationale": "The approved own-auth choice does not mean inventing cryptography or skipping action-specific authorization.",
+      "consequences": "Sensitive tickets bind route/origin/session/method/account/security version; in-page step-up preserves form/files and requires explicit confirmation.",
+      "sources": [
+        "S32",
+        "S34"
+      ],
+      "tags": [
+        "MFA",
+        "session",
+        "step-up",
+        "authentication"
+      ]
+    },
+    {
+      "id": "MNE-07",
+      "title": "Queue-only security mail",
+      "status": "current",
+      "scope": "MNEMEX August 18 cutover",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Security notifications create encrypted durable intents and use bounded fenced workers; the request path does not fall back to SMTP.",
+      "rationale": "Owner approved queue-only after availability implications were disclosed; unknown handoff must be reviewed rather than blindly duplicated.",
+      "consequences": "Retain event-time verified recipients, deterministic identity, retries, leases and uncertain-handoff evidence. Hosted SMTP/recovery proofs remain open.",
+      "sources": [
+        "S32",
+        "S33",
+        "S34"
+      ],
+      "tags": [
+        "mail",
+        "queue",
+        "SMTP",
+        "notification"
+      ]
+    },
+    {
+      "id": "MNE-08",
+      "title": "Recover DB, private artifacts and historical keys together",
+      "status": "current",
+      "scope": "MNEMEX recovery",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Recovery includes DB, private objects, versioned encryption keys and reconciled inventory, not only a database backup.",
+      "rationale": "A restored row is unusable if its private evidence or required historical key is absent.",
+      "consequences": "Keep key retirement blockers, resumable re-encryption, artifact leases/orphan reconciliation and independent provider recovery proofs.",
+      "sources": [
+        "S33",
+        "S34",
+        "S35",
+        "S36"
+      ],
+      "tags": [
+        "recovery",
+        "keys",
+        "objects",
+        "backup",
+        "restore"
+      ]
+    },
+    {
+      "id": "MNE-09",
+      "title": "Production privileged activation stays hard-disabled",
+      "status": "blocked",
+      "scope": "MNEMEX production",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "All fourteen activation gates remain unclosed; a registry/report/offline signature verifier cannot enable production privilege.",
+      "rationale": "Local CI cannot prove hosted configuration, provider recovery, independent operators or custody.",
+      "consequences": "No environment toggle shortcut or implied live pilot. Follow G01–G14 evidence and operator ceremonies.",
+      "sources": [
+        "S33",
+        "S34",
+        "S35",
+        "S36"
+      ],
+      "tags": [
+        "activation",
+        "gates",
+        "production"
+      ]
+    },
+    {
+      "id": "DEL-01",
+      "title": "Repository process with precise source evidence",
+      "status": "current",
+      "scope": "delivery",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Commit/push/merge verified changes through each repository's permitted PR process, preserving exact head/main/CI/review/artifact and failure receipts.",
+      "rationale": "Merged, published, activated and verified are different states; a later commit does not inherit an exact-head result.",
+      "consequences": "Fetch before edits, isolate baselines, record skips and cleanup, do not bypass branch protection or erase failures.",
+      "sources": [
+        "S01",
+        "S07",
+        "S18",
+        "S19"
+      ],
+      "tags": [
+        "Git",
+        "PR",
+        "merge",
+        "CI",
+        "source"
+      ]
+    },
+    {
+      "id": "DEL-02",
+      "title": "Missoula backup/key proofs block merge",
+      "status": "blocked",
+      "scope": "Missoula PR 125",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Keep the feature draft/unmerged until exact-current-branch hosted read-only backup/restore/encrypted-artifact proof and separately held recovery-identity decryption/restore rehearsal exist.",
+      "rationale": "The branch advances the backup Alembic expectation and main automatically deploys/migrates; the repository release checklist explicitly requires these proofs.",
+      "consequences": "No production workflow dispatch, gate bypass, schema-pin removal or merge merely because CI is green. Authorized operators must supply the exact proofs.",
+      "sources": [
+        "S01",
+        "S18",
+        "S19",
+        "S20"
+      ],
+      "tags": [
+        "Missoula",
+        "merge",
+        "blocked",
+        "backup",
+        "recovery",
+        "key"
+      ]
+    },
+    {
+      "id": "DEL-03",
+      "title": "No private data or numerical requalification by implication",
+      "status": "current",
+      "scope": "evaluation and release",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Routine implementation authorization does not authorize private historical training/runs, operational data tests, official activation or changing frozen qualification artifacts.",
+      "rationale": "Availability of credentials/data is not the owner's permission for a new operational use.",
+      "consequences": "Use synthetic isolated proof, keep NOT_RUN/BLOCKED explicit and request only the specific genuinely required external input when needed.",
+      "sources": [
+        "S01",
+        "S07",
+        "S10",
+        "S11",
+        "S19",
+        "S33"
+      ],
+      "tags": [
+        "private",
+        "production",
+        "numerical",
+        "qualification"
+      ]
+    },
+    {
+      "id": "MEM-01",
+      "title": "Model-neutral memory stored in MNEMEX Git",
+      "status": "current",
+      "scope": "new owner memory request October 16",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Store a thorough cross-repository handoff in MNEMEX Markdown/JSON/source snapshots with a single entry point and offline search/context/integrity tooling.",
+      "rationale": "The owner wants to switch harness/model without rebuilding hours of context; implemented MNEMEX has no general project-memory ingest API.",
+      "consequences": "Link AGENTS/CLAUDE/README; avoid Django/database dependency, keep decisions/rationale/status/sources and preserve the coverage limit on unseen conversations.",
+      "sources": [
+        "S37",
+        "S01",
+        "S31",
+        "S32"
+      ],
+      "tags": [
+        "memory",
+        "handoff",
+        "harness",
+        "model",
+        "context"
+      ]
+    },
+    {
+      "id": "MEM-02",
+      "title": "Technical memory is separate from person/career data",
+      "status": "current",
+      "scope": "memory storage boundary",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "Do not put design decisions into Person, consent, source-result or career tables or pretend this pack is an application memory endpoint.",
+      "rationale": "The technical handoff has different semantics and disclosure rules from competitor data.",
+      "consequences": "No PII/keys/credentials/datasets in the pack; source snapshots are dated reference, current user/repository instructions still govern.",
+      "sources": [
+        "S37",
+        "S28",
+        "S31",
+        "S32"
+      ],
+      "tags": [
+        "memory",
+        "privacy",
+        "repository"
+      ]
+    },
+    {
+      "id": "OLD-01",
+      "title": "Historical-only scraper and JSONL canonical store retired",
+      "status": "superseded",
+      "scope": "MNEMEX history",
+      "authority": "Owner-approved handover and/or cited maintained contract",
+      "decision": "The old historical-only scraper/static archive/JSONL-git canonical design is superseded by the approved universal profile service and integrated Desk.",
+      "rationale": "August 14 owner selections changed product scope and transactional requirements.",
+      "consequences": "Do not resurrect the retired scheduled production exporter; legacy JSONL may remain an explicit compatibility/export surface.",
+      "sources": [
+        "S28",
+        "S29",
+        "S30",
+        "S32"
+      ],
+      "tags": [
+        "scraper",
+        "JSONL",
+        "retired",
+        "superseded"
+      ]
+    }
+  ]
+}

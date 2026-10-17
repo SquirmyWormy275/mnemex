@@ -1,0 +1,89 @@
+{
+  "schema_version": "mnemex.project-memory.verification.v1",
+  "captured_at_utc": "2026-10-17T00:16:28.209681+00:00",
+  "application_main": "7a315946c92e24a125fc213c7d139eef6278f12c",
+  "utility_and_test_compatibility_commit": "15cb5aa4a3a3ce64de413103d77154b4cc857431",
+  "data": "synthetic only; technical documentation memory, not application data ingestion",
+  "local": [
+    {
+      "path": "mnemex-main-allauth6520-red.xml",
+      "sha256": "cc674624a563f661c7de487f558e66a6aab1723645f5ec83faec6b3d4a66da03",
+      "tests": 32,
+      "failures": 4,
+      "errors": 0,
+      "skipped": 1
+    },
+    {
+      "path": "mnemex-allauth65197-fixed.xml",
+      "sha256": "16a10366c0eb82cdce6eb65884f0c915e48693899f69d0da87d61e115c4f201a",
+      "tests": 33,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1
+    },
+    {
+      "path": "mnemex-allauth6520-fixed.xml",
+      "sha256": "d9337aa70e4e9e6a9cf79c33a8b23376bc728af81de7dfe5c6dc052cbd126484",
+      "tests": 50,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1
+    },
+    {
+      "path": "mnemex-memory-full.xml",
+      "sha256": "29738970c14b0531a3f266532692eff00d4f9e91485984e9a5145e6b1fb988be",
+      "tests": 712,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 53
+    },
+    {
+      "path": "project-memory-tests-final.xml",
+      "sha256": "b4f1d1ea71de2685e62138909c3263ec1c56352ad2666d6eb43446488b298b48",
+      "tests": 20,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  ],
+  "initial_ci": {
+    "conclusion": "failure",
+    "databaseId": 38984576046,
+    "headSha": "b11268e6e4fa03b3656cb8a62040426a2a1f1d05",
+    "status": "completed",
+    "url": "https://github.com/SquirmyWormy275/mnemex/actions/runs/38984576046"
+  },
+  "utility_ci": {
+    "conclusion": "success",
+    "databaseId": 38985244416,
+    "headSha": "15cb5aa4a3a3ce64de413103d77154b4cc857431",
+    "status": "completed",
+    "url": "https://github.com/SquirmyWormy275/mnemex/actions/runs/38985244416"
+  },
+  "ci_junit": [
+    {
+      "path": "mnemex-memory-ci-15/synthetic-tests-ubuntu-24.04/test-results.xml",
+      "sha256": "761b284dccb9335fefb5734052f6722c12c15b2e16d52c923fa5f27f851bd1d7",
+      "tests": 712,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 53
+    },
+    {
+      "path": "mnemex-memory-ci-15/synthetic-tests-windows-latest/test-results.xml",
+      "sha256": "fdc461bd1021a604f912b174853bfe900021bf664f1543e91a685b08264a258c",
+      "tests": 712,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 54
+    }
+  ],
+  "review_findings_fixed": [
+    4300409283,
+    4300409288,
+    4300409290
+  ],
+  "review_status": "completed, no findings at 15cb5aa",
+  "scope": "MFA tests follow actual password reauthentication under 65.19.7 and 65.20.0; no application code/settings/privilege changes. Utility verifies snapshot/catalog bijection and citations and permits symlinked ancestors while rejecting internal symlinks.",
+  "failed_run_note": "First CI failed four existing enrollment tests on both platforms. Unchanged main independently reproduced the same four failures under new upstream dependency; all original security assertions retained."
+}

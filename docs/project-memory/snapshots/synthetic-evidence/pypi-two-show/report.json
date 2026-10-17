@@ -1,0 +1,24 @@
+{
+  "mode": "synthetic_verification",
+  "official_use": false,
+  "shows": [
+    {
+      "show_id": "synthetic:missoula",
+      "event_revision": 33,
+      "attempts": 14,
+      "summary_entries": 8,
+      "numeric_identity": "4f41bbeb7d70617320643bd199d8c42af298e2f0adde24476aeedf422b2bd3f6",
+      "export_digest": "4422efcb7a3e4e11373d2a9512e7ff85876bd83bb226c952e35b2ee5761c0ced",
+      "cli_processes": 35
+    },
+    {
+      "show_id": "synthetic:second-show",
+      "event_revision": 43,
+      "attempts": 14,
+      "summary_entries": 8,
+      "numeric_identity": "4f41bbeb7d70617320643bd199d8c42af298e2f0adde24476aeedf422b2bd3f6",
+      "export_digest": "cf4030bec6b0408b79389a87337d42700544d8495b8b1ae9c658ae618da29d03",
+      "cli_processes": 45
+    }
+  ]
+}
